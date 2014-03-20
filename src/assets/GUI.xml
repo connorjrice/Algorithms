@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
+    <useStyles filename="nifty-default-styles.xml" />
+    <useControls filename="nifty-default-controls.xml" />
+    <screen id="start" controller="SortingAlgorithms.GUI">
+        <layer childLayout="center">
+
+            <panel width="50%" height="50%" align="center" valign="center" childLayout="vertical" backgroundColor="#55a5" padding="10">
+                <panel id="title" backgroundColor="#55a5" height="25%" width="100%" childLayout="center">
+                        <text font="aurulent-sans-16.fnt" color="#f00f" text="Sorting Algorithms" />
+                    </panel>
+                <panel id="spacer" backgroundColor="#5500" height ="50%" width = "100%" childLayout="horizontal"/>
+                <panel id ="buttons" backgroundColor="#4321" height="25%" width = "100%" childLayout="horizontal">
+                    <control name="button" label="Exchange Sort" id="ExchangeButton" valign="center"
+                             visibleToMouse="true" > 
+                        <interact onClick="exchangeSort()"/>
+                    </control>
+                    <control name="button" label="Quick Sort" id="QuickButton" valign="center"
+                             visibleToMouse="true" > 
+                        <interact onClick="quickSort()"/>
+                    </control>
+                    <control name="button" label="Merge Sort" id="MergeButton"valign="center"
+                             visibleToMouse="true" > 
+                        <interact onClick="quickSort()"/>
+                    </control>
+                    <control name="button" label="Insertion Sort" id="InsertionButton" valign="center"
+                             visibleToMouse="true" > 
+                        <interact onClick="quickSort()"/>
+                    </control>
+                    <control name="button" label="Radix Sort" id="RadixButton"valign="center"
+                             visibleToMouse="true" > 
+                        <interact onClick="quickSort()"/>
+                    </control>
+
+                </panel>
+            </panel>
+        </layer>
+    </screen>
+
+</nifty>
