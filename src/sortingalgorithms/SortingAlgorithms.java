@@ -3,10 +3,7 @@ package sortingalgorithms;
 import com.jme3.app.SimpleApplication;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.system.AppSettings;
-import com.jme3.system.NanoTimer;
 import de.lessvoid.nifty.Nifty;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -21,15 +18,15 @@ public class SortingAlgorithms extends SimpleApplication {
         SortingAlgorithms app = new SortingAlgorithms();
         sets.setFrameRate(60);
         sets.setTitle("Sorting Algorithms");
- 
         app.start();
-        // Don't bother me logging
-        Logger.getLogger("").setLevel(Level.SEVERE);
+
     }
 
+    /**
+     * Sets up cam, starts GUI.
+     */
     @Override
     public void simpleInitApp() {
-        setTimer(new NanoTimer());
         flyCam.setDragToRotate(true);
         inputManager.setCursorVisible(true);
         flyCam.setRotationSpeed(0.0f);
@@ -43,11 +40,12 @@ public class SortingAlgorithms extends SimpleApplication {
 
     }
     
+    /**
+     * Initializes the Nifty GUI, attaches it to the stateManager.
+     */
     public void startGUI() {
         NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(assetManager,
-                                                          inputManager,
-                                                          audioRenderer,
-                                                          guiViewPort);
+                inputManager, audioRenderer, guiViewPort);
         Nifty nifty = niftyDisplay.getNifty();
  
         guiViewPort.addProcessor(niftyDisplay);

@@ -32,6 +32,20 @@
                         <interact onClick="quickSort()"/>
                     </control>
 
+                    <control name="button" label="Bubble Sort" id="BubbleButton"valign="center"
+                             visibleToMouse="true" > 
+                        <interact onClick="bubbleSort()"/>
+                    </control>
+                    <control name="button" label="Bucket Sort" id="BucketButton"valign="center"
+                             visibleToMouse="true" > 
+                        <interact onClick="bucketSort()"/>
+                    </control>
+                    <control name="button" label="Comb Sort" id="CombButton"valign="center"
+                             visibleToMouse="true" > 
+                        <interact onClick="combSort()"/>
+                    </control>
+
+
                 </panel>
             </panel>
         </layer>
