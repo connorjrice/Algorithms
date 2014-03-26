@@ -3,7 +3,9 @@
 To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
-
+                    <control name="dropDownControl" id = "intList" backgroundColor="#55a5" valign="center" visibleToMouse="true">
+                        <interact onClick=""/>
+                    </control>
 
 <root>
     

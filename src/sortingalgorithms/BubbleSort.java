@@ -6,10 +6,10 @@ package sortingalgorithms;
  */
 public class BubbleSort {
     
-    private int[] sortingArray;
+    private int[] intList;
     
-    public BubbleSort(int[] inputarray) {
-        sortingArray = inputarray;
+    public BubbleSort(int[] _intList) {
+        intList = _intList;
     }
     
     /**
@@ -17,15 +17,15 @@ public class BubbleSort {
      */
     private void bubbleSort() {
         boolean hasSwapped = false;
-        for (int i = 0; i < sortingArray.length; i++) {
-            if (sortingArray[i] > sortingArray[i+1]) {
-                int placeholder = sortingArray[i];
-                sortingArray[i] = sortingArray[i+1];
-                sortingArray[i+1] = placeholder;
+        for (int i = 0; i < intList.length-1; i++) {
+            if (intList[i] > intList[i+1]) {
+                int placeholder = intList[i];
+                intList[i] = intList[i+1];
+                intList[i+1] = placeholder;
                 hasSwapped = true;
             }   
         }
-        if (hasSwapped = true) {
+        if (hasSwapped == true) {
             bubbleSort();
         }
     }
@@ -34,9 +34,9 @@ public class BubbleSort {
      * Sort and return the sorted list.
      * @return sortingArray (sorted)
      */
-    public int[] doTheBubble() {
+    public int[] getList() {
         bubbleSort();
-        return sortingArray;
+        return intList;
     }
     
 }

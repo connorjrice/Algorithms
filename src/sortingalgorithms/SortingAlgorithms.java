@@ -52,7 +52,7 @@ public class SortingAlgorithms extends SimpleApplication {
         GUIState = new GUI();
         stateManager.attach(GUIState);
         nifty.registerScreenController(GUIState);
-        nifty.fromXml("assets/GUI.xml", "start");
+        nifty.fromXml("assets/GUI.xml", "main");
     }
     
 }

@@ -25,6 +25,7 @@ public class GUI extends AbstractAppState implements ScreenController {
     private ViewPort guiViewPort;
     private InputManager inputManager;
     private SimpleApplication app;
+    private ListMaker lm;
     
     public GUI() {
         
@@ -34,20 +35,43 @@ public class GUI extends AbstractAppState implements ScreenController {
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
         this.app = (SimpleApplication) app;
+        this.lm = new ListMaker();
         
+    }
+    
+    public void mainMenu() {
+        nifty.gotoScreen("main");
+    }
+    
+    public void bubbleSort() {
+        nifty.gotoScreen("bubble");
     }
     
     public void quickSort() {
-        
+        nifty.gotoScreen("quick");
     }
     
     public void mergeSort() {
-        
+        nifty.gotoScreen("merge");
     }
     
     public void exchangeSort() {
+        nifty.gotoScreen("exchange");
+    }
+    
+    public void insertionSort() {
+        nifty.gotoScreen("insertion");
+    }
+    
+    public void radixSort() {
+        nifty.gotoScreen("radix");
+    }
+    
+    
+    public void makeIntList(int size) {
         
     }
+    
     
     @Override
     public void update(float tpf) {
@@ -55,18 +79,19 @@ public class GUI extends AbstractAppState implements ScreenController {
     }
 
     @Override
-    public void bind(Nifty nifty, Screen screen) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void bind(Nifty _nifty, Screen _screen) {
+        nifty = _nifty;
+        screen = _screen;
     }
 
     @Override
     public void onStartScreen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void onEndScreen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     @Override
     public void cleanup() {
