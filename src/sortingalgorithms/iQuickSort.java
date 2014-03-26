@@ -20,7 +20,7 @@ public final class iQuickSort {
      * @param beg beginning position in array
      * @param iend ending position in array
      */
-    private void quickSort(int beg, int iend) {
+    private void cs2QS(int beg, int iend) {
         if (iend - beg >= 2) {
 
             int p = intList[(beg + iend) / 2];
@@ -52,14 +52,19 @@ public final class iQuickSort {
                 }
 
             }
-            quickSort(beg, piv);
-            quickSort(piv, iend);
+            cs2QS(beg, piv);
+            cs2QS(piv, iend);
         }
         
     }
     
+    
+    private void quickSort(int beg, int end) {
+        
+    }
+    
     public int[] getList() {
-        quickSort(0, intList.length);
+        cs2QS(0, intList.length);
         return intList;
         
     }

@@ -59,6 +59,7 @@
                     <text font="aurulent-sans-16.fnt" controller="controllers.ExchangeController" id="secondTime" color="#f00f" text="Seconds go here" align="center" />
                     <text font="aurulent-sans-16.fnt" controller="controllers.ExchangeController" id="arraySize" color="#f00f" text="Size goes here" align="center" />
                     <text font="aurulent-sans-16.fnt" controller="controllers.ExchangeController" id="arrayRange" color="#f00f" text="Range goes here" align="center" />
+                    <text font="aurulent-sans-16.fnt" controller="controllers.ExchangeController" id="numSwaps" color="#f00f" text="Swaps go here" align="center" />
                 </panel>
                 <panel id="bottombuttons" backgroundColor="#55a5" height="10%" width="100%" childLayout="horizontal">
                     <control name="button" id = "mainButton" label="Main Menu" visibleToMouse="true" valign="center">

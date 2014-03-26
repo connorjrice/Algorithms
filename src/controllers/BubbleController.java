@@ -40,7 +40,7 @@ public class BubbleController implements Controller {
         Element textElement = screen.findElementByName("arraySize");
         TextRenderer textRenderer = textElement.getRenderer(TextRenderer.class);
         textRenderer.setText("Array Size: " + Integer.toString(arraySize));
-        BubbleSort bs = new BubbleSort(lm.makeIntList(arraySize, 10000));
+        BubbleSort bs = new BubbleSort(lm.makeIntList(arraySize, arraySize));
         long timer = System.nanoTime();
         bs.getList();
         long time = System.nanoTime() - timer;
@@ -55,7 +55,7 @@ public class BubbleController implements Controller {
         textRendererSec.setText("Time in seconds: " + Double.toString(time/1000000000.0));
         Element textElementRange = screen.findElementByName("arrayRange");
         TextRenderer textRendererRange = textElementRange.getRenderer(TextRenderer.class);
-        textRendererRange.setText("Range: 10000");
+        textRendererRange.setText("Range: " + Integer.toString(arraySize));
     }
     
 
