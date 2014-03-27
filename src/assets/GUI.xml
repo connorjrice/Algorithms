@@ -59,7 +59,7 @@
                     <text font="aurulent-sans-16.fnt" controller="controllers.ExchangeController" id="secondTime" color="#f00f" text="Seconds go here" align="center" />
                     <text font="aurulent-sans-16.fnt" controller="controllers.ExchangeController" id="arraySize" color="#f00f" text="Size goes here" align="center" />
                     <text font="aurulent-sans-16.fnt" controller="controllers.ExchangeController" id="arrayRange" color="#f00f" text="Range goes here" align="center" />
-                    <text font="aurulent-sans-16.fnt" controller="controllers.ExchangeController" id="numSwaps" color="#f00f" text="Swaps go here" align="center" />
+                    <text font="aurulent-sans-16.fnt" controller="controllers.ExchangeController" id="numSwaps" color="#f00f" text="Swaps go herea" align="center" />
                 </panel>
                 <panel id="bottombuttons" backgroundColor="#55a5" height="10%" width="100%" childLayout="horizontal">
                     <control name="button" id = "mainButton" label="Main Menu" visibleToMouse="true" valign="center">
@@ -97,6 +97,7 @@
                     <text font="aurulent-sans-16.fnt" controller="controllers.BubbleController" id="secondTime" color="#f00f" text="Seconds go here" align="center" />
                     <text font="aurulent-sans-16.fnt" controller="controllers.BubbleController" id="arraySize" color="#f00f" text="Size goes here" align="center" />
                     <text font="aurulent-sans-16.fnt" controller="controllers.BubbleController" id="arrayRange" color="#f00f" text="Range goes here" align="center" />
+                    <text font="aurulent-sans-16.fnt" controller="controllers.BubbleController" id="numSwaps" color="#f00f" text="Swaps go herea" align="center" />
                 </panel>
                 <panel id="bottombuttons" backgroundColor="#55a5" height="10%" width="100%" childLayout="horizontal">
                     <control name="button" id = "mainButton" label="Main Menu" visibleToMouse="true" valign="center">
@@ -171,24 +172,42 @@
             </panel>
         </layer>
     </screen>
-        <screen id="insertion" controller="sortingalgorithms.GUI">
+    <screen id="insertion" controller="sortingalgorithms.GUI">
         <layer childLayout="center">
             <panel id="main" backgroundColor="#55a5" width="50%" height="50%" align="center" valign="center" childLayout="vertical">
                 <panel id="title" backgroundColor="#55a5" height="10%" width="100%" childLayout="center">
                     <text font="aurulent-sans-16.fnt" color="#f00f" text="Insertion Sort" />                    
                 </panel>
                 <panel id ="center" backgroundColor="#55a3" height="80%" width= "100%" childLayout="vertical">
+                    <text font="aurulent-sans-16.fnt" controller="controllers.InsertionController" id="nanoTime" color="#f00f" text="NanoTime goes here" align="center" />
+                    <text font="aurulent-sans-16.fnt" controller="controllers.InsertionController" id="milliTime" color="#f00f" text="MilliTime goes here" align="center" />
+                    <text font="aurulent-sans-16.fnt" controller="controllers.InsertionController" id="secondTime" color="#f00f" text="Seconds go here" align="center" />
+                    <text font="aurulent-sans-16.fnt" controller="controllers.InsertionController" id="arraySize" color="#f00f" text="Size goes here" align="center" />
+                    <text font="aurulent-sans-16.fnt" controller="controllers.InsertionController" id="arrayRange" color="#f00f" text="Range goes here" align="center" />
+                    <text font="aurulent-sans-16.fnt" controller="controllers.InsertionController" id="numSwaps" color="#f00f" text="Swaps go herea" align="center" />
                 </panel>
-                <panel id="bottombuttons" backgroundColor="#55a5" height="10%" width="100%" childLayout="center">
-                    <control name="button" id = "mainButton" label="Main Menu" visibleToMouse="true">
-                    <interact onClick="mainMenu()" />
-                </control>
+                <panel id="bottombuttons" backgroundColor="#55a5" height="10%" width="100%" childLayout="horizontal">
+                    <control name="button" id = "mainButton" label="Main Menu" visibleToMouse="true" valign="center">
+                        <interact onClick="mainMenu()" />
+                    </control>
+                    <control name="button" id = "array100" controller="controllers.InsertionController" label="Size 100" valign ="center" visibleToMouse="true">
+                        <interact onClick="setArraySize(100)" />
+                    </control>
+                    <control name="button" id = "array1000" controller="controllers.InsertionController" label="Size 1,000" valign ="center" visibleToMouse="true">
+                        <interact onClick="setArraySize(1000)" />
+                    </control>
+                    <control name="button" id = "array10000" controller="controllers.InsertionController" label="Size 10,000" valign ="center" visibleToMouse="true">
+                        <interact onClick="setArraySize(10000)" />
+                    </control>
+                    <control name="button" id = "array20000" controller="controllers.InsertionController" label="Size 20,000" valign ="center" visibleToMouse="true">
+                        <interact onClick="setArraySize(20000)" />
+                    </control>
                 </panel>
 
             </panel>
         </layer>
     </screen>
-        <screen id="radix" controller="sortingalgorithms.GUI">
+    <screen id="radix" controller="sortingalgorithms.GUI">
         <layer childLayout="center">
             <panel id="main" backgroundColor="#55a5" width="50%" height="50%" align="center" valign="center" childLayout="vertical">
                 <panel id="title" backgroundColor="#55a5" height="10%" width="100%" childLayout="center">

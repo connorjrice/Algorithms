@@ -8,14 +8,14 @@ import de.lessvoid.nifty.input.NiftyInputEvent;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.xml.xpp3.Attributes;
 import java.util.Properties;
-import sortingalgorithms.ExchangeSort;
+import sortingalgorithms.InsertionSort;
 import sortingalgorithms.ListMaker;
 
 /**
  *
  * @author Connor Rice
  */
-public class ExchangeController implements Controller {
+public class InsertionController implements Controller {
     private Element element;
     private ListMaker lm;
     private Nifty nifty;
@@ -36,13 +36,15 @@ public class ExchangeController implements Controller {
     
     
     public void setArraySize(String sSize) {        
-        int arraySize = Integer.parseInt(sSize);
+        int inputSize = Integer.parseInt(sSize);
+        InsertionSort is = new InsertionSort(lm.makeIntList(inputSize, inputSize));
+
         Element textElement = screen.findElementByName("arraySize");
         TextRenderer textRenderer = textElement.getRenderer(TextRenderer.class);
-        textRenderer.setText("Array Size: " + Integer.toString(arraySize));
-        ExchangeSort ex = new ExchangeSort(lm.makeIntList(arraySize, arraySize));
+        textRenderer.setText("Array Size: " + Integer.toString(inputSize));
+
         long timer = System.nanoTime();
-        ex.getList();
+        is.getList();
         long time = System.nanoTime() - timer;
         Element textElementNano = screen.findElementByName("nanoTime");
         TextRenderer textRendererNano = textElementNano.getRenderer(TextRenderer.class);
@@ -55,12 +57,10 @@ public class ExchangeController implements Controller {
         textRendererSec.setText("Time in seconds: " + Double.toString(time/1000000000.0));
         Element textElementRange = screen.findElementByName("arrayRange");
         TextRenderer textRendererRange = textElementRange.getRenderer(TextRenderer.class);
-        textRendererRange.setText("Range: " + Integer.toString(arraySize));
+        textRendererRange.setText("Range: " + Integer.toString(inputSize));
         Element textElementSwaps = screen.findElementByName("numSwaps");
         TextRenderer textRendererSwaps = textElementSwaps.getRenderer(TextRenderer.class);
-        textRendererSwaps.setText("Swaps: " + Integer.toString(ex.getNumSwaps()));
-                
-                 
+        textRendererSwaps.setText("Swaps: " + Integer.toString(is.getNumSwaps()));
     }
     
 

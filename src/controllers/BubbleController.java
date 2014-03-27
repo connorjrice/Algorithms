@@ -36,11 +36,13 @@ public class BubbleController implements Controller {
     
     
     public void setArraySize(String sSize) {        
-        int arraySize = Integer.parseInt(sSize);
+        int inputSize = Integer.parseInt(sSize);
+        BubbleSort bs = new BubbleSort(lm.makeIntList(inputSize, inputSize));
+
         Element textElement = screen.findElementByName("arraySize");
         TextRenderer textRenderer = textElement.getRenderer(TextRenderer.class);
-        textRenderer.setText("Array Size: " + Integer.toString(arraySize));
-        BubbleSort bs = new BubbleSort(lm.makeIntList(arraySize, arraySize));
+        textRenderer.setText("Array Size: " + Integer.toString(inputSize));
+
         long timer = System.nanoTime();
         bs.getList();
         long time = System.nanoTime() - timer;
@@ -55,7 +57,10 @@ public class BubbleController implements Controller {
         textRendererSec.setText("Time in seconds: " + Double.toString(time/1000000000.0));
         Element textElementRange = screen.findElementByName("arrayRange");
         TextRenderer textRendererRange = textElementRange.getRenderer(TextRenderer.class);
-        textRendererRange.setText("Range: " + Integer.toString(arraySize));
+        textRendererRange.setText("Range: " + Integer.toString(inputSize));
+        Element textElementSwaps = screen.findElementByName("numSwaps");
+        TextRenderer textRendererSwaps = textElementSwaps.getRenderer(TextRenderer.class);
+        textRendererSwaps.setText("Swaps: " + Integer.toString(bs.getNumSwaps()));
     }
     
 

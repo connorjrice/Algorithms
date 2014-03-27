@@ -7,6 +7,7 @@ package sortingalgorithms;
 public class BubbleSort {
     
     private int[] intList;
+    private int numSwaps;
     
     public BubbleSort(int[] _intList) {
         intList = _intList;
@@ -19,6 +20,7 @@ public class BubbleSort {
         boolean hasSwapped = false;
         for (int i = 0; i < intList.length-1; i++) {
             if (intList[i] > intList[i+1]) {
+                numSwaps++;
                 int placeholder = intList[i];
                 intList[i] = intList[i+1];
                 intList[i+1] = placeholder;
@@ -39,4 +41,9 @@ public class BubbleSort {
         return intList;
     }
     
+    public int getNumSwaps() {
+        return numSwaps;
+    }
+    
+
 }
