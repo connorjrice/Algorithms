@@ -9,7 +9,7 @@ import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.xml.xpp3.Attributes;
 import java.util.Properties;
 import sortingalgorithms.BubbleSort;
-import sortingalgorithms.ListMaker;
+import utilities.ListMaker;
 
 /**
  *

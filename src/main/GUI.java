@@ -1,5 +1,6 @@
-package sortingalgorithms;
+package main;
 
+import utilities.ListMaker;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
@@ -65,6 +66,10 @@ public class GUI extends AbstractAppState implements ScreenController {
     
     public void radixSort() {
         nifty.gotoScreen("radix");
+    }
+    
+    public void shellSort() {
+        nifty.gotoScreen("shell");
     }
     
     
