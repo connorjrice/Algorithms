@@ -35,6 +35,10 @@ public class ExchangeSort {
         return intList;
     } 
     
+    public int getNumCompare() {
+        return numCompare;
+    }
+    
     public int getNumSwaps() {
         return numSwaps;
     }
