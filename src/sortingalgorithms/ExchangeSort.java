@@ -7,6 +7,7 @@ package sortingalgorithms;
 public class ExchangeSort {
     private int[] intList;
     private int numSwaps = 0;
+    private int numCompare = 0;
     
     public ExchangeSort(int[] _intList) {
         intList = _intList;
@@ -15,6 +16,7 @@ public class ExchangeSort {
     private void exchangeSort() {
         for (int i = 0; i < intList.length-1; i++) {
             for (int j = i + 1; j < intList.length; j++) {
+                numCompare++;
                 if (intList[i] > intList[j]) {
                     numSwaps++;
                     int placeholder = intList[i];
