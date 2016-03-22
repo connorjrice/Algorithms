@@ -21,11 +21,13 @@ public class BinarySearch {
         this.location = 0;
     }
     
+    
     /**
      * n = index, 1 to n represents the list
      * s = primitive integer array
      * x = query
      * l = location
+     * I think this location thing could be implemented better
      **/
     public BinarySearch(int n, int[] s, int x, int l) {
 	this.high = n;
