@@ -18,7 +18,7 @@ public class ExchangeSort {
             for (int j = i + 1; j < intList.length; j++) {
                 numCompare++;
                 if (intList[i] > intList[j]) {
-                    numSwaps++;
+                    //numSwaps++;
                     int placeholder = intList[i];
                     intList[i] = intList[j];
                     intList[j] = placeholder;
