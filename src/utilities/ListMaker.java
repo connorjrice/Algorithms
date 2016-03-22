@@ -11,6 +11,7 @@ public class ListMaker {
 
     /**
      * TODO: add csv output 
+     * you can also make a loop for an ordered list of size n, and then randomly exchange the.
      */
     public int[] makeIntList(int size, int range) {
 	int[] intlist = new int[size];
