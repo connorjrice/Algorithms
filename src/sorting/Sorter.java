@@ -1,5 +1,6 @@
 package sorting;
 
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -143,9 +144,9 @@ public class Sorter {
      * @return string of time with ms added.
      */
     private String getDuration() {
-       float time = endTime - startTime;
-       time /= 1000000;
-       return "Time: " + (time) + "ms" ;
+        long time = endTime - startTime;
+        double ms = time / 1000000.0;
+        return "Time: " + (ms) + "ms" ;
     }
     
     /**
