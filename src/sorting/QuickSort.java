@@ -8,16 +8,16 @@ package sorting;
 
 public final class QuickSort extends Sorter {
 
-    private int piv; // Index of the pivot
+    public int pivotpoint;
     
     public QuickSort(String[] args) {
-        this.piv = 0;
+        this.pivotpoint = 0;
         this.name = "QuickSort";
         this.args = args;
     }
     
     public QuickSort() {
-        this.piv = 0;
+        this.pivotpoint = 0;
         this.name = "QuickSort";
     }
     
@@ -36,50 +36,36 @@ public final class QuickSort extends Sorter {
         super.end(a);
     }   
 
-    private <E extends Comparable<? super E>> void quickSort(E[] a, int beg, 
-            int end) {
-        if (end - beg >= 2) {
-            E p = a[(beg+end)/2];
-            piv = (beg+end) / 2;
-            int lpos = beg;
-            int rpos = end;
+    private <E extends Comparable<? super E>> void quickSort(E[] a, int low, 
+            int high) {
+        if (high > low) {
+            partition(a, low, high);
+            quickSort(a,low,pivotpoint-1);
+            quickSort(a,pivotpoint+1,high);
             
-            while (lpos < rpos) {
-                while (a[lpos].compareTo(p) < 0) {
-                    sendComparison();
-                    lpos++;
-                }
-                while (a[rpos].compareTo(p) > 0) {
-                    sendComparison();
-                    rpos--;
-                }
-                if (lpos == piv) {
-                    swap(a,piv,rpos);
-                    setPiv(rpos);
-                } else if (rpos == piv) {
-                    sendComparison();
-                    swap(a,piv,lpos);
-                    setPiv(lpos);
-                } else {
-                    sendComparison();
-                    swap(a,lpos,rpos);
-                }
-                
-            }
-            
-            quickSort(a, beg, piv);
-            quickSort(a, piv, end);
-        } 
+        }
     }
+    
+    private <E extends Comparable<? super E>> void partition(E[] a, int low, 
+            int high) {
+        E pivotitem = a[low];
+        int j = low;
+        for (int i = low+1; i <= high; i++) {
+            if (a[i].compareTo(pivotitem) < 0) {
+                sendComparison();
+                j++;
+                swap(a,j,i);
 
-    private void setPiv(int n) {
-        piv = n;
+            }
+        }
+        this.pivotpoint = j;
+        swap(a,low,pivotpoint);            
     }
+ 
     
     @Override
     protected void reset() {
         super.reset();
-        piv = 0;
     }
 
 }

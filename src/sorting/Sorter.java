@@ -46,12 +46,14 @@ public class Sorter {
      * @param i swap index 1
      * @param j swap index 2
      */
-    protected <E extends Comparable<? super E>> void swap(E[] a, int i, int j) {
+    protected <E extends Comparable<? super E>> boolean swap(E[] a, int i, int j) {
         if (i != j) {
             E t = a[i];
             a[i] = a[j];
             a[j] = t;
+            return true;
         }
+        return false;
     }    
     
     /**
@@ -78,7 +80,9 @@ public class Sorter {
      * We only care about comparisons if it's a benchmark run.
      */
     protected void sendComparison() {
-        if (bench) { incrementComparisons();}
+        if (bench) { 
+            incrementComparisons();
+        }
     }
     
     /**
@@ -88,6 +92,7 @@ public class Sorter {
     private <E extends Comparable<? super E>> void runArgsStart() {
         for (String s : args) {
             if (s.equals("-b")) {
+                getLogger().log(Level.SEVERE, "true");
                 bench = true;
             }
         }

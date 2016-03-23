@@ -6,7 +6,6 @@ package sorting;
  */
 public class ExchangeSort extends Sorter {
     
-    
     /**
      * Constructor with arguments.
      * @param args console arguments.

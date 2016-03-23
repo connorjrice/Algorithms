@@ -9,11 +9,11 @@ public class ListMaker {
     }
 
     public static Integer[] makeIntList(int size, int range) {
-        Random randy = new Random(42);
+        Random randy = new Random();
 	Integer[] intlist = new Integer[size];
 	for (int i = 0; i < size; i++) {
             intlist[i] = randy.nextInt(range+1);
-	}
+        }
 	return intlist;
     }
     
