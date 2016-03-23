@@ -41,30 +41,38 @@ public class MergeSort extends Sorter {
         j = mid+1;
         k = low;
         while (i <= mid && j <= high) {
-            if (a[i].compareTo(a[j]) > 0) {
+            if (a[i].compareTo(a[j]) < 0) {
                 u[k] = a[i];
                 i++;
             } else {
                 u[k] = a[j];
                 j++;
             }
+            sendComparison();
             k++;
         }
         if (i > mid) {
-            while (j < high) {
+            while (j <= high) {
                 u[k] = a[j];
                 k++;
                 j++;
             }
         } else {
-            while (i < mid) {
-                u[k] = a[i];
+            int m = i;
+            while (m <= mid) {
+                u[k] = a[m];
                 k++;
-                i++;
-                // move U[low] through U[high] to S[low] through S[high]
+                m++;
             }
+
                 
         }
+        int i2 = low;
+        while (i2 <= high){
+            a[i2] = u[i2];
+            k++;
+            i2++;
+        }        
     }
         
         

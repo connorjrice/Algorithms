@@ -18,7 +18,7 @@ public class SortLauncher {
      */
     public static void main(String[] args) {
         //eS(args);
-        //qS(args);
+       //qS(args);
         mS(args);
         //bS(args);
     }
@@ -30,8 +30,10 @@ public class SortLauncher {
     }
     
     public static void mS(String[] args) {
-        Sorter ms = new MergeSort(args);
-        ms.sort(new Integer[]{3,2,1});
+        MergeSort ms = new MergeSort(args);
+        //ms.sort(new Integer[]{3,2,1});
+        //ms.sort(new Integer[]{4,2,78,23,41});
+        ms.sort(new Integer[]{27,10,12,20,25,13,15,22});
     }
     
     public static void bS(String[] args) {

@@ -193,7 +193,6 @@ public class Sorter {
             }
 
             info += getDuration();
-            
             getLogger().log(Level.INFO, info);
         }
     }
