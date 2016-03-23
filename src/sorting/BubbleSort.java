@@ -9,6 +9,7 @@ public class BubbleSort extends Sorter {
     
     public BubbleSort() {
         this.name = "BubbleSort";
+        this.params = "-p";
     }
     
     @Override

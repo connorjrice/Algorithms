@@ -10,14 +10,23 @@ public class ExchangeSort extends Sorter {
     
     public ExchangeSort() {
         this.name = "ExchangeSort";
+        this.params = "-p";
     }
     
+
+    /**
+     * sort() is the command called 
+     * @param <E>
+     * @param a 
+     */
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {
         super.start();
         exchangeSort(a);
         super.end(a);
     }
+
+
     
     private <E extends Comparable<? super E>> void exchangeSort(E[] a) {        
         for (int i = 0; i < a.length-1; i++) {

@@ -13,6 +13,7 @@ public final class QuickSort extends Sorter {
     public QuickSort() {
         this.piv = 0;
         this.name = "QuickSort";
+        this.params = "-p";
     }
     
     @Override

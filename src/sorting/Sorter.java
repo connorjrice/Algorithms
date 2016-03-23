@@ -10,6 +10,7 @@ import java.util.logging.Logger;
  * It provides for number of comparisons and time benchmarking.
  * It's generic too, so anything that can be made to extend comparable is
  * valid input.
+ * There's also static sorting allowed.
  * # I used StackOverflow for help with the generic programming.
  * @author Connor Rice
  */
@@ -19,11 +20,15 @@ public class Sorter {
     protected long endTime;
     protected int numComparisons;
     protected String name;
+    protected String params;
+    private Object[] array;
     
     public Sorter() {
-        Sorter.LOG.setLevel(Level.FINE);
+        Sorter.LOG.setLevel(Level.INFO);
         this.numComparisons = 0;
+        this.params = "";
     }
+    
     
     public <E extends Comparable<? super E>> void sort(E[] a) {
         
@@ -65,6 +70,7 @@ public class Sorter {
         numComparisons++;
     }    
     
+    
     protected Logger getLogger() {
         return LOG;
     }
@@ -87,8 +93,19 @@ public class Sorter {
     
     protected <E extends Comparable<? super E>> void end(E[] a) {
         getEndTime();
-        print(a);
-        reset();
+        if (params.equals("-p")) {
+            print(a);
+        }
+        write(a);
+//        reset();
+    }
+    
+    private <E extends Comparable<? super E>> void write(E[] a) {
+        this.array = a;
+    }
+    
+    protected <E extends Comparable<? super E>> Object[] getArray() {
+        return array;
     }
     
     private String getName() {

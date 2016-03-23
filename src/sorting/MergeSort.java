@@ -13,7 +13,6 @@ public class MergeSort extends Sorter {
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {
         super.start();
-
         super.end(a);
     }   
 

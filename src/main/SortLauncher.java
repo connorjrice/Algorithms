@@ -23,6 +23,7 @@ public class SortLauncher {
     public static void eS() {
         Sorter es = new ExchangeSort();
         es.sort(new Integer[]{5,4,1,3,2});
+
     }
     
     public static void mS() {
