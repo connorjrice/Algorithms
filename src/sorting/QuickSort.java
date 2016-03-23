@@ -1,6 +1,4 @@
-package sortingalgorithms;
-
-import java.util.logging.Level;
+package sorting;
 
 /**
  * #StackOverflow helped for the generic bits.
@@ -18,7 +16,7 @@ public final class QuickSort extends SortingAlgorithm {
     
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {
-        super.sort(a);
+        super.start();
         if (a.length > 2) {
             incrementComparisons();
             quickSort(a, 0, a.length-1);
@@ -28,9 +26,7 @@ public final class QuickSort extends SortingAlgorithm {
                 swap(a,0,1);
             }
         }
-        getEndTime();
-        print(a);
-        reset();
+        super.end(a);
     }   
 
     private <E extends Comparable<? super E>> void quickSort(E[] a, int beg, 

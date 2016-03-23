@@ -5,7 +5,7 @@
  */
 package main;
 
-import sortingalgorithms.QuickSort;
+import sorting.QuickSort;
 
 /**
  *

@@ -1,4 +1,4 @@
-package sortingalgorithms;
+package sorting;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +18,10 @@ public class SortingAlgorithm {
         this.numComparisons = 0;
     }
     
+    public <E extends Comparable<? super E>> void sort(E[] a) {
+        
+    }
+    
     protected <E extends Comparable<? super E>> void swap(E[] a, int i, int j) {
         if (i != j) {
             E t = a[i];
@@ -26,7 +30,7 @@ public class SortingAlgorithm {
         }
     }    
 
-    public <E extends Comparable<? super E>> void sort(E[] a) {
+    protected <E extends Comparable<? super E>> void start() {
         getStartTime();
     }
     
@@ -35,11 +39,8 @@ public class SortingAlgorithm {
     }
     
     protected String getDuration() {
-        System.out.println(endTime);
-        System.out.println(startTime);
        float time = endTime - startTime;
        time /= 1000000;
-       System.out.println(time);
        return "Time: " + (time) + "ms" ;
     }
     
@@ -75,5 +76,11 @@ public class SortingAlgorithm {
                
         getLogger().log(Level.INFO, info);
         }
+    }
+    
+    protected <E extends Comparable<? super E>> void end(E[] a) {
+        getEndTime();
+        print(a);
+        reset();
     }
 }
