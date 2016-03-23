@@ -13,7 +13,12 @@ public final class QuickSort extends Sorter {
     public QuickSort(String[] args) {
         this.piv = 0;
         this.name = "QuickSort";
-        this.args = new String[]{"-p"};
+        this.args = args;
+    }
+    
+    public QuickSort() {
+        this.piv = 0;
+        this.name = "QuickSort";
     }
     
     @Override

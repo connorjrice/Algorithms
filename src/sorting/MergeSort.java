@@ -6,6 +6,12 @@ package sorting;
  */
 public class MergeSort extends Sorter {
     
+    
+    public MergeSort(String[] args) {
+        this.args = args;
+        this.name = "MergeSort";
+    }    
+    
     public MergeSort() {
         this.name = "MergeSort";
     }

@@ -17,7 +17,7 @@ public class SortLauncher {
     public static void main(String[] args) {
         eS(args);
         qS(args);
-        bS();
+        bS(args);
     }
     
     public static void eS(String[] args) {
@@ -30,8 +30,8 @@ public class SortLauncher {
         
     }
     
-    public static void bS() {
-        Sorter bs = new BubbleSort();
+    public static void bS(String[] args) {
+        Sorter bs = new BubbleSort(args);
         bs.sort(new Integer[]{5,4,3,2,1});
     }
     

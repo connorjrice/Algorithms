@@ -7,9 +7,14 @@ package sorting;
 public class BubbleSort extends Sorter {
     
     
+    public BubbleSort(String[] args) {
+        this.args = args;
+        this.name = "BubbleSort";        
+    }    
+    
+    
     public BubbleSort() {
         this.name = "BubbleSort";
-        this.args = new String[]{"-p"};        
     }
     
     @Override

@@ -66,15 +66,19 @@ public class Sorter {
         
     }
 
-    private <E extends Comparable<? super E>> void runArgsEnd(E[] a) {        
-        if (args.length > 0) {
-            for (String s : args) {
-                if (s.equals("-p")) {
-                    print(a);                
-                } else if (s.equals("-w")) {
-                    write(a);
-                }                    
+    private <E extends Comparable<? super E>> void runArgsEnd(E[] a) {
+        if (args != null) {
+            if (args.length > 0) {
+                for (String s : args) {
+                    if (s.equals("-p") || s.equals("-b")) {
+                        print(a);                
+                    } else if (s.equals("-w")) {
+                        write(a);
+                    }                    
+                }
             }
+        } else {
+            print(a);
         }
     }
 

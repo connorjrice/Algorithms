@@ -10,12 +10,12 @@ public class ExchangeSort extends Sorter {
     
     
     public ExchangeSort(String[] args) {
-        
+        this.args = args;
+        this.name = "ExchangeSort";
     }
     
     public ExchangeSort() {
         this.name = "ExchangeSort";
-        this.args = new String[]{"-p"};
     }
     
     /**
