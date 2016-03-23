@@ -22,9 +22,9 @@ public class SortLauncher {
     
     public static void qS() {        
         QuickSort qs = new QuickSort();
-        qs.quickSort(new Integer[]{2,1});
-        qs.quickSort(new Integer[]{123,34,189,56,150,12,9,240});
-        qs.quickSort(new String[]{"Hello","Googbye"});
+        qs.sort(new Integer[]{2,1});
+        qs.sort(new Integer[]{123,34,189,56,150,12,9,240});
+        qs.sort(new String[]{"Hello","Googbye"});
     }
     
 }

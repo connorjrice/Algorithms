@@ -1,29 +1,34 @@
 package sortingalgorithms;
 
+import java.util.logging.Level;
+
 /**
  * #StackOverflow helped for the generic bits.
  * @author Connor Rice
  */
 
-public final class QuickSort {
 
-    private int numComparisons;
+public final class QuickSort extends SortingAlgorithm {
+
     private int piv; // Index of the pivot
     
     public QuickSort() {
-        this.numComparisons = 0;
         this.piv = 0;
     }
     
-    public <E extends Comparable<? super E>> void quickSort(E[] a) {
+    @Override
+    public <E extends Comparable<? super E>> void sort(E[] a) {
+        super.sort(a);
         if (a.length > 2) {
-            quickSort(a, 0, a.length-1);            
+            incrementComparisons();
+            quickSort(a, 0, a.length-1);
         } else if (a.length == 2) {
             if (a[0].compareTo(a[1]) > 0) {
-                incComp();
+                incrementComparisons();
                 swap(a,0,1);
             }
         }
+        getEndTime();
         print(a);
         reset();
     }   
@@ -38,11 +43,11 @@ public final class QuickSort {
             
             while (lpos < rpos) {
                 while (a[lpos].compareTo(p) < 0) {
-                    incComp();
+                    incrementComparisons();
                     lpos++;
                 }
                 while (a[rpos].compareTo(p) > 0) {
-                    incComp();
+                    incrementComparisons();
                     rpos--;
                 }
                 if (lpos == piv) {
@@ -58,35 +63,13 @@ public final class QuickSort {
             }
             quickSort(a, beg, piv);
             quickSort(a, piv, end);
-        }
+        } 
     }
     
-    private <E extends Comparable<? super E>> void swap(E[] a, int i, int j) {
-        if (i != j) {
-            E t = a[i];
-            a[i] = a[j];
-            a[j] = t;
-        }
-    }
-    
-    private <E> void print(E[] a) {
-        if (a.length > 0) {
-            System.out.print("{");
-            System.out.print(a[0]);
-        for (int i = 1; i < a.length; i++) {
-            System.out.print(", " + a[i]);
-        }
-        System.out.println("}");
-        System.out.println("#Comp: " + numComparisons);
-        }
-    }
-    
-    private void reset() {
-        numComparisons = 0;
+    @Override
+    protected void reset() {
+        super.reset();
         piv = 0;
     }
-    
-    private void incComp() {
-        numComparisons++;
-    }
+
 }
