@@ -55,7 +55,6 @@ public final class QuickSort extends Sorter {
                 sendComparison();
                 j++;
                 swap(a,j,i);
-
             }
         }
         this.pivotpoint = j;

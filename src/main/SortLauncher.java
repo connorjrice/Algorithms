@@ -4,6 +4,7 @@ import sorting.BubbleSort;
 import sorting.QuickSort;
 import sorting.Sorter;
 import sorting.ExchangeSort;
+import sorting.InsertionSort;
 import sorting.MergeSort;
 import utilities.ListMaker;
 
@@ -18,9 +19,10 @@ public class SortLauncher {
      */
     public static void main(String[] args) {
         //eS(args);
-        qS(args);
-        mS(args);
+        //qS(args);
+        //mS(args);
         //bS(args);
+        iS(args);
     }
     
     public static void eS(String[] args) {
@@ -52,6 +54,11 @@ public class SortLauncher {
        qs.sort(new Integer[]{4,7,3,7,10});
        qs.sort(new Integer[]{15,22,13,27,12,10,20,25});
 
+    }
+    
+    public static void iS(String[] args) {
+        Sorter i = new InsertionSort(args);
+        i.sort(new Integer[]{5,600,3,20,6});
     }
     
 }

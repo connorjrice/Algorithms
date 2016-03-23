@@ -6,7 +6,6 @@ package sorting;
  */
 public class MergeSort extends Sorter {
     
-    
     public MergeSort(String[] args) {
         this.args = args;
         this.name = "MergeSort";
@@ -23,28 +22,27 @@ public class MergeSort extends Sorter {
         super.end(a);
     }   
     
-    private <E extends Comparable<? super E>> void mergeSort(E[] a, E[] u, int low, int high) {                    
+    private <E extends Comparable<? super E>> void mergeSort(E[] s, E[] u, int low, int high) {                    
         int mid;
         if (low < high) {
             mid = (int) Math.floor((double)(low + high)/2);
-            mergeSort(a,u,low,mid);
-            mergeSort(a,u,mid+1,high);
-            merge(a,u,low,mid,high);
+            mergeSort(s,u,low,mid);
+            mergeSort(s,u,mid+1,high);
+            merge(s,u,low,mid,high);
         }
     }
     
-    
-    private <E extends Comparable<? super E>> void merge(E[] a, E[] u, int low, int mid, int high) { 
+    private <E extends Comparable<? super E>> void merge(E[] s, E[] u, int low, int mid, int high) { 
         int i, j , k;
         i = low;
         j = mid+1;
         k = low;
         while (i <= mid && j <= high) {
-            if (a[i].compareTo(a[j]) < 0) {
-                u[k] = a[i];
+            if (s[i].compareTo(s[j]) < 0) {
+                u[k] = s[i];
                 i++;
             } else {
-                u[k] = a[j];
+                u[k] = s[j];
                 j++;
             }
             sendComparison();
@@ -52,26 +50,22 @@ public class MergeSort extends Sorter {
         }
         if (i > mid) {
             while (j <= high) {
-                u[k] = a[j];
+                u[k] = s[j];
                 k++;
                 j++;
             }
         } else {
-            int m = i;
-            while (m <= mid) {
-                u[k] = a[m];
+            while (i <= mid) {
+                u[k] = s[i];
                 k++;
-                m++;
+                i++;
             }
         }
-        int i2 = low;
-        while (i2 <= high){
-            a[i2] = u[i2];
+        while (low <= high){
+            s[low] = u[low];
             k++;
-            i2++;
+            low++;
         }        
     }
-        
-        
         
 }           
