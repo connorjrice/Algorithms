@@ -4,6 +4,7 @@ import sorting.BubbleSort;
 import sorting.QuickSort;
 import sorting.Sorter;
 import sorting.ExchangeSort;
+import sorting.MergeSort;
 import utilities.ListMaker;
 
 /**
@@ -17,7 +18,8 @@ public class SortLauncher {
      */
     public static void main(String[] args) {
         //eS(args);
-        qS(args);
+        //qS(args);
+        mS(args);
         //bS(args);
     }
     
@@ -27,8 +29,9 @@ public class SortLauncher {
 
     }
     
-    public static void mS() {
-        
+    public static void mS(String[] args) {
+        Sorter ms = new MergeSort(args);
+        ms.sort(new Integer[]{3,2,1});
     }
     
     public static void bS(String[] args) {
