@@ -12,6 +12,7 @@ import java.util.logging.Logger;
  * valid input.
  * There's also static sorting allowed.
  * # I used StackOverflow for help with the generic programming.
+ * TODO: CSV output of benchmark stats
  * @author Connor Rice
  */
 public class Sorter {

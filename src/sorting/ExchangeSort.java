@@ -1,6 +1,4 @@
-package sortingalgorithms;
-
-import sorting.Sorter;
+package sorting;
 
 /**
  * ExchangeSort
@@ -37,9 +35,7 @@ public class ExchangeSort extends Sorter {
             for (int j = i + 1; j < a.length; j++) {
                 if (a[i].compareTo(a[j]) > 0) {
                     sendComparison();
-                    E placeholder = a[i];
-                    a[i] = a[j];
-                    a[j] = placeholder;
+                    swap(a,i,j);
                 } else {
                     sendComparison();
                 }

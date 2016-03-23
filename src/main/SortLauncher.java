@@ -3,7 +3,7 @@ package main;
 import sorting.BubbleSort;
 import sorting.QuickSort;
 import sorting.Sorter;
-import sortingalgorithms.ExchangeSort;
+import sorting.ExchangeSort;
 
 /**
  *
