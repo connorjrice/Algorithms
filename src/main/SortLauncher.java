@@ -15,13 +15,13 @@ public class SortLauncher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        eS();
-        qS();
+        eS(args);
+        qS(args);
         bS();
     }
     
-    public static void eS() {
-        Sorter es = new ExchangeSort();
+    public static void eS(String[] args) {
+        Sorter es = new ExchangeSort(args);
         es.sort(new Integer[]{5,4,1,3,2});
 
     }
@@ -35,8 +35,8 @@ public class SortLauncher {
         bs.sort(new Integer[]{5,4,3,2,1});
     }
     
-    public static void qS() {        
-        Sorter qs = new QuickSort();
+    public static void qS(String[] args) {        
+        Sorter qs = new QuickSort(args);
         qs.sort(new Integer[]{2,1});
         qs.sort(new Integer[]{123,34,189,56,150,12,9,240});
         qs.sort(new String[]{"Hello","Googbye"});

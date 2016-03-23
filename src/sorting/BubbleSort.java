@@ -9,7 +9,7 @@ public class BubbleSort extends Sorter {
     
     public BubbleSort() {
         this.name = "BubbleSort";
-        this.params = "-p";
+        this.args = new String[]{"-p"};        
     }
     
     @Override
@@ -26,7 +26,7 @@ public class BubbleSort extends Sorter {
         boolean hasSwapped = false;
         for (int i = 0; i < a.length-1; i++) {
             if (a[i].compareTo(a[i+1])> 0) {
-                incrementComparisons();
+                sendComparison();
                 E placeholder = a[i];
                 a[i] = a[i+1];
                 a[i+1] = placeholder;

@@ -10,21 +10,21 @@ public final class QuickSort extends Sorter {
 
     private int piv; // Index of the pivot
     
-    public QuickSort() {
+    public QuickSort(String[] args) {
         this.piv = 0;
         this.name = "QuickSort";
-        this.params = "-p";
+        this.args = new String[]{"-p"};
     }
     
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {
         super.start();
         if (a.length > 2) {
-            incrementComparisons();
+            sendComparison();
             quickSort(a, 0, a.length-1);
         } else if (a.length == 2) {
             if (a[0].compareTo(a[1]) > 0) {
-                incrementComparisons();
+                sendComparison();
                 swap(a,0,1);
             }
         }
@@ -41,22 +41,22 @@ public final class QuickSort extends Sorter {
             
             while (lpos < rpos) {
                 while (a[lpos].compareTo(p) < 0) {
-                    incrementComparisons();
+                    sendComparison();
                     lpos++;
                 }
                 while (a[rpos].compareTo(p) > 0) {
-                    incrementComparisons();
+                    sendComparison();
                     rpos--;
                 }
                 if (lpos == piv) {
                     swap(a,piv,rpos);
                     setPiv(rpos);
                 } else if (rpos == piv) {
-                    incrementComparisons();
+                    sendComparison();
                     swap(a,piv,lpos);
                     setPiv(lpos);
                 } else {
-                    incrementComparisons();
+                    sendComparison();
                     swap(a,lpos,rpos);
                 }
                 

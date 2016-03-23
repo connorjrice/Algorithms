@@ -20,16 +20,16 @@ public class Sorter {
     protected long endTime;
     protected int numComparisons;
     protected String name;
-    protected String params;
+    protected String[] args;
     private Object[] array;
+    private boolean bench = false;
     
     public Sorter() {
         Sorter.LOG.setLevel(Level.INFO);
         this.numComparisons = 0;
-        this.params = "";
+        this.args = new String[0];
     }
-    
-    
+        
     public <E extends Comparable<? super E>> void sort(E[] a) {
         
     }
@@ -41,11 +41,43 @@ public class Sorter {
             a[j] = t;
         }
     }    
-
+    
     protected <E extends Comparable<? super E>> void start() {
+        runArgsStart();
         getStartTime();
     }
+        
+    protected <E extends Comparable<? super E>> void end(E[] a) {
+        getEndTime();
+        runArgsEnd(a);
+        reset();
+    }
     
+    protected void sendComparison() {
+        if (bench) { incrementComparisons();}
+    }
+    
+    private <E extends Comparable<? super E>> void runArgsStart() {
+        for (String s : args) {
+            if (s.equals("-b")) {
+                bench = true;
+            }
+        }
+        
+    }
+
+    private <E extends Comparable<? super E>> void runArgsEnd(E[] a) {        
+        if (args.length > 0) {
+            for (String s : args) {
+                if (s.equals("-p")) {
+                    print(a);                
+                } else if (s.equals("-w")) {
+                    write(a);
+                }                    
+            }
+        }
+    }
+
     protected void getStartTime() {
         startTime = System.nanoTime();
     }
@@ -64,12 +96,12 @@ public class Sorter {
         numComparisons = 0;
         startTime = 0;
         endTime = 0;
+        bench = false;
     }
     
-    protected void incrementComparisons() {
+    private void incrementComparisons() {
         numComparisons++;
     }    
-    
     
     protected Logger getLogger() {
         return LOG;
@@ -90,16 +122,7 @@ public class Sorter {
             getLogger().log(Level.INFO, info);
         }
     }
-    
-    protected <E extends Comparable<? super E>> void end(E[] a) {
-        getEndTime();
-        if (params.equals("-p")) {
-            print(a);
-        }
-        write(a);
-//        reset();
-    }
-    
+
     private <E extends Comparable<? super E>> void write(E[] a) {
         this.array = a;
     }
