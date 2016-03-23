@@ -31,10 +31,21 @@ public class Sorter {
         this.args = new String[0];
     }
         
+    /**
+     * Sort method. Blank for now, but used by sub-classes.
+     * @param <E>
+     * @param a 
+     */
     public <E extends Comparable<? super E>> void sort(E[] a) {
         
     }
     
+    /**
+     * Swaps i and j.
+     * @param a array
+     * @param i swap index 1
+     * @param j swap index 2
+     */
     protected <E extends Comparable<? super E>> void swap(E[] a, int i, int j) {
         if (i != j) {
             E t = a[i];
@@ -43,21 +54,37 @@ public class Sorter {
         }
     }    
     
+    /**
+     * Runs args list at start, gets start time.
+     * @param <E> 
+     */
     protected <E extends Comparable<? super E>> void start() {
         runArgsStart();
         getStartTime();
     }
         
+    /**
+     * Gets end time, runds end args, resets for next run.
+     * @param <E>
+     * @param a 
+     */
     protected <E extends Comparable<? super E>> void end(E[] a) {
         getEndTime();
         runArgsEnd(a);
         reset();
     }
     
+    /**
+     * We only care about comparisons if it's a benchmark run.
+     */
     protected void sendComparison() {
         if (bench) { incrementComparisons();}
     }
     
+    /**
+     * Runs arguments at start of algorithm execution.
+     * @param <E> 
+     */
     private <E extends Comparable<? super E>> void runArgsStart() {
         for (String s : args) {
             if (s.equals("-b")) {
@@ -67,6 +94,12 @@ public class Sorter {
         
     }
 
+    /**
+     * Runs arguments at end of algorithm execution.
+     * Has the ability to write the array.
+     * @param <E>
+     * @param a 
+     */
     private <E extends Comparable<? super E>> void runArgsEnd(E[] a) {
         if (args != null) {
             if (args.length > 0) {
@@ -83,20 +116,36 @@ public class Sorter {
         }
     }
 
-    protected void getStartTime() {
+    /**
+     * Records System.nanoTime() as a long.
+     * Called when the algorithm is started.
+     */
+    private void getStartTime() {
         startTime = System.nanoTime();
     }
+
+    /**
+     * Records System.nanoTime() as a long.
+     * Called when the algorithm is ended.
+     */
+    private void getEndTime() {
+        endTime = System.nanoTime();
+    }
     
-    protected String getDuration() {
+    /**
+     * Subtracts startTime from endTime.
+     * Then divides by 10^-6 to get to ms
+     * @return string of time with ms added.
+     */
+    private String getDuration() {
        float time = endTime - startTime;
        time /= 1000000;
        return "Time: " + (time) + "ms" ;
     }
     
-    protected void getEndTime() {
-        endTime = System.nanoTime();
-    }
-    
+    /**
+     * Resets the environment for the next run.
+     */
     protected void reset() {
         numComparisons = 0;
         startTime = 0;
@@ -104,15 +153,27 @@ public class Sorter {
         bench = false;
     }
     
+    /**
+     * Internal method for incrementing numComparisons.
+     */
     private void incrementComparisons() {
         numComparisons++;
     }    
     
+    /**
+     * @return logger
+     */
     protected Logger getLogger() {
         return LOG;
     }
     
-    protected <E> void print(E[] a) {
+    /**
+     * Prints out the final list, with number of comparisons if benchmark was
+     * run.
+     * @param <E>
+     * @param a 
+     */
+    private <E> void print(E[] a) {
         String info = getName() + "\n";             
         if (a.length > 0) {
             info += ("{");
@@ -121,22 +182,36 @@ public class Sorter {
                 info += (", " + a[i]);
             }
             info += ("}\n");
-            info += ("# Comparisons: " + numComparisons + "\n");
+            if (bench) {
+                info += ("# Comparisons: " + numComparisons + "\n");                
+            }
+
             info += getDuration();
             
             getLogger().log(Level.INFO, info);
         }
     }
 
+    /**
+     * Writes a. Only needed if you want to use getArray()
+     * @param <E>
+     * @param a 
+     */
     private <E extends Comparable<? super E>> void write(E[] a) {
         this.array = a;
     }
     
+    /**
+     * Returns the array sorted by the algorithm.
+     * Must have had write() called.
+     * @param <E>
+     * @return 
+     */
     protected <E extends Comparable<? super E>> Object[] getArray() {
         return array;
     }
     
-    private String getName() {
+    public String getName() {
         return name;
     }
 }
