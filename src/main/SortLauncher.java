@@ -20,9 +20,9 @@ public class SortLauncher {
     public static void main(String[] args) {
         //eS(args);
         //qS(args);
-        //mS(args);
+        mS(args);
         //bS(args);
-        iS(args);
+        //iS(args);
     }
     
     public static void eS(String[] args) {
