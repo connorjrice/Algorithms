@@ -7,14 +7,14 @@ import java.util.logging.Logger;
  *
  * @author Connor
  */
-public class SortingAlgorithm {
-    private static final Logger log = Logger.getLogger(SortingAlgorithm.class.getName());
+public class Sorter {
+    private static final Logger log = Logger.getLogger(Sorter.class.getName());
     protected long startTime;
     protected long endTime;
     protected int numComparisons;
     
-    public SortingAlgorithm() {
-        SortingAlgorithm.log.setLevel(Level.FINE);
+    public Sorter() {
+        Sorter.log.setLevel(Level.FINE);
         this.numComparisons = 0;
     }
     

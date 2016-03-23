@@ -1,4 +1,4 @@
-package searchalgorithms;
+package search;
 
 /**
  *

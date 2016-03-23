@@ -1,6 +1,6 @@
 package main;
 
-import searchalgorithms.BinarySearch;
+import search.BinarySearch;
 
 /**
  *

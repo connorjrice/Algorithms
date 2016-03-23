@@ -5,6 +5,7 @@
  */
 package main;
 
+import sorting.BubbleSort;
 import sorting.QuickSort;
 
 /**
@@ -17,7 +18,13 @@ public class SortLauncher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        qS();
+        //qS();
+        bS();
+    }
+    
+    public static void bS() {
+        BubbleSort bs = new BubbleSort();
+        bs.sort(new Integer[]{5,4,3,2,1});
     }
     
     public static void qS() {        

@@ -6,7 +6,7 @@ package sorting;
  */
 
 
-public final class QuickSort extends SortingAlgorithm {
+public final class QuickSort extends Sorter {
 
     private int piv; // Index of the pivot
     
