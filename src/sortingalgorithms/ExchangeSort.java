@@ -1,46 +1,37 @@
 package sortingalgorithms;
 
+import sorting.Sorter;
+
 /**
- *
+ * ExchangeSort
  * @author Connor Rice
  */
-public class ExchangeSort {
-    private int[] intList;
-    private int numSwaps = 0;
-    private int numCompare = 0;
+public class ExchangeSort extends Sorter {
     
-    public ExchangeSort(int[] _intList) {
-        intList = _intList;
+    public ExchangeSort() {
+        this.name = "ExchangeSort";
     }
     
-    private void exchangeSort() {
-        for (int i = 0; i < intList.length-1; i++) {
-            for (int j = i + 1; j < intList.length; j++) {
-                numCompare++;
-                if (intList[i] > intList[j]) {
-                    //numSwaps++;
-                    int placeholder = intList[i];
-                    intList[i] = intList[j];
-                    intList[j] = placeholder;
+    @Override
+    public <E extends Comparable<? super E>> void sort(E[] a) {
+        super.start();
+        exchangeSort(a);
+        super.end(a);
+    }
+    
+    private <E extends Comparable<? super E>> void exchangeSort(E[] a) {        
+        for (int i = 0; i < a.length-1; i++) {
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[i].compareTo(a[j]) > 0) {
+                    incrementComparisons();
+                    E placeholder = a[i];
+                    a[i] = a[j];
+                    a[j] = placeholder;
+                } else {
+                    incrementComparisons();
                 }
             }
         }
-    }
-    /**
-     * Sorts and returns the list given in the constructor
-     * @return intList (after being sorted)
-     */
-    public int[] getList() {
-        exchangeSort();
-        return intList;
-    } 
-    
-    public int getNumCompare() {
-        return numCompare;
-    }
-    
-    public int getNumSwaps() {
-        return numSwaps;
     }
     
 }

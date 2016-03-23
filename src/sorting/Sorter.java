@@ -4,17 +4,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Connor
+ * Sorter class.
+ * CP407 Block 7 2016
+ * This is the parent class for all sorting algorithms.
+ * It provides for number of comparisons and time benchmarking.
+ * It's generic too, so anything that can be made to extend comparable is
+ * valid input.
+ * # I used StackOverflow for help with the generic programming.
+ * @author Connor Rice
  */
 public class Sorter {
-    private static final Logger log = Logger.getLogger(Sorter.class.getName());
+    private static final Logger LOG = Logger.getLogger(Sorter.class.getName());
     protected long startTime;
     protected long endTime;
     protected int numComparisons;
+    protected String name;
     
     public Sorter() {
-        Sorter.log.setLevel(Level.FINE);
+        Sorter.LOG.setLevel(Level.FINE);
         this.numComparisons = 0;
     }
     
@@ -59,22 +66,22 @@ public class Sorter {
     }    
     
     protected Logger getLogger() {
-        return log;
+        return LOG;
     }
     
     protected <E> void print(E[] a) {
-        String info = "";             
+        String info = getName() + "\n";             
         if (a.length > 0) {
             info += ("{");
             info += (a[0]);
-        for (int i = 1; i < a.length; i++) {
-            info += (", " + a[i]);
-        }
-        info += ("}\n");
-        info += ("# Comparisons: " + numComparisons + "\n");
-        info += getDuration();
-               
-        getLogger().log(Level.INFO, info);
+            for (int i = 1; i < a.length; i++) {
+                info += (", " + a[i]);
+            }
+            info += ("}\n");
+            info += ("# Comparisons: " + numComparisons + "\n");
+            info += getDuration();
+            
+            getLogger().log(Level.INFO, info);
         }
     }
     
@@ -82,5 +89,9 @@ public class Sorter {
         getEndTime();
         print(a);
         reset();
+    }
+    
+    private String getName() {
+        return name;
     }
 }

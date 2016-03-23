@@ -1,7 +1,7 @@
 package sorting;
 
 /**
- * #StackOverflow helped for the generic bits.
+ * 
  * @author Connor Rice
  */
 
@@ -12,6 +12,7 @@ public final class QuickSort extends Sorter {
     
     public QuickSort() {
         this.piv = 0;
+        this.name = "QuickSort";
     }
     
     @Override
@@ -48,18 +49,25 @@ public final class QuickSort extends Sorter {
                 }
                 if (lpos == piv) {
                     swap(a,piv,rpos);
-                    piv = rpos;
+                    setPiv(rpos);
                 } else if (rpos == piv) {
+                    incrementComparisons();
                     swap(a,piv,lpos);
-                    piv = lpos;
+                    setPiv(lpos);
                 } else {
+                    incrementComparisons();
                     swap(a,lpos,rpos);
                 }
                 
             }
+            
             quickSort(a, beg, piv);
             quickSort(a, piv, end);
         } 
+    }
+
+    private void setPiv(int n) {
+        piv = n;
     }
     
     @Override

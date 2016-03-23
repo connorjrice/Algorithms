@@ -8,7 +8,7 @@ public class BubbleSort extends Sorter {
     
     
     public BubbleSort() {
-        
+        this.name = "BubbleSort";
     }
     
     @Override
