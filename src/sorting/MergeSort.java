@@ -19,24 +19,23 @@ public class MergeSort extends Sorter {
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {
         super.start();
-        mergeSort(a, 0, a.length-1);
+        mergeSort(a, a.clone(), 0, a.length-1);
         super.end(a);
     }   
     
-    private <E extends Comparable<? super E>> void mergeSort(E[] a, int low, int high) {        
+    private <E extends Comparable<? super E>> void mergeSort(E[] a, E[] u, int low, int high) {                    
         int mid;
         if (low < high) {
             mid = (int) Math.floor((double)(low + high)/2);
-            mergeSort(a,low,mid);
-            mergeSort(a, mid+1,high);
-            merge(a,low,mid,high);
+            mergeSort(a,u,low,mid);
+            mergeSort(a,u,mid+1,high);
+            merge(a,u,low,mid,high);
         }
-        
     }
     
-    private <E extends Comparable<? super E>> void merge(E[] a, int low, int mid, int high) { 
+    
+    private <E extends Comparable<? super E>> void merge(E[] a, E[] u, int low, int mid, int high) { 
         int i, j , k;
-        E[] u = a.clone(); // will it blend?
         i = low;
         j = mid+1;
         k = low;
@@ -64,8 +63,6 @@ public class MergeSort extends Sorter {
                 k++;
                 m++;
             }
-
-                
         }
         int i2 = low;
         while (i2 <= high){
