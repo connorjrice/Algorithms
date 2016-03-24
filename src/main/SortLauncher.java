@@ -26,18 +26,22 @@ public class SortLauncher {
     
     public static void curSort(String[] args) {                   
         String n = "1000.csv";        
-        Sorter i = new InsertionSort(args);
+        Sorter i = new QuickSort(args);
         i.hybrid(new ExchangeSort(args), 100);
         i.sort(ListMaker.readCSV(n));
+        i.hybrid(new InsertionSort(args), 0);
     }
     
     public static void mergeHybrid(String[] args) {
         String n = "10000.csv";
+        int t = 7;
         MergeSort ms = new MergeSort(args);
-        ms.hybrid(new ExchangeSort(), 10);        
+        ms.hybrid(new ExchangeSort(args), t);        
+        ms.sort(ListMaker.readCSV(n));
+        ms.hybrid(new InsertionSort(args), t);
         ms.sort(ListMaker.readCSV(n));
         ms.removeHybrid();
-        ms.sort(ListMaker.readCSV(n));
+        ms.sort(ListMaker.readCSV(n));              
     }
     
     public static void eS(String[] args) {

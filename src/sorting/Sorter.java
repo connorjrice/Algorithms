@@ -52,6 +52,7 @@ public class Sorter {
     }
     
     public void hybrid(Sorter _aS, int _threshold) {
+        removeHybrid();
         aS = _aS;
         this.name += " + " + aS.getName() + "@"+_threshold;
         this.threshold = _threshold;
@@ -60,7 +61,10 @@ public class Sorter {
     
     public void removeHybrid() {
         aS = null;
-        this.name = name.substring(0, name.indexOf("+")-1);
+        if (this.name.contains("+")) {
+            this.name = name.substring(0, name.indexOf("+")-1);            
+        }
+
         this.threshold = -1;
     }
     
