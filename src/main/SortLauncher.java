@@ -28,11 +28,12 @@ public class SortLauncher {
         
         MergeSort ms = new MergeSort(args);
         QuickSort qs = new QuickSort(args);
+       // ms.hybrid(new ExchangeSort(), 10);        
         ms.sort(ListMaker.readCSV(n));
-        ms.hybrid(new ExchangeSort());
+
        //ms.setAlternative(new InsertionSort());       
-        ms.sort(ListMaker.readCSV(n),10);
-        qs.sort(ListMaker.readCSV(n));        
+       // ms.sort(ListMaker.readCSV(n),10);
+      //  qs.sort(ListMaker.readCSV(n));        
 
     }
     

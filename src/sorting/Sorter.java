@@ -26,6 +26,7 @@ public class Sorter {
     private boolean bench = false;
 
     protected Sorter aS;
+    protected int threshold = -1;
     
     public Sorter() {
         Sorter.LOG.setLevel(Level.INFO);
@@ -226,8 +227,10 @@ public class Sorter {
         return name;
     }
     
-    public void hybrid(Sorter _aS) {
+    public void hybrid(Sorter _aS, int _threshold) {
         aS = _aS;
+        this.name += " with: " + aS.getName();
+        this.threshold = _threshold;
     }
     
 }
