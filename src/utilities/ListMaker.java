@@ -3,12 +3,12 @@ package utilities;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
-import java.util.stream.Stream;
 
 public class ListMaker {
 
@@ -29,7 +29,23 @@ public class ListMaker {
     }
     
     public static Integer[] readCSV(String name) {
-        return null;
+        Integer[] list = new Integer[0];
+        ArrayList<Integer> aint = new ArrayList();
+        String n = new File(name).getAbsolutePath();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(n));
+            String[] values = br.readLine().split(",");
+            list = new Integer[values.length];
+            for (int i = 0; i < values.length; i++) {
+                list[i] = Integer.parseInt(values[i].substring(1, values[i].length()-1));
+                
+            }
+            System.out.println(list.length);
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
     }
     
     public static void exportCSV(int size, int range, String name){

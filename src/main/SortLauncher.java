@@ -18,9 +18,9 @@ public class SortLauncher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        remakeLists();
+//        remakeLists();
         //eS(args);
-//        qS(args);
+        qS(args);
         //mS(args);
         //bS(args);
         //iS(args);
@@ -49,7 +49,8 @@ public class SortLauncher {
 
 
        Sorter qs = new QuickSort(args);
-       qs.sort(new Integer[]{123,34,189,56,150,12,9,240});
+       qs.sort(ListMaker.readCSV("10.csv"));
+       //qs.sort(new Integer[]{123,34,189,56,150,12,9,240});
       /* Integer[] list = ListMaker.makeIntList(30000, 30000);
        qs.sort(list);
        qs.sort(new Integer[]{4,7,3,7,10});
