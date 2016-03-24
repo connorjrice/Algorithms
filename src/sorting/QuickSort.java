@@ -58,8 +58,7 @@ public final class QuickSort extends Sorter {
         this.pivotpoint = j;
         swap(a,low,pivotpoint);            
     }
- 
-    
+     
     @Override
     protected void reset() {
         super.reset();

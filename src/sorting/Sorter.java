@@ -24,7 +24,7 @@ public class Sorter {
     protected String name;
     protected String[] args;
     private Object[] array;
-    private boolean bench = false;
+    private boolean bench = true;
 
     protected Sorter aS;
     protected int threshold = -1;
@@ -33,6 +33,13 @@ public class Sorter {
         Sorter.LOG.setLevel(Level.INFO);
         this.numComparisons = 0;
         this.args = new String[0];
+    }
+    
+    public Sorter(String[] args) {
+        Sorter.LOG.setLevel(Level.INFO);
+        this.numComparisons = 0;
+        this.args = args;        
+        //runArgsStart();
     }
         
     /**
@@ -46,11 +53,6 @@ public class Sorter {
     
     public void hybrid(Sorter _aS, int _threshold) {
         aS = _aS;
-        System.out.println("wot");
-        System.out.println(bench);
-        if (bench) {
-            aS.setBench(true);
-        }
         this.name += " + " + aS.getName() + "@"+_threshold;
         this.threshold = _threshold;
     }
@@ -124,12 +126,11 @@ public class Sorter {
     
     private void addHybridComparisons() {
         if (threshold != -1) {
-            //System.out.println("n" + aS.getComparisons());
-            finalComparisons = numComparisons + "(" + aS.getComparisons() + ")";
+            finalComparisons = numComparisons + "(" + aS.getComparisons() +
+                    ") = " + (numComparisons + aS.getComparisons());
         } else {
             finalComparisons = numComparisons + "";
         }
-        //System.out.println(finalComparisons);
     }
     
     /**
@@ -173,12 +174,13 @@ public class Sorter {
      * @param <E> 
      */
     private <E extends Comparable<? super E>> void runArgsStart() {
+        boolean foundB = false; // have we found -b? (benchmarking)
         for (String s : args) {
             if (s.equals("-b")) {
-                getLogger().log(Level.INFO, "Benchmarking enabled.");
-                bench = true;
+                foundB = true;
             }
         }
+        bench = foundB;
         
     }
 

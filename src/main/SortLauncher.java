@@ -20,14 +20,14 @@ public class SortLauncher {
     public static void main(String[] args) {
         //curSort(args);
         mergeHybrid(args);
-       // iS(args);
+       //iS(args);
         //mS(args);
     }
     
     public static void curSort(String[] args) {                   
         String n = "1000.csv";        
         Sorter i = new InsertionSort(args);
-        i.hybrid(new ExchangeSort(), 100);
+        i.hybrid(new ExchangeSort(args), 100);
         i.sort(ListMaker.readCSV(n));
     }
     

@@ -33,21 +33,20 @@ public class BubbleSort extends Sorter {
      * Bubble Sort Algorithm. Not optimized, doesn't have to be.
      */
     private <E extends Comparable<? super E>> void bubbleSort(E[] a, int lb, int ub) {
-        if (lb - ub <= threshold && threshold != -1) {
-            aS.sort(a,lb,ub);
-        }                
-        boolean hasSwapped = false;
-        for (int i = lb; i < ub; i++) {
-            if (a[i].compareTo(a[i+1])> 0) {
-                sendComparison();
-                E placeholder = a[i];
-                a[i] = a[i+1];
-                a[i+1] = placeholder;
-                hasSwapped = true;
-            }   
-        }
-        if (hasSwapped == true) {
-            bubbleSort(a,lb,ub);
+        if(!runHybrid(a,lb,ub)) {
+            boolean hasSwapped = false;
+            for (int i = lb; i < ub; i++) {
+                if (a[i].compareTo(a[i+1])> 0) {
+                    sendComparison();
+                    E placeholder = a[i];
+                    a[i] = a[i+1];
+                    a[i+1] = placeholder;
+                    hasSwapped = true;
+                }   
+            }
+            if (hasSwapped == true) {
+                bubbleSort(a,lb,ub);
+            }
         }
     }
     
