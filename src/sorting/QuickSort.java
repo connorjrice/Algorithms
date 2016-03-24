@@ -21,21 +21,21 @@ public final class QuickSort extends Sorter {
     
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {
-        super.start();
-        if (a.length > 2) {
-            sendComparison();
-            quickSort(a, 0, a.length-1);
-        } else if (a.length == 2) {
-            if (a[0].compareTo(a[1]) > 0) {
-                sendComparison();
-                swap(a,0,1);
-            }
-        }
+        super.start();       
+        quickSort(a,0,a.length-1);
         super.end(a);
-    }   
+    }
+    
+    @Override
+    protected <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
+        quickSort(a,lb,ub);
+    }
 
     private <E extends Comparable<? super E>> void quickSort(E[] a, int low, 
             int high) {
+        if (high - low <= threshold) {
+            aS.sort(a,low,high);
+        }        
         if (high > low) {
             partition(a, low, high);
             quickSort(a,low,pivotpoint-1);

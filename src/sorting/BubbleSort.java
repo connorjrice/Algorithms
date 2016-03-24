@@ -24,6 +24,11 @@ public class BubbleSort extends Sorter {
         super.end(a);
     }
     
+    @Override
+    protected <E extends Comparable<? super E>> void sort(E[]a, int lb, int ub) {
+        bubbleSort(a,lb,ub);
+    }
+    
     /**
      * Bubble Sort Algorithm. Not optimized, doesn't have to be.
      */
@@ -42,5 +47,24 @@ public class BubbleSort extends Sorter {
             bubbleSort(a);
         }
     }
-
+    
+    /**
+     * Bubble Sort Algorithm. Not optimized, doesn't have to be.
+     */
+    private <E extends Comparable<? super E>> void bubbleSort(E[] a, int lb, int ub) {
+        boolean hasSwapped = false;
+        for (int i = lb; i < ub; i++) {
+            if (a[i].compareTo(a[i+1])> 0) {
+                sendComparison();
+                E placeholder = a[i];
+                a[i] = a[i+1];
+                a[i+1] = placeholder;
+                hasSwapped = true;
+            }   
+        }
+        if (hasSwapped == true) {
+            bubbleSort(a,lb,ub);
+        }
+    }
+    
 }

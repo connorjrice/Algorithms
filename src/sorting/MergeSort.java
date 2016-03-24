@@ -6,7 +6,6 @@ import java.util.logging.Level;
  *
  * @author Connor Rice
  */
-//public class MergeSort extends Sorter implements Runnable {
 public class MergeSort extends Sorter {
     
    // private Sorter aS;//= new InsertionSort();
@@ -19,26 +18,18 @@ public class MergeSort extends Sorter {
     public MergeSort() {
         this.name = "MergeSort";
     }
-
-    /*@Override
-    public void run() {
-        
-    }*/
         
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {
         super.start();
         mergeSort(a, a.clone(), 0, a.length-1);
         super.end(a);
-    }   
+    }
     
-   /* public <E extends Comparable<? super E>> void sort(E[] a, int _threshold) {
-        this.threshold = _threshold;
-        this.name = "MergeSort with " + aS.getName() +": T=" + _threshold;        
-        super.start();
-        mergeSortThreshold(a, a.clone(), 0, a.length-1);  
-        super.end(a);
-    } */
+    @Override
+    protected <E extends Comparable<? super E>> void sort(E[]a, int low, int high) {
+        mergeSort(a, a.clone(), low, high);
+    }
     
     private <E extends Comparable<? super E>> void mergeSort(E[] s, E[] u, int low, int high) {                    
         int mid;

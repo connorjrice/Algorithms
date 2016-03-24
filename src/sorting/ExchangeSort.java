@@ -34,7 +34,8 @@ public class ExchangeSort extends Sorter {
         super.end(a);
     }
     
-    public <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
+    @Override
+    protected <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
         exchangeSort(a,lb,ub);
     }
     

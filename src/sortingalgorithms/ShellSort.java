@@ -1,4 +1,6 @@
-package sorting;
+package sortingalgorithms;
+
+import sorting.Sorter;
 
 /**
  *

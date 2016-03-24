@@ -43,7 +43,7 @@ public class Sorter {
         
     }
     
-    public <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
+    protected <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
       
     }
     
@@ -229,7 +229,7 @@ public class Sorter {
     
     public void hybrid(Sorter _aS, int _threshold) {
         aS = _aS;
-        this.name += " with: " + aS.getName();
+        this.name += " + " + aS.getName() + "@"+_threshold;
         this.threshold = _threshold;
     }
     
