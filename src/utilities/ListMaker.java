@@ -4,10 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class ListMaker {
@@ -28,9 +25,17 @@ public class ListMaker {
 	return intlist;
     }
     
+
+    public static void remakeLists() {
+        ListMaker.exportCSV(10, 10, "10.csv");
+        ListMaker.exportCSV(100, 100, "100.csv");
+        ListMaker.exportCSV(1000, 1000, "1000.csv");
+        ListMaker.exportCSV(10000, 10000, "10000.csv");
+        ListMaker.exportCSV(100000, 100000, "100000.csv");           
+    }   
+    
     public static Integer[] readCSV(String name) {
         Integer[] list = new Integer[0];
-        ArrayList<Integer> aint = new ArrayList();
         String n = new File(name).getAbsolutePath();
         try {
             BufferedReader br = new BufferedReader(new FileReader(n));
@@ -38,9 +43,7 @@ public class ListMaker {
             list = new Integer[values.length];
             for (int i = 0; i < values.length; i++) {
                 list[i] = Integer.parseInt(values[i].substring(1, values[i].length()-1));
-                
             }
-            System.out.println(list.length);
             
         } catch (Exception e) {
             System.out.println(e);

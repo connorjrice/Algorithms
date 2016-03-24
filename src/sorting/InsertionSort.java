@@ -23,8 +23,8 @@ public class InsertionSort extends Sorter {
     }
     
     public <E extends Comparable<? super E>> E[] sort(E[] a, int lb, int ub) {
-       /* E c = a[lb+1];
-        insertionSort(a,c,lb,ub);*/
+        //E c = a[lb+1];
+        insertionSort(a,lb,ub);
         return a;
     }
     
@@ -40,9 +40,11 @@ public class InsertionSort extends Sorter {
         }
     }
    
-    private <E extends Comparable<? super E>> void insertionSort(E[] a, E c, int lb, int ub) {            
-        for (int i = lb+1; i < ub; i++) {
+    private <E extends Comparable<? super E>> void insertionSort(E[] a, int lb, int ub) {  
+        E c;
+        for (int i = lb; i < ub+1; i++) {
             int j = i-1;
+            c = a[i];
             while (j >= 0 && a[j].compareTo(c) > 0) {
                 a[j+1] = a[j];
                 j--;
