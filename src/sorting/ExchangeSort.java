@@ -34,6 +34,10 @@ public class ExchangeSort extends Sorter {
         super.end(a);
     }
     
+    public <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
+        
+    }
+    
     /**
      * This is the actual algorithm, keeping track of comparisons.
      * @param a Comparable array.
@@ -50,5 +54,22 @@ public class ExchangeSort extends Sorter {
             }
         }
     }
+    
+    /**
+     * This is the actual algorithm, keeping track of comparisons.
+     * @param a Comparable array.
+     */
+    private <E extends Comparable<? super E>> void exchangeSort(E[] a, int lb, int ub) {        
+        for (int i = lb; i < ub-1; i++) {
+            for (int j = i + 1; j < ub; j++) {
+                if (a[i].compareTo(a[j]) > 0) {
+                    sendComparison();
+                    swap(a,i,j);
+                } else {
+                    sendComparison();
+                }
+            }
+        }
+    }    
     
 }

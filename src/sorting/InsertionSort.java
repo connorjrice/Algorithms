@@ -22,10 +22,9 @@ public class InsertionSort extends Sorter {
         super.end(a);
     }
     
-    public <E extends Comparable<? super E>> E[] sort(E[] a, int lb, int ub) {
-        //E c = a[lb+1];
+    @Override
+    public <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
         insertionSort(a,lb,ub);
-        return a;
     }
     
     private <E extends Comparable<? super E>> void insertionSort(E[] a) {            

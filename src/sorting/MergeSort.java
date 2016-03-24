@@ -1,5 +1,7 @@
 package sorting;
 
+import java.util.logging.Level;
+
 /**
  *
  * @author Connor Rice
@@ -7,7 +9,7 @@ package sorting;
 public class MergeSort extends Sorter {
     
     private int threshold = 0;
-    private  final InsertionSort IS = new InsertionSort();
+    private Sorter aS = new ExchangeSort();
     
     public MergeSort(String[] args) {
         this.args = args;
@@ -26,10 +28,11 @@ public class MergeSort extends Sorter {
     }   
     
     public <E extends Comparable<? super E>> void sort(E[] a, int _threshold) {
+        System.out.println("here");
         this.threshold = _threshold;
         this.name = "MergeSort with InsertionSort: T=" + _threshold;        
         super.start();
-
+        System.out.println("here");
         mergeSortThreshold(a, a.clone(), 0, a.length-1);  
         super.end(a);
     }   
@@ -47,12 +50,12 @@ public class MergeSort extends Sorter {
     private <E extends Comparable<? super E>> void mergeSortThreshold(E[] s, E[] u, int low, int high) {                    
         int mid;
        if (high - low <= threshold) {
-            IS.sort(s,low,high);
+            aS.sort(s,low,high);
         } else {
             if (low < high) {
                 mid = (int) Math.floor((double)(low + high)/2);
-                mergeSort(s,u,low,mid);
-                mergeSort(s,u,mid+1,high);
+                mergeSortThreshold(s,u,low,mid);
+                mergeSortThreshold(s,u,mid+1,high);
                 merge(s,u,low,mid,high);
             }            
         }

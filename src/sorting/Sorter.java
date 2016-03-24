@@ -40,6 +40,10 @@ public class Sorter {
         
     }
     
+    public <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
+      
+    }
+    
     /**
      * Swaps i and j.
      * @param a array
