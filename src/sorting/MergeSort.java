@@ -33,7 +33,7 @@ public class MergeSort extends Sorter {
     
     private <E extends Comparable<? super E>> void mergeSort(E[] s, E[] u, int low, int high) {                    
         int mid;
-        if (high - low <= threshold) {
+        if (high - low <= threshold && threshold != -1) {
             aS.sort(s,low,high);
         }
         else {

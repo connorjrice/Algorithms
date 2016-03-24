@@ -49,9 +49,11 @@ public class Sorter {
     
     /**
      * Swaps i and j.
+     * @param <E>
      * @param a array
      * @param i swap index 1
      * @param j swap index 2
+     * @return 
      */
     protected <E extends Comparable<? super E>> boolean swap(E[] a, int i, int j) {
         if (i != j) {
@@ -225,6 +227,13 @@ public class Sorter {
     
     public String getName() {
         return name;
+    }
+    
+    
+    public void removeHybrid() {
+        aS = null;
+        this.name = name.substring(0, name.indexOf("+")-1);
+        this.threshold = -1;
     }
     
     public void hybrid(Sorter _aS, int _threshold) {

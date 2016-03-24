@@ -33,7 +33,7 @@ public final class QuickSort extends Sorter {
 
     private <E extends Comparable<? super E>> void quickSort(E[] a, int low, 
             int high) {
-        if (high - low <= threshold) {
+        if (high - low <= threshold && threshold != -1) {
             aS.sort(a,low,high);
         }        
         if (high > low) {
