@@ -10,7 +10,7 @@ import java.util.logging.Level;
 public class MergeSort extends Sorter {
     
     private int threshold = 0;
-    private Sorter aS = new InsertionSort();
+   // private Sorter aS;//= new InsertionSort();
     
     public MergeSort(String[] args) {
         this.args = args;
@@ -54,8 +54,6 @@ public class MergeSort extends Sorter {
     private <E extends Comparable<? super E>> void mergeSortThreshold(E[] s, E[] u, int low, int high) {                    
         int mid;
         if (high - low <= threshold) {
-            //System.out.println("h: " +high+ "l: "+low);
-            
             aS.sort(s,low,high);
         } else {
             if (low < high) {

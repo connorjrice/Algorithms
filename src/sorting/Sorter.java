@@ -24,6 +24,8 @@ public class Sorter {
     protected String[] args;
     private Object[] array;
     private boolean bench = false;
+
+    protected Sorter aS;
     
     public Sorter() {
         Sorter.LOG.setLevel(Level.INFO);
@@ -223,4 +225,9 @@ public class Sorter {
     public String getName() {
         return name;
     }
+    
+    public void hybrid(Sorter _aS) {
+        aS = _aS;
+    }
+    
 }
