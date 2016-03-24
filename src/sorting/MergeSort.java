@@ -31,14 +31,15 @@ public class MergeSort extends Sorter {
     
     private <E extends Comparable<? super E>> void mergeSort(E[] s, E[] u, int low, int high) {                    
         int mid;
-        if (low < high) {
-            mid = (int) Math.floor((double)(low + high)/2);
-            mergeSort(s,u,low,mid);                    
-            mergeSort(s,u,mid+1,high);
-            if (!runHybrid(s,low,high)) {
+        if (!runHybrid(s,low,high)) {
+            if (low < high) {
+                mid = (int) Math.floor((double)(low + high)/2);
+                mergeSort(s,u,low,mid);                    
+                mergeSort(s,u,mid+1,high);
                 merge(s,u,low,mid,high);
-            }           
-        } 
+            }             
+        }
+
     }
     
     private <E extends Comparable<? super E>> void merge(E[] s, E[] u, int low, int mid, int high) { 
