@@ -4,8 +4,6 @@ package sorting;
  * 
  * @author Connor Rice
  */
-
-
 public final class QuickSort extends Sorter {
 
     public int pivotpoint;
@@ -55,6 +53,8 @@ public final class QuickSort extends Sorter {
                 sendComparison();
                 j++;
                 swap(a,j,i);
+            } else {
+                sendComparison();
             }
         }
         this.pivotpoint = j;

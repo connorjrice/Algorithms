@@ -23,7 +23,8 @@ public class InsertionSort extends Sorter {
     }
     
     public <E extends Comparable<? super E>> E[] sort(E[] a, int lb, int ub) {
-        insertionSort(a,a[lb+1],lb,ub);
+       /* E c = a[lb+1];
+        insertionSort(a,c,lb,ub);*/
         return a;
     }
     

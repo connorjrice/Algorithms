@@ -27,16 +27,16 @@ public class MergeSort extends Sorter {
     
     private <E extends Comparable<? super E>> void mergeSort(E[] s, E[] u, int low, int high) {                    
         int mid;
-        if (high - low <= THRESHOLD) {
+       /*if (high - low <= THRESHOLD) {
             IS.sort(s,low,high);
-        } else {
+        } else {*/
             if (low < high) {
                 mid = (int) Math.floor((double)(low + high)/2);
                 mergeSort(s,u,low,mid);
                 mergeSort(s,u,mid+1,high);
                 merge(s,u,low,mid,high);
             }            
-        }
+        //}
 
     }
     

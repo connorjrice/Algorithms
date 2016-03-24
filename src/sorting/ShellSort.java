@@ -1,7 +1,5 @@
 package sorting;
 
-import sorting.Sorter;
-
 /**
  *
  * @author Connor Rice
@@ -18,6 +16,7 @@ public class ShellSort extends Sorter {
 
     }
     
+    //shell
     private <E extends Comparable<? super E>> void shellSort(E[] a) {  
         int[] stepList = new int[2];
         stepList[0] = 10;
