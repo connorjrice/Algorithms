@@ -44,9 +44,7 @@ public class ExchangeSort extends Sorter {
      * @param a Comparable array.
      */
     private <E extends Comparable<? super E>> void exchangeSort(E[] a, int lb, int ub) {
-        if (lb - ub <= threshold && threshold != -1) {
-            aS.sort(a,lb,ub);
-        } else {
+        if (!runHybrid(a,lb,ub)) {
             for (int i = lb; i < ub; i++) {
                 for (int j = i + 1; j < ub+1; j++) {
                     if (a[i].compareTo(a[j]) > 0) {
@@ -58,7 +56,6 @@ public class ExchangeSort extends Sorter {
                 }
             }            
         }          
-
     }    
     
 }

@@ -19,7 +19,8 @@ public class Sorter {
     private static final Logger LOG = Logger.getLogger(Sorter.class.getName());
     protected long startTime;
     protected long endTime;
-    protected int numComparisons;
+    protected int numComparisons; // for base class
+    protected String finalComparisons; // string with base+(hybrid)
     protected String name;
     protected String[] args;
     private Object[] array;
@@ -45,6 +46,11 @@ public class Sorter {
     
     public void hybrid(Sorter _aS, int _threshold) {
         aS = _aS;
+        System.out.println("wot");
+        System.out.println(bench);
+        if (bench) {
+            aS.setBench(true);
+        }
         this.name += " + " + aS.getName() + "@"+_threshold;
         this.threshold = _threshold;
     }
@@ -60,6 +66,15 @@ public class Sorter {
     public String getName() {
         return name;
     }    
+    
+    protected <E extends Comparable<? super E>> boolean runHybrid(E[] a, int lb, int ub) {
+        if (ub - lb <= threshold && threshold != -1) {
+            aS.sort(a,lb,ub);
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     protected <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
       
@@ -94,8 +109,27 @@ public class Sorter {
      */
     protected <E extends Comparable<? super E>> void end(E[] a) {
         getEndTime();
+        addHybridComparisons();
         runArgsEnd(a);
         reset();
+    }
+    
+    protected int getComparisons() {
+        return numComparisons;
+    }
+    
+    protected void setBench(boolean b) {
+        bench = b;
+    }
+    
+    private void addHybridComparisons() {
+        if (threshold != -1) {
+            //System.out.println("n" + aS.getComparisons());
+            finalComparisons = numComparisons + "(" + aS.getComparisons() + ")";
+        } else {
+            finalComparisons = numComparisons + "";
+        }
+        //System.out.println(finalComparisons);
     }
     
     /**
@@ -220,7 +254,7 @@ public class Sorter {
             }
             info += ("}\n");
             if (bench) {
-                info += ("# Comparisons: " + numComparisons + "\n");                
+                info += ("# Comparisons: " + finalComparisons + "\n");                
             }
 
             info += getDuration();

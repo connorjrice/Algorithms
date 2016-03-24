@@ -27,17 +27,21 @@ public class InsertionSort extends Sorter {
         insertionSort(a,lb,ub);
     }
    
-    private <E extends Comparable<? super E>> void insertionSort(E[] a, int lb, int ub) {  
-        E c;
-        for (int i = lb; i < ub+1; i++) {
-            int j = i-1;
-            c = a[i];
-            while (j >= 0 && a[j].compareTo(c) > 0) {
-                a[j+1] = a[j];
-                j--;
-            }
-            a[j+1] = c;
+    private <E extends Comparable<? super E>> void insertionSort(E[] a, int lb, int ub) {
+        if (!runHybrid(a,lb,ub)) {
+            E c;
+            for (int i = lb; i < ub+1; i++) {
+                int j = i-1;
+                c = a[i];
+                while (j >= 0 && a[j].compareTo(c) > 0) {
+                    sendComparison();
+                    a[j+1] = a[j];
+                    j--;
+                }
+                a[j+1] = c;
+            }            
         }
+
     }
        
 }

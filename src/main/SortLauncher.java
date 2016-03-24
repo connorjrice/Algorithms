@@ -19,16 +19,16 @@ public class SortLauncher {
      */
     public static void main(String[] args) {
         //curSort(args);
-       // mergeHybrid(args);
+        mergeHybrid(args);
        // iS(args);
-        mS(args);
+        //mS(args);
     }
     
     public static void curSort(String[] args) {                   
-        String n = "100.csv";        
-        Sorter e = new ExchangeSort(args);
-        //e.hybrid(new InsertionSort(), 100);
-        e.sort(ListMaker.readCSV(n));
+        String n = "1000.csv";        
+        Sorter i = new InsertionSort(args);
+        i.hybrid(new ExchangeSort(), 100);
+        i.sort(ListMaker.readCSV(n));
     }
     
     public static void mergeHybrid(String[] args) {
@@ -48,7 +48,6 @@ public class SortLauncher {
     public static void mS(String[] args) {
         MergeSort ms = new MergeSort(args);
         ms.sort(ListMaker.readCSV("25000.csv"));
-        //ms.sort(ListMaker.readCSV("25000.csv"), 7);
     }
     
     public static void bS(String[] args) {
