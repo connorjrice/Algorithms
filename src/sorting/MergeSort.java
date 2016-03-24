@@ -38,10 +38,7 @@ public class MergeSort extends Sorter {
                 mergeSort(s,u,mid+1,high);
                 merge(s,u,low,mid,high);
             }             
-        } else {
-            System.out.println("L: " + low);
-            System.out.println("H: " + high);            
-        }
+        } 
     }
     
     private <E extends Comparable<? super E>> void merge(E[] s, E[] u, int low, int mid, int high) { 

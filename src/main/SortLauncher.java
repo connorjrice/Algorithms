@@ -20,7 +20,7 @@ public class SortLauncher {
     public static void main(String[] args) {
        //curSort(args);
         mergeHybrid(args);
-     //  iS(args);
+       //iS(args);
        //eS(args);
         //mS(args);
        // quickHybrid(args);
@@ -48,9 +48,10 @@ public class SortLauncher {
     
     
     public static void mergeHybrid(String[] args) {
-        String n = "10000.csv";
-        int t = 10;
+        String n = "1000.csv";
+        int t = 9;
         MergeSort ms = new MergeSort(args);
+        ms.sort(getData(n));
         ms.hybrid(new ExchangeSort(args), t);        
         ms.sort(getData(n));
         /*
