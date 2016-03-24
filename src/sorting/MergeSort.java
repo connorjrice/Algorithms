@@ -6,10 +6,11 @@ import java.util.logging.Level;
  *
  * @author Connor Rice
  */
+//public class MergeSort extends Sorter implements Runnable {
 public class MergeSort extends Sorter {
     
     private int threshold = 0;
-    private Sorter aS = new ExchangeSort();
+    private Sorter aS = new InsertionSort();
     
     public MergeSort(String[] args) {
         this.args = args;
@@ -20,6 +21,11 @@ public class MergeSort extends Sorter {
         this.name = "MergeSort";
     }
 
+    /*@Override
+    public void run() {
+        
+    }*/
+        
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {
         super.start();
@@ -28,11 +34,9 @@ public class MergeSort extends Sorter {
     }   
     
     public <E extends Comparable<? super E>> void sort(E[] a, int _threshold) {
-        System.out.println("here");
         this.threshold = _threshold;
-        this.name = "MergeSort with InsertionSort: T=" + _threshold;        
+        this.name = "MergeSort with " + aS.getName() +": T=" + _threshold;        
         super.start();
-        System.out.println("here");
         mergeSortThreshold(a, a.clone(), 0, a.length-1);  
         super.end(a);
     }   
@@ -49,7 +53,9 @@ public class MergeSort extends Sorter {
     
     private <E extends Comparable<? super E>> void mergeSortThreshold(E[] s, E[] u, int low, int high) {                    
         int mid;
-       if (high - low <= threshold) {
+        if (high - low <= threshold) {
+            //System.out.println("h: " +high+ "l: "+low);
+            
             aS.sort(s,low,high);
         } else {
             if (low < high) {
@@ -96,5 +102,6 @@ public class MergeSort extends Sorter {
             low++;
         }        
     }
-        
+
+
 }           

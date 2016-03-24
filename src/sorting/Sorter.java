@@ -160,6 +160,7 @@ public class Sorter {
         startTime = 0;
         endTime = 0;
         bench = false;
+        //Thread.sleep(5000000);
     }
     
     /**

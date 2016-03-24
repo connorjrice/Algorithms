@@ -19,15 +19,18 @@ public class SortLauncher {
      */
     public static void main(String[] args) {
         curSort(args);
+       // iS(args);
+       // mS(args);
     }
     
     public static void curSort(String[] args) {
-        Integer[] list = ListMaker.readCSV("10000.csv");
+        String n = "10000.csv";
+        
         MergeSort ms = new MergeSort(args);
         QuickSort qs = new QuickSort(args);
-        ms.sort(list.clone());
-        ms.sort(list.clone(), 10);        
-        qs.sort(list.clone());
+        ms.sort(ListMaker.readCSV(n));
+        ms.sort(ListMaker.readCSV(n),10);
+        qs.sort(ListMaker.readCSV(n));        
 
     }
     
@@ -39,7 +42,7 @@ public class SortLauncher {
     public static void mS(String[] args) {
         MergeSort ms = new MergeSort(args);
         ms.sort(ListMaker.readCSV("25000.csv"));
-        ms.sort(ListMaker.readCSV("25000.csv"), 7);
+        //ms.sort(ListMaker.readCSV("25000.csv"), 7);
     }
     
     public static void bS(String[] args) {
@@ -54,7 +57,7 @@ public class SortLauncher {
     
     public static void iS(String[] args) {
         Sorter i = new InsertionSort(args);
-        i.sort(ListMaker.readCSV("1000.csv"));
+        i.sort(ListMaker.readCSV("25000.csv"));
     }
     
 }
