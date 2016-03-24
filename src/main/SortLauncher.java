@@ -18,16 +18,16 @@ public class SortLauncher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        curSort(args);
+        //curSort(args);
        // mergeHybrid(args);
        // iS(args);
-       // mS(args);
+        mS(args);
     }
     
     public static void curSort(String[] args) {                   
-        String n = "10000.csv";        
+        String n = "100.csv";        
         Sorter e = new ExchangeSort(args);
-        e.hybrid(new InsertionSort(), 100);
+        //e.hybrid(new InsertionSort(), 100);
         e.sort(ListMaker.readCSV(n));
     }
     

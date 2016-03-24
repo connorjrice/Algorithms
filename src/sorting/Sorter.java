@@ -43,17 +43,29 @@ public class Sorter {
         
     }
     
+    public void hybrid(Sorter _aS, int _threshold) {
+        aS = _aS;
+        this.name += " + " + aS.getName() + "@"+_threshold;
+        this.threshold = _threshold;
+    }
+    
+    public void removeHybrid() {
+        aS = null;
+        this.name = name.substring(0, name.indexOf("+")-1);
+        this.threshold = -1;
+    }
+    
+
+    public String getName() {
+        return name;
+    }    
+    
     protected <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
       
     }
     
     /**
      * Swaps i and j.
-     * @param <E>
-     * @param a array
-     * @param i swap index 1
-     * @param j swap index 2
-     * @return 
      */
     protected <E extends Comparable<? super E>> boolean swap(E[] a, int i, int j) {
         if (i != j) {
@@ -95,6 +107,33 @@ public class Sorter {
     }
     
     /**
+     * Resets the environment for the next run.
+     */
+    protected void reset() {
+        numComparisons = 0;
+        startTime = 0;
+        endTime = 0;
+        bench = false;
+    }    
+    
+    /**
+     * Returns the array sorted by the algorithm.
+     * Must have had write() called.
+     * @param <E>
+     * @return 
+     */
+    protected <E extends Comparable<? super E>> Object[] getArray() {
+        return array;
+    }
+    
+    /**
+     * @return logger
+     */
+    protected Logger getLogger() {
+        return LOG;
+    }    
+    
+    /**
      * Runs arguments at start of algorithm execution.
      * @param <E> 
      */
@@ -120,9 +159,9 @@ public class Sorter {
                 for (String s : args) {
                     if (s.equals("-p") || s.equals("-b")) {
                         print(a);                
-                    } else if (s.equals("-w")) {
+                    } /*else if (s.equals("-w")) {
                         write(a);
-                    }                    
+                    }*/                    
                 }
             }
         } else {
@@ -158,29 +197,11 @@ public class Sorter {
     }
     
     /**
-     * Resets the environment for the next run.
-     */
-    protected void reset() {
-        numComparisons = 0;
-        startTime = 0;
-        endTime = 0;
-        bench = false;
-        //Thread.sleep(5000000);
-    }
-    
-    /**
-     * Internal method for incrementing numComparisons.
+     * increments numComparisons.
      */
     private void incrementComparisons() {
         numComparisons++;
     }    
-    
-    /**
-     * @return logger
-     */
-    protected Logger getLogger() {
-        return LOG;
-    }
     
     /**
      * Prints out the final list, with number of comparisons if benchmark was
@@ -206,40 +227,4 @@ public class Sorter {
         }
     }
 
-    /**
-     * Writes a. Only needed if you want to use getArray()
-     * @param <E>
-     * @param a 
-     */
-    private <E extends Comparable<? super E>> void write(E[] a) {
-        this.array = a;
-    }
-    
-    /**
-     * Returns the array sorted by the algorithm.
-     * Must have had write() called.
-     * @param <E>
-     * @return 
-     */
-    protected <E extends Comparable<? super E>> Object[] getArray() {
-        return array;
-    }
-    
-    public String getName() {
-        return name;
-    }
-    
-    
-    public void removeHybrid() {
-        aS = null;
-        this.name = name.substring(0, name.indexOf("+")-1);
-        this.threshold = -1;
-    }
-    
-    public void hybrid(Sorter _aS, int _threshold) {
-        aS = _aS;
-        this.name += " + " + aS.getName() + "@"+_threshold;
-        this.threshold = _threshold;
-    }
-    
 }
