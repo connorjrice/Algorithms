@@ -25,6 +25,9 @@ public class ListMaker {
 	return intlist;
     }
     
+    public static void makeNewList(int size) {
+        ListMaker.exportCSV(size, size, size+".csv");
+    }
 
     public static void remakeLists() {
         ListMaker.exportCSV(10, 10, "10.csv");

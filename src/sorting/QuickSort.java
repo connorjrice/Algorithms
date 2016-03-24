@@ -40,7 +40,6 @@ public final class QuickSort extends Sorter {
             partition(a, low, high);
             quickSort(a,low,pivotpoint-1);
             quickSort(a,pivotpoint+1,high);
-            
         }
     }
     

@@ -6,8 +6,8 @@ package sorting;
  */
 public class MergeSort extends Sorter {
     
-    private int threshold = 8;
-    private static final InsertionSort IS = new InsertionSort();
+    private int threshold = 0;
+    private  final InsertionSort IS = new InsertionSort();
     
     public MergeSort(String[] args) {
         this.args = args;
@@ -26,8 +26,10 @@ public class MergeSort extends Sorter {
     }   
     
     public <E extends Comparable<? super E>> void sort(E[] a, int _threshold) {
+        this.threshold = _threshold;
+        this.name = "MergeSort with InsertionSort: T=" + _threshold;        
         super.start();
-        this.name = "MergeSort with InsertionSort: T=" + _threshold;
+
         mergeSortThreshold(a, a.clone(), 0, a.length-1);  
         super.end(a);
     }   
