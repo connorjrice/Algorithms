@@ -40,6 +40,8 @@ public class InsertionSort extends Sorter {
                 }
                 a[j+1] = c;
             }            
+        } else {
+            System.out.println("hybrid insertion run");
         }
 
     }

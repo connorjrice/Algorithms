@@ -7,9 +7,9 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.Random;
 
-public class ListMaker {
+public class DataFeed {
 
-    public ListMaker() {
+    public DataFeed() {
 
     }
 
@@ -26,15 +26,15 @@ public class ListMaker {
     }
     
     public static void makeNewList(int size) {
-        ListMaker.exportCSV(size, size, size+".csv");
+        DataFeed.exportCSV(size, size, size+".csv");
     }
 
     public static void remakeLists() {
-        ListMaker.exportCSV(10, 10, "10.csv");
-        ListMaker.exportCSV(100, 100, "100.csv");
-        ListMaker.exportCSV(1000, 1000, "1000.csv");
-        ListMaker.exportCSV(10000, 10000, "10000.csv");
-        ListMaker.exportCSV(100000, 100000, "100000.csv");           
+        DataFeed.exportCSV(10, 10, "10.csv");
+        DataFeed.exportCSV(100, 100, "100.csv");
+        DataFeed.exportCSV(1000, 1000, "1000.csv");
+        DataFeed.exportCSV(10000, 10000, "10000.csv");
+        DataFeed.exportCSV(100000, 100000, "100000.csv");           
     }   
     
     public static Integer[] readCSV(String name) {

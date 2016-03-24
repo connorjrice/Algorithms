@@ -55,6 +55,8 @@ public class ExchangeSort extends Sorter {
                     }
                 }
             }            
+        } else {
+            System.out.println("hybrid exchange");
         }          
     }    
     
