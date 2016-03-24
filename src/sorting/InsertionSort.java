@@ -28,9 +28,9 @@ public class InsertionSort extends Sorter {
     }
    
     private <E extends Comparable<? super E>> void insertionSort(E[] a, int lb, int ub) {
-        if (!runHybrid(a,lb,ub)) {
-            E c;
-            for (int i = lb; i < ub+1; i++) {
+        E c;
+        for (int i = lb; i < ub+1; i++) {
+            if (!runHybrid(a,i,ub)) {
                 int j = i-1;
                 c = a[i];
                 while (j >= 0 && a[j].compareTo(c) > 0) {
@@ -39,11 +39,8 @@ public class InsertionSort extends Sorter {
                     j--;
                 }
                 a[j+1] = c;
-            }            
-        } else {
-            System.out.println("hybrid insertion run");
-        }
-
+            }
+        }            
     }
-       
+    
 }

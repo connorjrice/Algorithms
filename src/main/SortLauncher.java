@@ -19,8 +19,8 @@ public class SortLauncher {
      */
     public static void main(String[] args) {
        //curSort(args);
-        mergeHybrid(args);
-       //iS(args);
+        //mergeHybrid(args);
+       iS(args);
        //eS(args);
         //mS(args);
         //quickHybrid(args);
@@ -85,7 +85,9 @@ public class SortLauncher {
     
     public static void iS(String[] args) {
         Sorter i = new InsertionSort(args);
-        i.sort(getData("25000.csv"));
+        i.sort(getData("1000.csv"));
+        i.hybrid(new BubbleSort(args), 7);
+        i.sort(getData("1000.csv"));
     }
     
     public static Integer[] getData(String n) {

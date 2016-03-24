@@ -25,7 +25,7 @@ public class Sorter {
     protected String[] args;
     private Object[] array;
     private boolean bench = true;
-
+    
     protected Sorter aS;
     protected int threshold = -1;
     
