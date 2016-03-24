@@ -18,25 +18,13 @@ public class InsertionSort extends Sorter {
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {        
         super.start();
-        insertionSort(a);
+        insertionSort(a,0,a.length-1);
         super.end(a);
     }
     
     @Override
-    public <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
+    protected <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
         insertionSort(a,lb,ub);
-    }
-    
-    private <E extends Comparable<? super E>> void insertionSort(E[] a) {            
-        for (int i = 1; i < a.length; i++) {
-            int j = i-1;
-            E comparison = a[i];
-            while (j >= 0 && a[j].compareTo(comparison) > 0) {
-                a[j+1] = a[j];
-                j--;
-            }
-            a[j+1] = comparison;
-        }
     }
    
     private <E extends Comparable<? super E>> void insertionSort(E[] a, int lb, int ub) {  
