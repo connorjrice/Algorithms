@@ -6,6 +6,8 @@ package sorting;
  */
 public class InsertionSort extends Sorter {
     
+    public int insertions = 0;
+    
     public InsertionSort() {
         this.name = "InsertionSort";
     }
@@ -29,6 +31,7 @@ public class InsertionSort extends Sorter {
    
     private <E extends Comparable<? super E>> void insertionSort(E[] a, int lb, int ub) {
         E c;
+        //System.out.println(insertions++);
         for (int i = lb; i < ub+1; i++) {
             if (!runHybrid(a,i,ub)) {
                 int j = i-1;

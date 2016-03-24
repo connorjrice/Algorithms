@@ -33,13 +33,15 @@ public class MergeSort extends Sorter {
         int mid;
         if (!runHybrid(s,low,high)) {
             if (low < high) {
-                mid = (int) Math.floor((double)(low + high)/2);
+                mid = (low + high)/2;
                 mergeSort(s,u,low,mid);                    
                 mergeSort(s,u,mid+1,high);
                 merge(s,u,low,mid,high);
             }             
+        } else {
+            System.out.println("L: " + low);
+            System.out.println("H: " + high);            
         }
-
     }
     
     private <E extends Comparable<? super E>> void merge(E[] s, E[] u, int low, int mid, int high) { 
