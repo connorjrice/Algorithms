@@ -48,6 +48,7 @@ public class Sorter {
         this.name += " + " + aS.getName() + "@"+_threshold;
         this.threshold = _threshold;
     }
+
     
     public void removeHybrid() {
         aS = null;
@@ -140,7 +141,7 @@ public class Sorter {
     private <E extends Comparable<? super E>> void runArgsStart() {
         for (String s : args) {
             if (s.equals("-b")) {
-                getLogger().log(Level.SEVERE, "true");
+                getLogger().log(Level.INFO, "Benchmarking enabled.");
                 bench = true;
             }
         }
