@@ -23,12 +23,11 @@ public class Sorter {
     protected String finalComparisons; // string with base+(hybrid)
     protected String name = "DefaultSorter";
     protected String[] args;
-    private Object[] array;
     private boolean bench = true;
 
     protected Sorter aS;
     protected int threshold = -1;
-    
+
     public Sorter() {
         Sorter.LOG.setLevel(Level.INFO);
         this.numComparisons = 0;
@@ -81,7 +80,8 @@ public class Sorter {
     
     public boolean getBench() {
         return bench;
-    }
+    }    
+
     
     protected <E extends Comparable<? super E>> boolean runHybrid(E[] a, int lb, int ub) {
         if (ub - lb <= threshold && threshold != -1) {
@@ -89,6 +89,7 @@ public class Sorter {
             return true;
         } else {
             return false;
+        
         }
     }
     
@@ -164,19 +165,8 @@ public class Sorter {
         finalComparisons = "";
         startTime = 0;
         endTime = 0;
-        
-    }    
-    
-    /**
-     * Returns the array sorted by the algorithm.
-     * Must have had write() called.
-     * @param <E>
-     * @return 
-     */
-    protected <E extends Comparable<? super E>> Object[] getArray() {
-        return array;
     }
-    
+        
     /**
      * @return logger
      */
@@ -211,15 +201,15 @@ public class Sorter {
                 for (String s : args) {
                     if (s.equals("-p") || s.equals("-b")) {
                         print(a);                
-                    } /*else if (s.equals("-w")) {
-                        write(a);
-                    }*/                    
+                    }             
                 }
             }
         } else {
             print(a);
         }
     }
+    
+
 
     /**
      * Records System.nanoTime() as a long.

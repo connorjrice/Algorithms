@@ -31,7 +31,7 @@ public class InsertionSort extends Sorter {
    
     private <E extends Comparable<? super E>> void insertionSort(E[] a, int lb, int ub) {
         E c; 
-        for (int i = lb+1; i <= ub; i++) {
+        for (int i = lb; i <= ub; i++) {
             int j = i-1;
             c = a[i];
             while (j >= 0 && a[j].compareTo(c) > 0) {

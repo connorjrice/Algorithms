@@ -297,18 +297,6 @@ public class SorterTest {
         assertTrue(instance.endTime == 0);        
     }
 
-    /**
-     * Test of getArray method, of class Sorter.
-     */
-    @Test
-    public void testGetArray() {
-        System.out.println("getArray");
-        Sorter instance = new Sorter(new String[]{"-w"});
-        instance.sort(DataFeed.readCSV(N));
-        Object[] expResult = null;
-        Object[] result = instance.getArray();
-        assertThat(expResult, not(IsEqual.equalTo(result)));
-    }
 
     /**
      * Test of getLogger method, of class Sorter.

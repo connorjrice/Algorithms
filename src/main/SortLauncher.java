@@ -25,7 +25,7 @@ public class SortLauncher {
         //mS(args);
        // quickHybrid(args);
     }
-    
+
     public static void curSort(String[] args) {                   
         String n = "1000.csv";        
         Sorter i = new InsertionSort(args);
@@ -48,12 +48,12 @@ public class SortLauncher {
     
     
     public static void mergeHybrid(String[] args) {
-        String n = "1000.csv";
+        String n = "15.csv";
         int t = 10;
         MergeSort ms = new MergeSort(args);
-        ms.sort(getData(n));
-        ms.hybrid(new ExchangeSort(args), t);        
-        ms.sort(getData(n));
+        //ms.sort(getData(n));
+        //ms.hybrid(new ExchangeSort(args), t);        
+        //ms.sort(getData(n));
         /*
         ms.hybrid(new InsertionSort(args), t);
         ms.sort(getData(n));

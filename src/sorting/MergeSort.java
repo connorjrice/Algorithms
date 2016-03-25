@@ -21,9 +21,11 @@ public class MergeSort extends Sorter {
     public <E extends Comparable<? super E>> void sort(E[] a) {
         super.start();
         mergeSort(a, a.clone(), 0, a.length-1);
-        if (aS != null) { // needed for insertionSort at least
+        new InsertionSort().sort(a);
+        new InsertionSort().sort(a);        
+       /* if (aS != null) { // needed for insertionSort at least
             aS.sort(a,0,a.length-1);
-        }
+        }*/
         super.end(a);
     }
     
@@ -42,6 +44,18 @@ public class MergeSort extends Sorter {
                 merge(s,u,low,mid,high);
             }             
         }
+       /*
+            if (low < high) {
+                mid = (low + high)/2;
+                if (!runHybrid(s,low,mid)) {
+                    mergeSort(s,u,low,mid);                                        
+                }
+                if (!runHybrid(s,mid+1,high)) {
+                    mergeSort(s,u,mid+1,high);                    
+                }
+
+                merge(s,u,low,mid,high);
+            }*/
     }
     
     private <E extends Comparable<? super E>> void merge(E[] s, E[] u, int low, int mid, int high) { 

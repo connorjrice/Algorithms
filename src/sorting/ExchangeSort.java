@@ -25,7 +25,7 @@ public class ExchangeSort extends Sorter {
     /**
      * sort() is the command called from outside of the program.
      * It's responsible for setting up and tearing down the run.
-     * @param a Comparable array.
+     * @param a generic array.
      */
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {

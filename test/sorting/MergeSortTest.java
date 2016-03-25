@@ -112,9 +112,12 @@ public class MergeSortTest {
         instance.hybrid(new InsertionSort());        
         instance.sort(a, 0, a.length-1);
         for (int i = 1; i < a.length; i++) {
-            if (a[i].compareTo(a[i-1]) < 0) {
-                fail("Array was not sorted! index= " + i +  " a[i] = " + 
-                        a[i] + " a[j]= " + a[i-1]);
+            if (a[i-1].compareTo(a[i]) > 0) {
+                String s = "";
+                for (Comparable a1 : a) {
+                    s += Integer.toString((Integer) a1) + ",";
+                }
+                fail("Array was not sorted! index= " + i +  " a[i] = " + a[i] + " a[i-1]= " + a[i-1] + s);
             }
         }           
     }
