@@ -10,16 +10,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import sorting.MergeSortTest;
 
 /**
  *
  * @author Connor
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({MergeSortTest.class}) // comma sep
+@Suite.SuiteClasses({}) // comma sep
 public class TestSuite {
+    
 
+    
     @BeforeClass
     public static void setUpClass() throws Exception {
     }

@@ -48,7 +48,7 @@ public class Sorter {
      * @param a 
      */
     public <E extends Comparable<? super E>> void sort(E[] a) {
-        
+        StaticDefault.sort(a);
     }
     
     public void hybrid(Sorter _aS, int _threshold) {
@@ -93,7 +93,7 @@ public class Sorter {
     }
     
     protected <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
-      
+        StaticDefault.sort(a, lb, ub);
     }
     
     /**
