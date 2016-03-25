@@ -1,4 +1,4 @@
-package sortingalgorithms;
+package sortingunimplemented;
 
 import sorting.Sorter;
 
@@ -34,7 +34,6 @@ public class ShellSort extends Sorter {
                 }
                 a[j+stepList[h]] = comparison;
             }
-            
-        }        
+        }
     }  
 }

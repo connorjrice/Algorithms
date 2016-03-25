@@ -10,14 +10,14 @@ import static org.junit.Assert.*;
 import utilities.DataFeed;
 
 /**
- *
+ * This test class should be used as a template!
  * @author Connor
  */
-public class ASelectionSortTest {
+public class SelectionSortTest {
     
     public static final String N = "100.csv";    
     
-    public ASelectionSortTest() {
+    public SelectionSortTest() {
     }
     
     @BeforeClass
