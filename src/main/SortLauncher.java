@@ -49,7 +49,7 @@ public class SortLauncher {
     
     public static void mergeHybrid(String[] args) {
         String n = "1000.csv";
-        int t = 5;
+        int t = 10;
         MergeSort ms = new MergeSort(args);
         ms.sort(getData(n));
         ms.hybrid(new ExchangeSort(args), t);        

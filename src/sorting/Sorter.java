@@ -21,7 +21,7 @@ public class Sorter {
     protected long endTime;
     protected int numComparisons; // for base class
     protected String finalComparisons; // string with base+(hybrid)
-    protected String name = "";
+    protected String name = "DefaultSorter";
     protected String[] args;
     private Object[] array;
     private boolean bench = true;
@@ -161,6 +161,7 @@ public class Sorter {
      */
     protected void reset() {
         numComparisons = 0;
+        finalComparisons = "";
         startTime = 0;
         endTime = 0;
         

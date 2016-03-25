@@ -6,6 +6,8 @@
 package sorting;
 
 import java.util.logging.Logger;
+import static org.hamcrest.CoreMatchers.not;
+import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,6 +21,9 @@ import utilities.DataFeed;
  * @author Connor
  */
 public class SorterTest {
+    
+    public static final String N = "100.csv";    
+    public static final Comparable[] A = DataFeed.readCSV(N);            
     
     public SorterTest() {
     }
@@ -45,12 +50,16 @@ public class SorterTest {
      */
     @Test
     public void testSort_GenericType() {
-        System.out.println("sort");
-        Comparable[] a = DataFeed.readCSV("10000.csv");
-        Sorter instance = new Sorter();
+        System.out.println("sort-parent");
+        Comparable[] a = A.clone();
+        MergeSort instance = new MergeSort();
         instance.sort(a);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        for (int i = 1; i < a.length; i++) {
+            if (a[i].compareTo(a[i-1]) < 0) {
+                fail("Array was not sorted! index= " + i +  " a[i] = " + 
+                        a[i] + " a[j]= " + a[i-1]);                
+            }
+        } 
     }
 
     /**
@@ -58,13 +67,18 @@ public class SorterTest {
      */
     @Test
     public void testHybrid_Sorter_int() {
-        System.out.println("hybrid");
-        Sorter _aS = null;
-        int _threshold = 0;
-        Sorter instance = new Sorter();
-        instance.hybrid(_aS, _threshold);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("hybrid-threshold");
+        Comparable[] a = A.clone();
+        MergeSort instance = new MergeSort();
+        instance.hybrid(new ExchangeSort(), 10);
+        instance.sort(a);
+        for (int i = 1; i < a.length; i++) {
+            if (a[i].compareTo(a[i-1]) < 0) {
+                fail("Array was not sorted! index= " + i +  " a[i] = " + 
+                        a[i] + " a[j]= " + a[i-1]);                
+            }
+        }         
+        assertTrue(instance.threshold == 10);
     }
 
     /**
@@ -72,25 +86,61 @@ public class SorterTest {
      */
     @Test
     public void testHybrid_Sorter() {
-        System.out.println("hybrid");
-        Sorter _aS = null;
-        Sorter instance = new Sorter();
-        instance.hybrid(_aS);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("hybrid-default");
+
+        Comparable[] a = A.clone();
+        MergeSort instance = new MergeSort();
+        instance.hybrid(new ExchangeSort());
+        instance.sort(a);
+        for (int i = 1; i < a.length; i++) {
+            if (a[i].compareTo(a[i-1]) < 0) {
+                fail("Array was not sorted! index= " + i +  " a[i] = " + 
+                        a[i] + " a[j]= " + a[i-1]);                
+            }
+        }         
+        assertTrue(instance.threshold == 7);
     }
 
     /**
-     * Test of removeHybrid method, of class Sorter.
+     * Test of removeHybrid method, of class Sorter, when there is NO hybrid
+     * attached.
      */
     @Test
-    public void testRemoveHybrid() {
-        System.out.println("removeHybrid");
-        Sorter instance = new Sorter();
+    public void testRemoveHybridNoHybrid() {
+        System.out.println("removeHybrid-noHybrid");
+        Comparable[] a = A.clone();
+        MergeSort instance = new MergeSort();
         instance.removeHybrid();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.sort(a);
+        for (int i = 1; i < a.length; i++) {
+            if (a[i].compareTo(a[i-1]) < 0) {
+                fail("Array was not sorted! index= " + i +  " a[i] = " + 
+                        a[i] + " a[j]= " + a[i-1]);                
+            }
+        }         
+        assertTrue(instance.threshold == -1);             
     }
+    
+    /**
+     * Test of removeHybrid method, of class Sorter, when there is a hybrid
+     * attached.
+     */
+    @Test
+    public void testRemoveHybridWithHybrid() {
+
+        System.out.println("removeHybrid-noHybrid");
+        Comparable[] a = A.clone();
+        MergeSort instance = new MergeSort();
+        instance.hybrid(new BubbleSort());
+        instance.removeHybrid();
+        instance.sort(a);
+        for (int i = 1; i < a.length; i++) {
+            if (a[i].compareTo(a[i-1]) < 0) {
+                fail("Array was not sorted! index= " + i +  " a[i] = " + 
+                        a[i] + " a[j]= " + a[i-1]);                
+            }
+        }         
+    }    
 
     /**
      * Test of getName method, of class Sorter.
@@ -99,11 +149,10 @@ public class SorterTest {
     public void testGetName() {
         System.out.println("getName");
         Sorter instance = new Sorter();
-        String expResult = "";
+        String expResult = "DefaultSorter";
         String result = instance.getName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -113,11 +162,9 @@ public class SorterTest {
     public void testGetBench() {
         System.out.println("getBench");
         Sorter instance = new Sorter();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.getBench();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -139,12 +186,16 @@ public class SorterTest {
      */
     @Test
     public void testSort_3args() {
-        System.out.println("sort");
-        Comparable[] a = DataFeed.readCSV("10000.csv");
-        Sorter instance = new Sorter();
+        System.out.println("sort-child");
+        Comparable[] a = DataFeed.readCSV(N);
+        MergeSort instance = new MergeSort();
         instance.sort(a, 0, a.length-1);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        for (int i = 1; i < a.length; i++) {
+            if (a[i].compareTo(a[i-1]) < 0) {
+                fail("Array was not sorted! index= " + i +  " a[i] = " + 
+                        a[i] + " a[j]= " + a[i-1]);
+            }
+        }
     }
 
     /**
@@ -153,15 +204,11 @@ public class SorterTest {
     @Test
     public void testSwap() {
         System.out.println("swap");
-        Comparable[] a = DataFeed.readCSV("10000.csv");
-        int i = 0;
-        int j = 0;
+        Comparable[] a = new Integer[]{1,0};
         Sorter instance = new Sorter();
-        boolean expResult = false;
-        boolean result = instance.swap(a, i, j);
+        boolean expResult = true;
+        boolean result = instance.swap(a, 0, 1);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -170,10 +217,9 @@ public class SorterTest {
     @Test
     public void testStart() {
         System.out.println("start");
-        Sorter instance = new Sorter();
+        Sorter instance = new Sorter(new String[]{"-b"});
         instance.start();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.getBench());
     }
 
     /**
@@ -184,9 +230,20 @@ public class SorterTest {
         System.out.println("end");
         Comparable[] a = DataFeed.readCSV("10000.csv");
         Sorter instance = new Sorter();
+        instance.sort(a, 0, a.length-1);
+        for (int i = 1; i < a.length; i++) {
+            if (a[i].compareTo(a[i-1]) < 0) {
+                fail("Array was not sorted! index= " + i +  " a[i] = " + 
+                        a[i] + " a[j]= " + a[i-1]);
+            }
+        }               
         instance.end(a);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.numComparisons == 0);
+        assertTrue(instance.finalComparisons.equals(""));
+        assertTrue(instance.startTime == 0);
+        assertTrue(instance.endTime == 0);        
+        
+ 
     }
 
     /**
@@ -199,8 +256,6 @@ public class SorterTest {
         int expResult = 0;
         int result = instance.getComparisons();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -211,9 +266,9 @@ public class SorterTest {
         System.out.println("setBench");
         boolean b = false;
         Sorter instance = new Sorter();
+        assertTrue(instance.getBench());
         instance.setBench(b);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(!instance.getBench());        
     }
 
     /**
@@ -223,9 +278,9 @@ public class SorterTest {
     public void testSendComparison() {
         System.out.println("sendComparison");
         Sorter instance = new Sorter();
+        assertTrue(instance.numComparisons == 0);
         instance.sendComparison();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.numComparisons == 1);        
     }
 
     /**
@@ -235,9 +290,11 @@ public class SorterTest {
     public void testReset() {
         System.out.println("reset");
         Sorter instance = new Sorter();
+        instance.sort(DataFeed.readCSV(N));
         instance.reset();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.numComparisons == 0);
+        assertTrue(instance.startTime == 0);
+        assertTrue(instance.endTime == 0);        
     }
 
     /**
@@ -246,12 +303,11 @@ public class SorterTest {
     @Test
     public void testGetArray() {
         System.out.println("getArray");
-        Sorter instance = new Sorter();
+        Sorter instance = new Sorter(new String[]{"-w"});
+        instance.sort(DataFeed.readCSV(N));
         Object[] expResult = null;
         Object[] result = instance.getArray();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertThat(expResult, not(IsEqual.equalTo(result)));
     }
 
     /**
@@ -263,9 +319,7 @@ public class SorterTest {
         Sorter instance = new Sorter();
         Logger expResult = null;
         Logger result = instance.getLogger();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotEquals(expResult, result);
     }
     
 }

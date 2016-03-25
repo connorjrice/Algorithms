@@ -20,7 +20,7 @@ import utilities.DataFeed;
  */
 public class QuickSortTest {
     
-    public static final String N = "100.csv";    
+    public static final String N = "10000.csv";    
     
     public QuickSortTest() {
     }
