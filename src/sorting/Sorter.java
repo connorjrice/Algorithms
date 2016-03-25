@@ -63,7 +63,6 @@ public class Sorter {
         this.name += " + " + aS.getName() + "@"+ 7;
         this.threshold = 7;
     }
-
     
     public void removeHybrid() {
         aS = null;
@@ -81,26 +80,27 @@ public class Sorter {
     public boolean getBench() {
         return bench;
     }    
-
     
-    protected <E extends Comparable<? super E>> boolean runHybrid(E[] a, int lb, int ub) {
+    protected <E extends Comparable<? super E>> boolean runHybrid(E[] a, int lb,
+            int ub) {
         if (ub - lb <= threshold && threshold != -1) {
             aS.sort(a,lb,ub);
             return true;
         } else {
             return false;
-        
         }
     }
     
-    protected <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
+    protected <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub)
+    {
         StaticDefault.sort(a, lb, ub);
     }
     
     /**
      * Swaps i and j.
      */
-    protected <E extends Comparable<? super E>> boolean swap(E[] a, int i, int j) {
+    protected <E extends Comparable<? super E>> boolean swap(E[] a, int i, 
+            int j) {
         if (i != j) {
             E t = a[i];
             a[i] = a[j];
@@ -208,8 +208,6 @@ public class Sorter {
             print(a);
         }
     }
-    
-
 
     /**
      * Records System.nanoTime() as a long.

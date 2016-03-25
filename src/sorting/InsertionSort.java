@@ -1,37 +1,57 @@
 package sorting;
 
+import sorting.*;
+
+
 /**
- *
- * @author Connor Rice
+ * This class is an implementation of Insertion Sort.
+ * @author Connor
  */
 public class InsertionSort extends Sorter {
     
-    public int insertions = 0;
-    
     public InsertionSort() {
         this.name = "InsertionSort";
-    }
+    }    
     
     public InsertionSort(String[] args) {
         this.args = args;
-        this.name = "Insertion Sort";
-    }
-    
+        this.name = "InsertionSort";
+    }    
+        
+    /**
+     * Public method called by any class.
+     * @param <E>
+     * @param a 
+     */
     @Override
-    public <E extends Comparable<? super E>> void sort(E[] a) {        
+    public <E extends Comparable<? super E>> void sort(E[] a) {
         super.start();
-        insertionSort(a,0,a.length-1);
+        insertionSort(a, 0, a.length-1);
         super.end(a);
     }
     
+    /**
+     * Method to only be used by Sorting classes. Allows bounds to be set, called
+     * by hybrid algorithm runs.
+     * @param <E>
+     * @param a = array for sorting
+     * @param low = lower bound
+     * @param high = upper bound
+     */
     @Override
-    protected <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub) {
-        insertionSort(a,lb,ub);
-    }
-   
-    private <E extends Comparable<? super E>> void insertionSort(E[] a, int lb, int ub) {
+    protected <E extends Comparable<? super E>> void sort(E[]a, int low, int high) {
+        insertionSort(a, low, high);
+    }    
+    
+    /**
+     * Method called by sort(). This is where the actual algorithm is implemented.
+     * @param a = array for sorting
+     * @param low = lower bound
+     * @param high = upper bound
+     */
+    private <E extends Comparable<? super E>> void insertionSort(E[] a, int low, int high) {                    
         E c; 
-        for (int i = lb; i <= ub; i++) {
+        for (int i = low; i <= high; i++) {
             int j = i-1;
             c = a[i];
             while (j >= 0 && a[j].compareTo(c) > 0) {
@@ -41,9 +61,6 @@ public class InsertionSort extends Sorter {
             }
             a[j+1] = c;
         }
-    }
-
-}
-
+    }    
     
-
+}

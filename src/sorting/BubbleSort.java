@@ -1,22 +1,28 @@
 package sorting;
 
+import sorting.*;
+
+
 /**
- *
- * @author Connor Rice
+ * This class is a template for new algorithms.
+ * @author Connor
  */
 public class BubbleSort extends Sorter {
     
+    public BubbleSort() {
+        this.name = "BubbleSort";
+    }    
     
     public BubbleSort(String[] args) {
         this.args = args;
-        this.name = "BubbleSort";        
-    }    
-    
-    
-    public BubbleSort() {
         this.name = "BubbleSort";
-    }
-    
+    }    
+        
+    /**
+     * Public method called by any class.
+     * @param <E>
+     * @param a 
+     */
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {
         super.start();
@@ -24,18 +30,29 @@ public class BubbleSort extends Sorter {
         super.end(a);
     }
     
+    /**
+     * Method to only be used by Sorting classes. Allows bounds to be set, called
+     * by hybrid algorithm runs.
+     * @param <E>
+     * @param a = array for sorting
+     * @param low = lower bound
+     * @param high = upper bound
+     */
     @Override
-    protected <E extends Comparable<? super E>> void sort(E[]a, int lb, int ub) {
-        bubbleSort(a,lb,ub);
-    }
+    protected <E extends Comparable<? super E>> void sort(E[]a, int low, int high) {
+        bubbleSort(a, low, high);
+    }    
     
     /**
-     * Bubble Sort Algorithm. Not optimized, doesn't have to be.
+     * Method called by sort(). This is where the actual algorithm is implemented.
+     * @param a = array for sorting
+     * @param low = lower bound
+     * @param high = upper bound
      */
-    private <E extends Comparable<? super E>> void bubbleSort(E[] a, int lb, int ub) {
-        if(!runHybrid(a,lb,ub)) {
+    private <E extends Comparable<? super E>> void bubbleSort(E[] a, int low, int high) {                    
+        if(!runHybrid(a, low, high)) {
             boolean hasSwapped = false;
-            for (int i = lb; i < ub; i++) {
+            for (int i = low; i < high; i++) {
                 if (a[i].compareTo(a[i+1])> 0) {
                     sendComparison();
                     E placeholder = a[i];
@@ -45,9 +62,9 @@ public class BubbleSort extends Sorter {
                 }   
             }
             if (hasSwapped == true) {
-                bubbleSort(a,lb,ub);
+                bubbleSort(a, low, high);
             }
         }
-    }
+    }    
     
 }

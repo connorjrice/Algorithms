@@ -21,11 +21,9 @@ public class MergeSort extends Sorter {
     public <E extends Comparable<? super E>> void sort(E[] a) {
         super.start();
         mergeSort(a, a.clone(), 0, a.length-1);
-        new InsertionSort().sort(a);
-        new InsertionSort().sort(a);        
-       /* if (aS != null) { // needed for insertionSort at least
+        if (aS != null) { // needed for insertionSort at least
             aS.sort(a,0,a.length-1);
-        }*/
+        }
         super.end(a);
     }
     
