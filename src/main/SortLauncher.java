@@ -22,7 +22,7 @@ public class SortLauncher {
     }
 
     public static void curSort(String[] args) {                   
-        String n = "1000.csv";        
+        String n = "10.csv";        
         Sorter i = new SelectionSort(args);
         i.sort(DataFeed.readCSV(n));
     }
