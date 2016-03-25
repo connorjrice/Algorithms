@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import utilities.DataFeed;
 
 /**
  *
@@ -45,7 +46,7 @@ public class SorterTest {
     @Test
     public void testSort_GenericType() {
         System.out.println("sort");
-        Comparable[] a = null;
+        Comparable[] a = DataFeed.readCSV("10000.csv");
         Sorter instance = new Sorter();
         instance.sort(a);
         // TODO review the generated test code and remove the default call to fail.
@@ -125,15 +126,12 @@ public class SorterTest {
     @Test
     public void testRunHybrid() {
         System.out.println("runHybrid");
-        Comparable[] a = null;
-        int lb = 0;
-        int ub = 0;
+        Comparable[] a = DataFeed.readCSV("10000.csv");
         Sorter instance = new Sorter();
+        instance.hybrid(new Sorter());
         boolean expResult = false;
-        boolean result = instance.runHybrid(a, lb, ub);
+        boolean result = instance.runHybrid(a, 0, a.length-1);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -142,11 +140,9 @@ public class SorterTest {
     @Test
     public void testSort_3args() {
         System.out.println("sort");
-        Comparable[] a = null;
-        int lb = 0;
-        int ub = 0;
+        Comparable[] a = DataFeed.readCSV("10000.csv");
         Sorter instance = new Sorter();
-        instance.sort(a, lb, ub);
+        instance.sort(a, 0, a.length-1);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -157,7 +153,7 @@ public class SorterTest {
     @Test
     public void testSwap() {
         System.out.println("swap");
-        Comparable[] a = null;
+        Comparable[] a = DataFeed.readCSV("10000.csv");
         int i = 0;
         int j = 0;
         Sorter instance = new Sorter();
@@ -186,7 +182,7 @@ public class SorterTest {
     @Test
     public void testEnd() {
         System.out.println("end");
-        Comparable[] a = null;
+        Comparable[] a = DataFeed.readCSV("10000.csv");
         Sorter instance = new Sorter();
         instance.end(a);
         // TODO review the generated test code and remove the default call to fail.

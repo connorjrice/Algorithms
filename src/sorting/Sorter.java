@@ -21,7 +21,7 @@ public class Sorter {
     protected long endTime;
     protected int numComparisons; // for base class
     protected String finalComparisons; // string with base+(hybrid)
-    protected String name;
+    protected String name = "";
     protected String[] args;
     private Object[] array;
     private boolean bench = true;
