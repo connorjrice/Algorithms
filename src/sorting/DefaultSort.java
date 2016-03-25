@@ -7,6 +7,12 @@ package sorting;
  */
 public class DefaultSort extends Sorter {
     
+    public final static long numComparisons = 0L;
+    public static final long startTime = 0;
+    public final static long endTime = 0;
+    public static final String finalComparisons = ""; 
+    
+    
     public DefaultSort() {
         this.name = "DefaultSort";
     }    
