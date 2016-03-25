@@ -51,6 +51,7 @@ public class Sorter {
     }
     
     public void hybrid(Sorter _aS, int _threshold) {
+        reset();
         removeHybrid();
         aS = _aS;
         this.name += " + " + aS.getName() + "@"+_threshold;
@@ -58,6 +59,7 @@ public class Sorter {
     }
     
     public void hybrid(Sorter _aS) {
+        reset();
         removeHybrid();
         aS = _aS;
         this.name += " + " + aS.getName() + "@"+ 7;
@@ -65,6 +67,7 @@ public class Sorter {
     }
     
     public void removeHybrid() {
+        reset();
         aS = null;
         if (this.name.contains("+")) {
             this.name = name.substring(0, name.indexOf("+")-1);            
@@ -81,6 +84,10 @@ public class Sorter {
         return bench;
     }    
     
+    public double getTime() {
+        return finalTime;
+    }
+    
     protected <E extends Comparable<? super E>> boolean runHybrid(E[] a, int lb,
             int ub) {
         if (ub - lb <= threshold && threshold != -1) {
@@ -93,6 +100,7 @@ public class Sorter {
     
     protected <E extends Comparable<? super E>> void sort(E[] a, int lb, int ub)
     {
+        reset();
         StaticDefault.sort(a, lb, ub);
     }
     
@@ -128,7 +136,6 @@ public class Sorter {
         getEndTime();
         addHybridComparisons();
         runArgsEnd(a);
-        reset();
     }
     
     protected int getComparisons() {

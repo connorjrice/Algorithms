@@ -1,7 +1,8 @@
 package main;
 
+import java.util.Arrays;
 import sorting.*;
-import utilities.DataFeed;
+import utilities.*;
 
 /**
  *
@@ -13,18 +14,22 @@ public class SortLauncher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       curSort(args);
-        //mergeHybrid(args);
-       //iS(args);
-       //eS(args);
-        //mS(args);
-       // quickHybrid(args);
+        curTask(args);
     }
+    
+    public static void curTask(String[] args) {
+       /* Sorter s = new MergeSort(args);
+        s.sort(getData("1000.csv"));
+        System.out.println(s.getTime());*/
+        SortRunner sr = new SortRunner(1);
+        MergeSort ms = new MergeSort(args);
+        QuickSort qs = new QuickSort(args);
+        //Sorter[] sorters = new Sorter[]{ms};
 
-    public static void curSort(String[] args) {                   
-        String n = "10.csv";        
-        Sorter i = new SelectionSort(args);
-        i.sort(DataFeed.readCSV(n));
+        sr.run(ms,getData("25000.csv"), 1);
+        System.out.println(sr.getAverage(0));
+        System.out.println("hey");
+        //double avg = sr.run(new MergeSort(), getData("10000.csv"), 1);
     }
     
     public static void quickHybrid(String[] args) {
