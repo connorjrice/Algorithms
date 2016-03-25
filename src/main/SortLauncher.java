@@ -1,11 +1,6 @@
 package main;
 
-import sorting.BubbleSort;
-import sorting.QuickSort;
-import sorting.Sorter;
-import sorting.ExchangeSort;
-import sorting.InsertionSort;
-import sorting.MergeSort;
+import sorting.*;
 import utilities.DataFeed;
 
 /**
@@ -18,8 +13,8 @@ public class SortLauncher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       //curSort(args);
-        mergeHybrid(args);
+       curSort(args);
+        //mergeHybrid(args);
        //iS(args);
        //eS(args);
         //mS(args);
@@ -28,12 +23,8 @@ public class SortLauncher {
 
     public static void curSort(String[] args) {                   
         String n = "1000.csv";        
-        Sorter i = new InsertionSort(args);
-        i.hybrid(new ExchangeSort(args), 10);
-        i.sort(getData(n));
-        Sorter e = new ExchangeSort(args);
-        e.hybrid(new InsertionSort(args), 10);
-        e.sort(getData(n));
+        Sorter i = new SelectionSort(args);
+        i.sort(DataFeed.readCSV(n));
     }
     
     public static void quickHybrid(String[] args) {
@@ -46,21 +37,16 @@ public class SortLauncher {
         q.sort(getData(n));
     }
     
-    
     public static void mergeHybrid(String[] args) {
-        String n = "15.csv";
+        String n = "1000.csv";
         int t = 10;
         MergeSort ms = new MergeSort(args);
-        //ms.sort(getData(n));
-        //ms.hybrid(new ExchangeSort(args), t);        
-        //ms.sort(getData(n));
-        /*
+        ms.sort(getData(n));
+        ms.hybrid(new ExchangeSort(args), t);        
+        ms.sort(getData(n));
         ms.hybrid(new InsertionSort(args), t);
         ms.sort(getData(n));
         ms.removeHybrid();
-        ms.sort(getData(n));*/
-        ms = new MergeSort(args);
-        ms.hybrid(new InsertionSort(args),t);
         ms.sort(getData(n));
     }
     

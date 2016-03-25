@@ -1,4 +1,4 @@
-package sortingalgorithms;
+package sorting;
 
 import sorting.*;
 
@@ -50,7 +50,16 @@ public class SelectionSort extends Sorter {
      * @param high = upper bound
      */
     private <E extends Comparable<? super E>> void selectionSort(E[] a, int low, int high) {                    
-
+        int smallest;
+        for (int i = 1; i < a.length-1; i++) {
+            smallest = i;
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[j].compareTo(a[smallest]) > 0) {
+                    smallest = j;
+                }
+            swap(a, i, smallest);
+            }
+        }
     }    
     
 }

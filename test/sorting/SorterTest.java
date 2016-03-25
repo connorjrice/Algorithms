@@ -80,7 +80,6 @@ public class SorterTest {
     @Test
     public void testHybrid_Sorter() {
         System.out.println("hybrid-default");
-
         Comparable[] a = A.clone();
         MergeSort instance = new MergeSort();
         instance.hybrid(new ExchangeSort());
@@ -145,7 +144,6 @@ public class SorterTest {
         String expResult = "DefaultSorter";
         String result = instance.getName();
         assertEquals(expResult, result);
-
     }
 
     /**
@@ -235,9 +233,7 @@ public class SorterTest {
         assertTrue(instance.finalComparisons.equals(""));
         assertTrue(instance.startTime == 0);
         assertTrue(instance.endTime == 0);        
-        
- 
-    }
+     }
 
     /**
      * Test of getComparisons method, of class Sorter.
@@ -289,7 +285,6 @@ public class SorterTest {
         assertTrue(instance.startTime == 0);
         assertTrue(instance.endTime == 0);        
     }
-
 
     /**
      * Test of getLogger method, of class Sorter.
