@@ -19,6 +19,7 @@ public class Sorter {
     private static final Logger LOG = Logger.getLogger(Sorter.class.getName());
     protected long startTime;
     protected long endTime;
+    protected double finalTime; // in ms
     protected int numComparisons; // for base class
     protected String finalComparisons; // string with base+(hybrid)
     protected String name = "DefaultSorter";
@@ -38,11 +39,10 @@ public class Sorter {
         Sorter.LOG.setLevel(Level.INFO);
         this.numComparisons = 0;
         this.args = args;        
-        //runArgsStart();
     }
         
     /**
-     * Sort method. Blank for now, but used by sub-classes.
+     * Sort method. Calls StaticDefault to sort if it is not overridden.
      * @param <E>
      * @param a 
      */
@@ -199,9 +199,9 @@ public class Sorter {
         if (args != null) {
             if (args.length > 0) {
                 for (String s : args) {
-                    if (s.equals("-p") || s.equals("-b")) {
+                    if (s.equals("-p") || s.equals("b")) {
                         print(a);                
-                    }             
+                    } 
                 }
             }
         } else {
@@ -232,8 +232,8 @@ public class Sorter {
      */
     private String getDuration() {
         long time = endTime - startTime;
-        double ms = time / 1000000.0;
-        return "Time: " + (ms) + "ms" ;
+        finalTime = time / 1000000.0;
+        return "Time: " + (finalTime) + "ms" ;
     }
     
     /**
