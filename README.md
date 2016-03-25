@@ -1,4 +1,4 @@
-Sorting
+Algorithms
 =======
 
-Sorting algorithms for Analysis of Algorithms (Block 7 2014)
+Various algorithms, including sorting and search algorithms.
