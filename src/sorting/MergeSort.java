@@ -44,18 +44,6 @@ public class MergeSort extends Sorter {
                 merge(s,u,low,mid,high);
             }             
         }
-       /*
-            if (low < high) {
-                mid = (low + high)/2;
-                if (!runHybrid(s,low,mid)) {
-                    mergeSort(s,u,low,mid);                                        
-                }
-                if (!runHybrid(s,mid+1,high)) {
-                    mergeSort(s,u,mid+1,high);                    
-                }
-
-                merge(s,u,low,mid,high);
-            }*/
     }
     
     private <E extends Comparable<? super E>> void merge(E[] s, E[] u, int low, int mid, int high) { 

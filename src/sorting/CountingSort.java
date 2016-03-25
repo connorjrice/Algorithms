@@ -1,21 +1,19 @@
-package sortingalgorithms;
-
-import sorting.*;
+package sorting;
 
 
 /**
  * This class is a template for new algorithms.
  * @author Connor
  */
-public class SelectionSort extends Sorter {
+public class CountingSort extends Sorter {
     
-    public SelectionSort() {
-        this.name = "SelectionSort";
+    public CountingSort() {
+        this.name = "CountingSort";
     }    
     
-    public SelectionSort(String[] args) {
+    public CountingSort(String[] args) {
         this.args = args;
-        this.name = "SelectionSort";
+        this.name = "CountingSort";
     }    
         
     /**
@@ -26,7 +24,7 @@ public class SelectionSort extends Sorter {
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {
         super.start();
-        selectionSort(a, 0, a.length-1);
+        countingSort(a, 0, a.length-1);
         super.end(a);
     }
     
@@ -40,7 +38,7 @@ public class SelectionSort extends Sorter {
      */
     @Override
     protected <E extends Comparable<? super E>> void sort(E[]a, int low, int high) {
-        selectionSort(a, low, high);
+        countingSort(a, low, high);
     }    
     
     /**
@@ -49,7 +47,7 @@ public class SelectionSort extends Sorter {
      * @param low = lower bound
      * @param high = upper bound
      */
-    private <E extends Comparable<? super E>> void selectionSort(E[] a, int low, int high) {                    
+    private <E extends Comparable<? super E>> void countingSort(E[] a, int low, int high) {                    
 
     }    
     

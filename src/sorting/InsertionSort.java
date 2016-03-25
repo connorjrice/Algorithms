@@ -41,26 +41,7 @@ public class InsertionSort extends Sorter {
             }
             a[j+1] = c;
         }
-    
-
     }
-    
-    /* works by it's self, doesn't work with mergesort
-    private <E extends Comparable<? super E>> void insertionSort(E[] a, int lb, int ub) {
-        E c; 
-        for (int i = lb+1; i <= ub; i++) {
-            int j = i-1;
-            c = a[i];
-            while (j >= 0 && a[j].compareTo(c) > 0) {
-                sendComparison();
-                a[j+1] = a[j];
-                j--;
-            }
-            a[j+1] = c;
-        }
-    
-
-        }*/
 
 }
 
