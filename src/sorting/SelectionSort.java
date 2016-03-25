@@ -1,8 +1,5 @@
 package sorting;
 
-import sorting.*;
-
-
 /**
  * This class is a template for new algorithms.
  * @author Connor
@@ -54,6 +51,7 @@ public class SelectionSort extends Sorter {
         for (int i = 0; i < a.length-1; i++) {
             smallest = i;
             for (int j = i + 1; j < a.length; j++) {
+                sendComparison();
                 if (a[j].compareTo(a[smallest]) < 0) {
                     smallest = j;
                 }
