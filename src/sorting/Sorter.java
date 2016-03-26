@@ -41,6 +41,10 @@ public class Sorter {
         this.args = args;        
     }
         
+    public String getData() {
+        return this.getName() + "," + finalTime;
+    }
+        
     /**
      * Sort method. Calls StaticDefault to sort if it is not overridden.
      * @param <E>
