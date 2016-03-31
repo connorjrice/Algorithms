@@ -16,6 +16,7 @@ import utilities.*;
  */
 public class SortLauncher {
     
+    
     /**
      * -p : print
      * -b : benchmark
@@ -23,41 +24,35 @@ public class SortLauncher {
      */
     public static void main(String[] args) {
         curTask(args);
+        //runAlgorithms(args);
     }
     
     public static void curTask(String[] args) {
-        Sorter b = new BubbleSort(args);
-        Sorter e = new ExchangeSort(args);
-        Sorter i = new InsertionSort(args);
-        Sorter m = new MergeSort(args);
-        Sorter q = new QuickSort(args);
-        Sorter s = new SelectionSort(args);
+
+    }
+    
+    public static void runAlgorithms(String[] args) {
+        Sorter[] s = {new BubbleSort(args), new ExchangeSort(args),
+            new InsertionSort(args), new MergeSort(args),new QuickSort(args), new SelectionSort(args)};
+        
         int n = 10000;        
         Integer[] list = getData(n+".csv");
-
-
-        b.sort(list.clone());
-        write(b.getData(), n);
-        e.sort(list.clone());
-        write(e.getData(), n);        
-        i.sort(list.clone());
-        write(i.getData(), n);        
-        m.sort(list.clone());
-        write(m.getData(), n);        
-        q.sort(list.clone());
-        write(q.getData(), n);        
-        s.sort(list.clone());        
-        write(s.getData(), n);        
+        for (Sorter s1 : s) {
+            for (int i = 0; i < 10; i++) {
+                s1.sort(list.clone());        
+                write(s1.getData(), n);                   
+            }
+        }        
     }
     
     public static void write(String line, int n) {
-        Path p = Paths.get("algtimings.csv");
+        Path p = Paths.get("algtimings2.csv");
         
     
         try {
             List<String> lines = Files.readAllLines(p);
             if (lines.isEmpty()) {
-                lines.add("Name,Time(ms),Size");
+                lines.add("Name,Time,Size");
             } 
             lines.add(line + ","+n);
             Files.write(Paths.get(p.toString()), lines); 
@@ -72,12 +67,7 @@ public class SortLauncher {
                 }
             }
         }
-
-
     }
-    
-    
-    
     
     public static void sortRunner(String[] args) {
 
