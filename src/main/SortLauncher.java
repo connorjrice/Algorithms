@@ -23,36 +23,60 @@ public class SortLauncher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        curTask(args);
-        //runAlgorithms(args);
+        //rTask(args);
+       //ewList();
+        runAlgorithms(args);
     }
     
     public static void curTask(String[] args) {
 
     }
     
+    
+    public static void newList() {
+        DataFeed.makeNewList(2000);
+        DataFeed.makeNewList(3000);
+        DataFeed.makeNewList(4000);
+        DataFeed.makeNewList(5000);
+        DataFeed.makeNewList(6000);
+        DataFeed.makeNewList(7000);
+        DataFeed.makeNewList(8000);
+        DataFeed.makeNewList(9000);
+    }
+    
     public static void runAlgorithms(String[] args) {
-        Sorter[] s = {new BubbleSort(args), new ExchangeSort(args),
+
+      //Sorter[] s = {new BubbleSort(args)};
+       
+       Sorter[] s = {new ExchangeSort(args),
             new InsertionSort(args), new MergeSort(args),new QuickSort(args), new SelectionSort(args)};
         
-        int n = 10000;        
-        Integer[] list = getData(n+".csv");
+           
+               
+        int[] listSizes = new int[]{100,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,25000};
+        Integer[][] lists = new Integer[listSizes.length][listSizes.length];
+        for (int i = 0; i < listSizes.length; i++) {
+            lists[i] = getData(listSizes[i]+".csv");
+        }
+        int numTests = 10;
         for (Sorter s1 : s) {
-            for (int i = 0; i < 10; i++) {
-                s1.sort(list.clone());        
-                write(s1.getData(), n);                   
+            for (int j = 0; j < lists.length; j++) { // Lists
+                for (int k = 0; k < numTests; k++) { // number of interations
+                    s1.sort(lists[j].clone());                        
+                    write(s1.getData(),lists[j].length);                        
+                }
             }
-        }        
+        }
     }
     
     public static void write(String line, int n) {
-        Path p = Paths.get("algtimings2.csv");
+        Path p = Paths.get("algtimings6.csv");
         
     
         try {
             List<String> lines = Files.readAllLines(p);
             if (lines.isEmpty()) {
-                lines.add("Name,Time,Size");
+                lines.add("Name,Time,Comparisons,Size");
             } 
             lines.add(line + ","+n);
             Files.write(Paths.get(p.toString()), lines); 

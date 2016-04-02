@@ -1,7 +1,7 @@
 package pathfinding;
 
 
-import datastructures.Graph;
+import datastructures.UnweightedGraph;
 import datastructures.MinHeap;
 import java.util.ArrayList;
 
@@ -13,14 +13,14 @@ public class AStarPathFinder implements PathFinder {
     private boolean maxFlag;
     private int maxNodeSize;
     private Heuristic Heuristic;
-    private Graph Graph;
+    private UnweightedGraph Graph;
     private ArrayList<Integer> neverReturnNodes = new ArrayList<Integer>();
     private MinHeap<Path> frontier = new MinHeap<Path>();
     private int numRecursions;
     private int maxRecursions = 50;
     private long neverLong;
     
-    public AStarPathFinder(Heuristic Heuristic, Graph Graph, int nodeSize) {
+    public AStarPathFinder(Heuristic Heuristic, UnweightedGraph Graph, int nodeSize) {
         this.Heuristic = Heuristic;
         this.Graph = Graph;
         this.maxNodeSize = nodeSize;

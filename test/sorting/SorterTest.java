@@ -243,7 +243,7 @@ public class SorterTest {
         System.out.println("getComparisons");
         Sorter instance = new Sorter();
         int expResult = 0;
-        int result = instance.getComparisons();
+        long result = instance.getComparisons();
         assertEquals(expResult, result);
     }
 

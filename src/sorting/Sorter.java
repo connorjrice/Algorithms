@@ -20,7 +20,7 @@ public class Sorter {
     protected long startTime;
     protected long endTime;
     protected double finalTime; // in ms
-    protected int numComparisons; // for base class
+    protected long numComparisons; // for base class
     protected String finalComparisons; // string with base+(hybrid)
     protected String name = "DefaultSorter";
     protected String[] args;
@@ -42,7 +42,7 @@ public class Sorter {
     }
         
     public String getData() {
-        return this.getName() + "," + finalTime;
+        return this.getName() + "," + finalTime + "," + numComparisons;
     }
         
     /**
@@ -127,6 +127,7 @@ public class Sorter {
      * @param <E> 
      */
     protected <E extends Comparable<? super E>> void start() {
+        reset();
         runArgsStart();
         getStartTime();
     }
@@ -142,7 +143,7 @@ public class Sorter {
         runArgsEnd(a);
     }
     
-    protected int getComparisons() {
+    protected long getComparisons() {
         return numComparisons;
     }
     
@@ -210,7 +211,7 @@ public class Sorter {
         if (args != null) {
             if (args.length > 0) {
                 for (String s : args) {
-                    if (s.equals("-p") || s.equals("b")) {
+                    if (s.equals("-p") || s.equals("-b")) {
                         print(a);                
                     } 
                 }

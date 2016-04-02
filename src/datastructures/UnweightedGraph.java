@@ -4,30 +4,24 @@ import datastructures.nodes.GraphNode;
 import java.util.HashMap;
 
 /**
- * Implementation of a weighted Graph data structure
+ * Implementation of an Unweighted Graph datastructure
  * @author Connor Rice
  * @param <T>
  */
-public class Graph<T extends Comparable> {
+public class UnweightedGraph<T extends Comparable> {
 
-    private int[][] edges;
+    private boolean[][] edges;
     private GraphNode[] nodes;
     private HashMap nodeHash;
     private int maxSize;
     private int currentSize;
 
-    public Graph(int maxSize) {
+    public UnweightedGraph(int maxSize) {
         this.maxSize = maxSize;
         this.currentSize = 0;
-        this.edges = new int[maxSize][maxSize];
+        this.edges = new boolean[maxSize][maxSize];
         this.nodes = new GraphNode[maxSize];
         this.nodeHash = new HashMap(maxSize);
-    }
-    
-    public void createNodes() {
-        for (int i = 0; i < maxSize; i++) {
-            nodes[i] = new GraphNode(i);
-        }
     }
 
     public void addNode(Comparable element) { // set in condition for if last
@@ -57,39 +51,35 @@ public class Graph<T extends Comparable> {
         return (GraphNode) nodeHash.get(element);
     }
 
-    public void addEdge(Comparable firstElement, Comparable secondElement, int w) {
-        addEdge(getNode(firstElement), getNode(secondElement), w);
+    public void addEdge(Comparable firstElement, Comparable secondElement) {
+        addEdge(getNode(firstElement), getNode(secondElement));
     }
 
-    public void addEdge(GraphNode<T> firstNode, GraphNode<T> secondNode, int w) {
+    public void addEdge(GraphNode<T> firstNode, GraphNode<T> secondNode) {
         if (firstNode != null && secondNode != null && firstNode.getIndex() != secondNode.getIndex()) {
-            edges[firstNode.getIndex()][secondNode.getIndex()] = w;
-            System.out.println(edges[firstNode.getIndex()][secondNode.getIndex()]);
+            edges[firstNode.getIndex()][secondNode.getIndex()] = true;
+            edges[secondNode.getIndex()][firstNode.getIndex()] = true;
         }
     }
 
     public void removeEdges(GraphNode<T> doomedNode) {
         int doomedIndex = doomedNode.getIndex();
         for (int i = 0; i < edges.length; i++) {
-            edges[doomedIndex][i] = 0;
+            edges[doomedIndex][i] = false;
         }
     }
 
     public void removeEdge(GraphNode<T> firstNode, GraphNode<T> secondNode) {
         if (firstNode.getIndex() >= 0 && firstNode.getIndex() < currentSize) {
             if (secondNode.getIndex() >= 0 && firstNode.getIndex() < currentSize) {
-                edges[firstNode.getIndex()][secondNode.getIndex()] = 0;
-                edges[secondNode.getIndex()][firstNode.getIndex()] = 0;
+                edges[firstNode.getIndex()][secondNode.getIndex()] = false;
+                edges[secondNode.getIndex()][firstNode.getIndex()] = false;
             }
         }
 
     }
 
-    public int[][] getEdges() {
-        return edges;
-    }
-    
-    public int isEdge(int i, int j) {
+    public boolean isEdge(int i, int j) {
         return edges[i][j];
     }
 
@@ -97,7 +87,7 @@ public class Graph<T extends Comparable> {
         int[] neighbors = new int[9];
         int arrayIndex = 0;
         for (int i = 0; i < currentSize; i++) {
-            if (edges[index][i] > 0) {
+            if (edges[index][i]) {
                 neighbors[arrayIndex] = i;
                 arrayIndex++;
             }
@@ -188,15 +178,14 @@ public class Graph<T extends Comparable> {
         return newNodes;
     }
 
-    private int[][] doubleEdges() {
-        int[][] newEdges = new int[maxSize][maxSize];
+    private boolean[][] doubleEdges() {
+        boolean[][] newEdges = new boolean[maxSize][maxSize];
         int i = 0;
         int j = 0;
-        for (int[] e : edges) {
-            
+        for (boolean[] curbool : edges) {
             i++;
-            for (int e2 : e) {
-                newEdges[i][j] = e2;
+            for (boolean bool : curbool) {
+                newEdges[i][j] = bool;
                 j++;
             }
             j = 0;

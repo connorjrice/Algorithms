@@ -59,7 +59,9 @@ public class BubbleSort extends Sorter {
                     a[i] = a[i+1];
                     a[i+1] = placeholder;
                     hasSwapped = true;
-                }   
+                } else {
+                    sendComparison();
+                }
             }
             if (hasSwapped == true) {
                 bubbleSort(a, low, high);
