@@ -32,10 +32,9 @@ public class GraphLauncher {
                      {6,6,7,0,11},
                      {10,6,2,1,0}
         };
-        
-        
-        System.out.println(Arrays.deepToString(Prims.getMST(W)));
-        
+        int[][] edges = Prims.getMST(W);
+        System.out.println(Arrays.deepToString(edges));
+        System.out.println(Prims.getTotalWeight(edges));
     }
         
     public static void floyd() {
