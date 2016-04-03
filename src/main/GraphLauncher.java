@@ -5,10 +5,8 @@
  */
 package main;
 
-import datastructures.Graph;
-import datastructures.nodes.GraphNode;
 import graph.FloydsPath;
-import graph.Prims;
+import graph.ProblemsCGraph;
 import graph.SimpleWeightedGraph;
 import java.util.Arrays;
 
@@ -32,9 +30,9 @@ public class GraphLauncher {
                      {6,6,7,0,11},
                      {10,6,2,1,0}
         };
-        int[][] edges = Prims.getMST(W);
+        int[][] edges = ProblemsCGraph.getMSTPrims(W);
         System.out.println(Arrays.deepToString(edges));
-        System.out.println(Prims.getTotalWeight(edges));
+        System.out.println(ProblemsCGraph.getMSTWeight(edges));
     }
         
     public static void floyd() {

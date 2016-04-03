@@ -19,6 +19,7 @@ public class SortLauncher {
         //DataFeed.runAlgorithms(args);
         curTask(args);
         //newList();
+
     }
     
     public static void curTask(String[] args) {
