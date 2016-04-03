@@ -6,8 +6,11 @@
 package main;
 
 import graph.FloydsPath;
-import graph.ProblemsCGraph;
+import graph.Grapher;
+import hw.ProblemsCGraph;
 import graph.SimpleWeightedGraph;
+import hw.Ch4n2;
+import hw.Ch4n6;
 import java.util.Arrays;
 
 /**
@@ -20,7 +23,8 @@ public class GraphLauncher {
 /*        Graph g = new Graph(2);
         System.out.println(g.1));*/
         //floyd();
-        prims();
+       // prims();
+       connected();
     }
     
     public static void prims() {
@@ -30,9 +34,17 @@ public class GraphLauncher {
                      {6,6,7,0,11},
                      {10,6,2,1,0}
         };
-        int[][] edges = ProblemsCGraph.getMSTPrims(W);
+        int[][] edges = Ch4n2.getMSTPrims(W);
+        //int[][] edges = ProblemsCGraph.getOptimalCircuit(W);
         System.out.println(Arrays.deepToString(edges));
-        System.out.println(ProblemsCGraph.getMSTWeight(edges));
+        System.out.println(Grapher.getMSTWeight(edges));
+    }
+    
+    public static void connected() {
+            int[][] W = {{0,1,1},{0,0,0},{0,0,0}};
+        W = Ch4n2.getMSTPrims(W);
+        System.out.println(Arrays.deepToString(W));
+        System.out.println(Ch4n6.isConnected(W, 3));
     }
         
     public static void floyd() {

@@ -82,7 +82,6 @@ public class Graph<T extends Comparable> {
                 edges[secondNode.getIndex()][firstNode.getIndex()] = 0;
             }
         }
-
     }
 
     public int[][] getEdges() {
@@ -115,9 +114,9 @@ public class Graph<T extends Comparable> {
     public GraphNode<T> breadthFirstTraversal(GraphNode<T> snode) {
         Queue<GraphNode> queue = new Queue<GraphNode>();
         boolean[] marked = new boolean[currentSize];
-        queue.enqueue(nodes[0]);
+        queue.push(nodes[0]);
         while (!queue.isEmpty()) {
-            GraphNode node = queue.dequeue();
+            GraphNode node = queue.pop();
             if (!marked[node.getIndex()]) {
                 marked[node.getIndex()] = true;
             }
@@ -127,7 +126,7 @@ public class Graph<T extends Comparable> {
             int[] neighbors = getNeighbors(node.getIndex());
             int arrayIndex = 0;
             while (neighbors[arrayIndex] != 0) {
-                queue.enqueue(getNode(neighbors[arrayIndex]));
+                queue.push(getNode(neighbors[arrayIndex]));
             }
         }
         return null;

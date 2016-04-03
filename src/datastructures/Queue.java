@@ -19,7 +19,7 @@ public class Queue<T> {
         size = 0;
     }
 
-    public void enqueue(T newElement) {
+    public void push(T newElement) {
         QueueNode<T> queueIn = new QueueNode<>(newElement);
         if (front == null) {
             front = queueIn;
@@ -33,7 +33,7 @@ public class Queue<T> {
 
     }
 
-    public T dequeue() {
+    public T pop() {
         T element;
         if (back == front) {
             element = front.getElement();
