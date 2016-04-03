@@ -8,6 +8,7 @@ package main;
 import datastructures.Graph;
 import datastructures.nodes.GraphNode;
 import graph.FloydsPath;
+import graph.Prims;
 import graph.SimpleWeightedGraph;
 import java.util.Arrays;
 
@@ -20,9 +21,23 @@ public class GraphLauncher {
     public static void main(String[] args) {
 /*        Graph g = new Graph(2);
         System.out.println(g.1));*/
-        floyd();
+        //floyd();
+        prims();
     }
     
+    public static void prims() {
+        int[][] W = {{0,8,13,18,20},
+                     {3,0,7,8,10},
+                     {4,11,0,10,7},
+                     {6,6,7,0,11},
+                     {10,6,2,1,0}
+        };
+        
+        
+        System.out.println(Arrays.deepToString(Prims.getMST(W)));
+        
+    }
+        
     public static void floyd() {
         SimpleWeightedGraph g = new SimpleWeightedGraph(7);
         // V1
@@ -61,4 +76,5 @@ public class GraphLauncher {
         System.out.println(Arrays.deepToString(fp.floyd(g.getEdges())));
     }
     
+
 }

@@ -1,12 +1,5 @@
 package main;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import sorting.*;
 import utilities.*;
 
@@ -23,75 +16,23 @@ public class SortLauncher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //rTask(args);
-       //ewList();
-        runAlgorithms(args);
+        //DataFeed.runAlgorithms(args);
+        curTask(args);
+        //newList();
     }
     
     public static void curTask(String[] args) {
-
+        DataFeed.averageResults(5, "algtimings7.csv", "average.csv");
     }
     
     
     public static void newList() {
-        DataFeed.makeNewList(2000);
-        DataFeed.makeNewList(3000);
-        DataFeed.makeNewList(4000);
-        DataFeed.makeNewList(5000);
-        DataFeed.makeNewList(6000);
-        DataFeed.makeNewList(7000);
-        DataFeed.makeNewList(8000);
-        DataFeed.makeNewList(9000);
+        DataFeed.makeNewList(50000);
+        DataFeed.makeNewList(75000);
+        DataFeed.makeNewList(125000);
     }
     
-    public static void runAlgorithms(String[] args) {
 
-      //Sorter[] s = {new BubbleSort(args)};
-       
-       Sorter[] s = {new ExchangeSort(args),
-            new InsertionSort(args), new MergeSort(args),new QuickSort(args), new SelectionSort(args)};
-        
-           
-               
-        int[] listSizes = new int[]{100,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,25000};
-        Integer[][] lists = new Integer[listSizes.length][listSizes.length];
-        for (int i = 0; i < listSizes.length; i++) {
-            lists[i] = getData(listSizes[i]+".csv");
-        }
-        int numTests = 10;
-        for (Sorter s1 : s) {
-            for (int j = 0; j < lists.length; j++) { // Lists
-                for (int k = 0; k < numTests; k++) { // number of interations
-                    s1.sort(lists[j].clone());                        
-                    write(s1.getData(),lists[j].length);                        
-                }
-            }
-        }
-    }
-    
-    public static void write(String line, int n) {
-        Path p = Paths.get("algtimings6.csv");
-        
-    
-        try {
-            List<String> lines = Files.readAllLines(p);
-            if (lines.isEmpty()) {
-                lines.add("Name,Time,Comparisons,Size");
-            } 
-            lines.add(line + ","+n);
-            Files.write(Paths.get(p.toString()), lines); 
-            
-        } catch (IOException e) {
-            if (e.getCause() == new NoSuchFieldException().getCause()) {
-                try {
-                    Files.createFile(p);
-                    write(line, n);
-                } catch (IOException ex) {
-                    Logger.getLogger(SortLauncher.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-    }
     
     public static void sortRunner(String[] args) {
 
@@ -159,6 +100,12 @@ public class SortLauncher {
         i.sort(getData("1000.csv"));
     }
     
+    /**
+     * Returns a list of Integer[] from n.
+     * The list is used by a sorting algorithm.
+     * @param n
+     * @return 
+     */
     public static Integer[] getData(String n) {
         return DataFeed.readCSV(n);
     }
