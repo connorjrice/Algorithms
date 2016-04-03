@@ -10,7 +10,7 @@ public class GraphNode<T> {
     public GraphNode(int _index, Comparable newElement) {
         index = _index;
         element = newElement;
-        setCoordArray();
+        //setCoordArray();
     }
 
     public GraphNode(Comparable newElement) {

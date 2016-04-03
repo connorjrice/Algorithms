@@ -26,7 +26,8 @@ public class Graph<T extends Comparable> {
     
     public void createNodes() {
         for (int i = 0; i < maxSize; i++) {
-            nodes[i] = new GraphNode(i);
+            nodes[i] = new GraphNode(i,i);
+            currentSize++;
         }
     }
 
@@ -64,7 +65,7 @@ public class Graph<T extends Comparable> {
     public void addEdge(GraphNode<T> firstNode, GraphNode<T> secondNode, int w) {
         if (firstNode != null && secondNode != null && firstNode.getIndex() != secondNode.getIndex()) {
             edges[firstNode.getIndex()][secondNode.getIndex()] = w;
-            System.out.println(edges[firstNode.getIndex()][secondNode.getIndex()]);
+            //System.out.println(edges[firstNode.getIndex()][secondNode.getIndex()]);
         }
     }
 
@@ -93,7 +94,7 @@ public class Graph<T extends Comparable> {
     }
 
     public int[] getNeighbors(int index) {
-        int[] neighbors = new int[9];
+        int[] neighbors = new int[3];
         int arrayIndex = 0;
         for (int i = 0; i < currentSize; i++) {
             if (edges[index][i] > 0) {
@@ -103,9 +104,37 @@ public class Graph<T extends Comparable> {
         }
         return neighbors;
     }
+    
+    
 
     /**
      * * Breadth and Depth Traversals **
+     */
+    
+    /**
+     * Perform a breadth-first search and return the boolean[] of visited nodes.
+     * @return 
+     */
+    public boolean[] getTraversal() {
+        Queue<GraphNode> queue = new Queue<GraphNode>();
+        boolean[] seen = new boolean[currentSize];
+        queue.push(nodes[0]);
+        while (!queue.isEmpty()) {
+            GraphNode node = queue.pop();
+            for (int i = 0; i < currentSize; i++) {
+                if (edges[node.getIndex()][i] >= 0 && !seen[i]) {
+                    seen[i] = true;
+                    queue.push(nodes[i]);
+                }
+            }            
+        }
+        return seen;        
+    }
+    
+    /**
+     * Returns a graphnode that contains element.
+     * @param element
+     * @return 
      */
     public GraphNode<T> breadthFirstTraversal(Comparable element) {
         return breadthFirstTraversal(new GraphNode<T>(element));
@@ -113,12 +142,12 @@ public class Graph<T extends Comparable> {
 
     public GraphNode<T> breadthFirstTraversal(GraphNode<T> snode) {
         Queue<GraphNode> queue = new Queue<GraphNode>();
-        boolean[] marked = new boolean[currentSize];
+        boolean[] seen = new boolean[currentSize];
         queue.push(nodes[0]);
         while (!queue.isEmpty()) {
             GraphNode node = queue.pop();
-            if (!marked[node.getIndex()]) {
-                marked[node.getIndex()] = true;
+            if (!seen[node.getIndex()]) {
+                seen[node.getIndex()] = true;
             }
             if (node.getElement().equals(snode.getElement())) {
                 return node;

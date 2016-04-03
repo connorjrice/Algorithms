@@ -9,7 +9,7 @@ public class Ch4n2 {
     /** Chapter 4, n.2
      * Prim's algorithm for minimum spanning tree.
      * startEdge, endEdge, weight
-     * @param W
+     * @param W//
      * @return int[][] where int[i][0] = startNode // node
      *                       int[i][1] = endNode // vertex
      *                       int[i][2] = weight

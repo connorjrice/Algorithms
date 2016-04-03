@@ -41,10 +41,11 @@ public class GraphLauncher {
     }
     
     public static void connected() {
-            int[][] W = {{0,1,1},{0,0,0},{0,0,0}};
-        W = Ch4n2.getMSTPrims(W);
+        //int[][] W = {{0,1,1},{1,0,1},{1,1,0}};
+        int[][] W = {{0,1,1},{1,0,0},{1,1,0}};        
+        //int[][] edges = Ch4n2.getMSTPrims(W);            
         System.out.println(Arrays.deepToString(W));
-        System.out.println(Ch4n6.isConnected(W, 3));
+        System.out.println(Ch4n6.isConnected(W));
     }
         
     public static void floyd() {

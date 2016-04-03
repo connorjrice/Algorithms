@@ -16,7 +16,7 @@ public class GraphNode<T> {
     }
 
     public GraphNode(Comparable newElement) {
-        index = -1;
+        //index = -1;
         element = newElement;
     }
 
