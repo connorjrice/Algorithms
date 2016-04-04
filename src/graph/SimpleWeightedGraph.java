@@ -6,20 +6,34 @@ package graph;
  */
 public class SimpleWeightedGraph {
     
-    private int[][] edges;
+    private double[][] edges;
     private int size;
     
     public SimpleWeightedGraph(int _size) {
         this.size = _size;
-        this.edges = new int[size][size];
+        this.edges = new double[size][size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                edges[i][j] = Double.POSITIVE_INFINITY;
+            }
+        }
     }
     
-    public void addEdge(int a, int b, int w) {
+    public void addEdge(int a, int b, double w) {
         edges[a][b] = w;
-        System.out.println("here");
+        edges[b][a] = w;
     }
     
-    public int[][] getEdges() {
+    public void removeEdge(int a, int b) {
+        edges[a][b] = Double.POSITIVE_INFINITY;
+        edges[b][a] = Double.POSITIVE_INFINITY;
+    }
+    
+    public double[][] getEdges() {
         return edges;
+    }
+    
+    public int getSize() {
+        return size;
     }
 }

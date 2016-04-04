@@ -30,6 +30,28 @@ public class InsertionSort extends Sorter {
         super.end(a);
     }
     
+    public <E extends Comparable<? super E>> int[] sortIndices(E[] a) {
+        int low = 0;
+        int high = a.length-1;
+        int[] indices = new int[a.length];
+        for (int i = 0; i < a.length; i++) {
+            indices[i] = i;
+        }
+        E c; 
+        for (int i = low; i <= high; i++) {
+            int j = i-1;
+            c = a[i];
+            while (j >= 0 && a[j].compareTo(c) > 0) {
+                sendComparison();
+                a[j+1] = a[j];
+                indices[j+1] = indices[j];
+                j--;
+            }
+            indices[j+1] = indices[i];
+        }        
+        return indices;
+    }
+    
     /**
      * Method to only be used by Sorting classes. Allows bounds to be set, called
      * by hybrid algorithm runs.
