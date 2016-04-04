@@ -19,7 +19,12 @@ public class Job implements Comparable<Job> {
 
     @Override
     public int compareTo(Job other) {
-        return Integer.compare(this.profit, other.profit);
+        return Integer.compare(this.deadline, other.deadline);
+    }
+    
+    @Override
+    public String toString() {
+        return "[" + jobNumber + ", " + deadline + ", " + profit + "]";
     }
     
 }

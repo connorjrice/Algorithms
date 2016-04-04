@@ -29,8 +29,17 @@ public class InsertionSort extends Sorter {
         insertionSort(a, 0, a.length-1);
         super.end(a);
     }
+    /**
+     * Used by Scheduler
+     * @param <E>
+     * @param a 
+     */
+    public <E extends Comparable<? super E>> void reverseSort(E[] a){
+        reverseInsertionSort(a, 0, a.length-1);
+    }
     
     /**
+     * Used by Kruskals
      * Sorts a int[][] where int[i][0] = startNode,          
      *                       int[i][1] = endNode,
      *                       int[i][2] = weight
@@ -71,7 +80,8 @@ public class InsertionSort extends Sorter {
      * @param low = lower bound
      * @param high = upper bound
      */
-    private <E extends Comparable<? super E>> void insertionSort(E[] a, int low, int high) {                    
+    private <E extends Comparable<? super E>> void insertionSort(E[] a, 
+            int low, int high) {                    
         E c; 
         for (int i = low; i <= high; i++) {
             int j = i-1;
@@ -84,5 +94,26 @@ public class InsertionSort extends Sorter {
             a[j+1] = c;
         }
     }    
+    
+    /**
+     * Private method for Scheduler reverse sort
+     * @param a = array for sorting
+     * @param low = lower bound
+     * @param high = upper bound
+     */
+    private <E extends Comparable<? super E>> void reverseInsertionSort(E[] a, 
+            int low, int high) {                    
+        E c; 
+        for (int i = low; i <= high; i++) {
+            int j = i-1;
+            c = a[i];
+            while (j >= 0 && a[j].compareTo(c) < 0) {
+                sendComparison();
+                a[j+1] = a[j];
+                j--;
+            }
+            a[j+1] = c;
+        }
+    }        
     
 }
