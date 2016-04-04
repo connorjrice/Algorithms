@@ -30,26 +30,26 @@ public class InsertionSort extends Sorter {
         super.end(a);
     }
     
-    public <E extends Comparable<? super E>> int[] sortIndices(E[] a) {
+    /**
+     * Sorts a int[][] where int[i][0] = startNode,          
+     *                       int[i][1] = endNode,
+     *                       int[i][2] = weight
+     * by the weight.
+     */
+    public void sort(double[][] edges) {
         int low = 0;
-        int high = a.length-1;
-        int[] indices = new int[a.length];
-        for (int i = 0; i < a.length; i++) {
-            indices[i] = i;
-        }
-        E c; 
+        int high = edges.length-1;
+        double[] c; 
         for (int i = low; i <= high; i++) {
             int j = i-1;
-            c = a[i];
-            while (j >= 0 && a[j].compareTo(c) > 0) {
+            c = edges[i];
+            while (j >= 0 && edges[j][2] > c[2]) {
                 sendComparison();
-                a[j+1] = a[j];
-                indices[j+1] = indices[j];
+                edges[j+1] = edges[j];
                 j--;
             }
-            indices[j+1] = indices[i];
+            edges[j+1] = c;
         }        
-        return indices;
     }
     
     /**

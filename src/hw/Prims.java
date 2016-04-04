@@ -1,5 +1,6 @@
-package graph;
+package hw;
 
+import graph.SimpleWeightedGraph;
 import java.util.Arrays;
 
 /**
@@ -7,8 +8,6 @@ import java.util.Arrays;
  * @author Connor
  */
 public class Prims {
-    
-    
     
     /** Chapter 4, n.2
      * Prim's algorithm for minimum spanning tree.
@@ -69,7 +68,7 @@ public class Prims {
         return F;
     }    
     
-    /***
+    /*** Ch 4, no 6
      * Takes in a minimum spanning tree and determines if it is connected.
      * @param edges
      * @param n number of nodes
@@ -94,7 +93,6 @@ public class Prims {
             }
         }
         return seenAll;
-
     }
     
 }

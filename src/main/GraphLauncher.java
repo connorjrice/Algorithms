@@ -5,14 +5,12 @@
  */
 package main;
 
-import graph.FloydsPath;
 import graph.Grapher;
-import graph.Prims;
-import hw.ProblemsCGraph;
+import graph.SimpleSparseGraph;
+import hw.Prims;
 import graph.SimpleWeightedGraph;
-import hw.Ch4n2;
 import hw.Ch4n6;
-import hw.Ch4n7;
+import hw.Kruskals;
 import java.util.Arrays;
 
 /**
@@ -24,10 +22,9 @@ public class GraphLauncher {
     public static void main(String[] args) {
 /*        Graph g = new Graph(2);
         System.out.println(g.1));*/
-        //floyd();
        prims();
        //connected();
-       //kruskals();
+       kruskals();
     }
     
     public static void ch3() {
@@ -46,6 +43,7 @@ public class GraphLauncher {
         System.out.println(Grapher.getMSTWeight(edges));*/
     }
     
+    // Chapter 4, no 2, 6
     public static void prims() {
         SimpleWeightedGraph g = new SimpleWeightedGraph(10);
         g.addEdge(0,1,32);
@@ -64,59 +62,30 @@ public class GraphLauncher {
         System.out.println(Arrays.deepToString(g.getEdges()));
         int[][] F = Prims.getMST(g);
         System.out.println(Arrays.deepToString(F));
+        System.out.println("Is connected?: " + Prims.isConnected(F));
+        System.out.println("Total cost: " + Grapher.getMSTWeight(F));
         
     }
-    
-    public static void connected() {
-        //int[][] W = {{0,1,1},{1,0,1},{1,1,0}};
-        int[][] W = {{0,1,1},{1,0,0},{1,1,0}};        
-        //int[][] edges = Ch4n2.getMSTPrims(W);            
-        System.out.println(Arrays.deepToString(W));
-        System.out.println(Ch4n6.isConnected(W));
-    }
-    
     public static void kruskals() {
-        
-        //Ch4n7.getMSTKruskals(edges, 0)
+        SimpleSparseGraph g = new SimpleSparseGraph(13);
+        g.addEdge(0,1,32);
+        g.addEdge(0,3,17);
+        g.addEdge(3,2,18);
+        g.addEdge(2,6,5);
+        g.addEdge(6,7,59);
+        g.addEdge(7,3,3);
+        g.addEdge(3,4,10);
+        g.addEdge(4,1,45);
+        g.addEdge(4,5,28); 
+        g.addEdge(4,8,25);        
+        g.addEdge(8,9,12);        
+        g.addEdge(9,5,6);        
+        g.addEdge(7,8,4);
+        int[][] F = Kruskals.getMST(g, 10);
+        System.out.println(Arrays.deepToString(F));        
+        System.out.println("Total cost: " + Grapher.getMSTWeight(F));
     }
         
-    public static void floyd() {
-        SimpleWeightedGraph g = new SimpleWeightedGraph(7);
-        // V1
-        g.addEdge(0, 1, 4);
-        g.addEdge(0, 5, 10);
-                
-        // V2
-        g.addEdge(1, 0, 3);
-        g.addEdge(1, 3, 18);
-        
-        // V3
-        g.addEdge(2, 1, 6);        
-        
-        // V4
-        g.addEdge(3, 1, 5);        
-        g.addEdge(3, 2, 15);
-        g.addEdge(3, 4, 2);        
-        g.addEdge(3, 5, 19);                
-        g.addEdge(3, 6, 5);                        
-        
-        // V5
-        g.addEdge(4, 3, 1);        
-        g.addEdge(4, 2, 12);
-        
-        // V6
-        g.addEdge(5, 6, 10);        
 
-        
-        // V7        
-        g.addEdge(6, 3, 8);        
-        
-        System.out.println(Arrays.deepToString(g.getEdges()));
-        
-        FloydsPath fp = new FloydsPath();
-        
-        //System.out.println(Arrays.deepToString(fp.floyd(g.getEdges())));
-    }
-    
 
 }
