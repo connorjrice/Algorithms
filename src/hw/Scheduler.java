@@ -14,7 +14,7 @@ public class Scheduler {
         
     }
     
-    public static ArrayList schedule(Job[] D) {
+    public ArrayList schedule(Job[] D) {
         Job[] jobs = D.clone();
         ArrayList<Job> j = new ArrayList();
         ArrayList<Job> k = new ArrayList();
@@ -41,7 +41,7 @@ public class Scheduler {
         return j;
     }
     
-    private static void addJob(Job[] jobs, ArrayList<Job> k, int i) {
+    private void addJob(Job[] jobs, ArrayList<Job> k, int i) {
         Job newJob = jobs[i];
         boolean added = false;
         for (int it = 0; it < k.size(); it++) {
@@ -62,7 +62,7 @@ public class Scheduler {
      * @param i
      * @return 
      */
-    private static Job getJob(Job[] j, int i) {
+    private Job getJob(Job[] j, int i) {
         return j[i-1];
     }
     
@@ -70,7 +70,7 @@ public class Scheduler {
 
      * @return 
      */
-    private static boolean isFeasible(ArrayList<Job> k) {
+    private boolean isFeasible(ArrayList<Job> k) {
         boolean feasible = true;
         for (int i = 1; i < k.size()+1; i++) {
             if (i > k.get(i-1).deadline) { // i-1 is jobs to index
