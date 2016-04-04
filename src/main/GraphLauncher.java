@@ -1,6 +1,7 @@
 package main;
 
 import backtrack.MColoring;
+import backtrack.QueensBacktrack;
 import graph.Grapher;
 import graph.SimpleDirectedGraph;
 import graph.SimpleSparseGraph;
@@ -25,7 +26,8 @@ public class GraphLauncher {
          kruskals();
          dijkstras();*/
   //      schedule();
-        coloring();
+        //coloring();
+        queen();
     }
     
     public static void dynamicTSP() {
@@ -137,6 +139,11 @@ public class GraphLauncher {
         
         SimpleWeightedGraph g = new SimpleWeightedGraph(edges);
         m.m_coloring(g, 3, -1);
+    }
+    
+    public static void queen() {
+        QueensBacktrack q = new QueensBacktrack();
+        q.queens(4);
     }
 
 
