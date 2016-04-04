@@ -1,5 +1,6 @@
 package main;
 
+import backtrack.MColoring;
 import graph.Grapher;
 import graph.SimpleDirectedGraph;
 import graph.SimpleSparseGraph;
@@ -19,11 +20,12 @@ import java.util.Arrays;
 public class GraphLauncher {
     
     public static void main(String[] args) {
-        dynamicTSP();
+//        dynamicTSP();
        /* prims();
          kruskals();
          dijkstras();*/
-        schedule();
+  //      schedule();
+        coloring();
     }
     
     public static void dynamicTSP() {
@@ -120,6 +122,21 @@ public class GraphLauncher {
             new Job(4,3,25),new Job(5,1,20),new Job(6,3,15),new Job(7,2,10)};*/
         ArrayList schedule = s.schedule(D);
         System.out.println("Schedule: " + schedule.toString());        
+    }
+    
+    public static void coloring() {
+        MColoring m = new MColoring();
+        double[][] edges = new double[][] {
+            {0,1,0,1,0,0},
+            {1,0,1,0,1,0},
+            {0,1,0,0,0,1},
+            {1,0,0,0,1,0},
+            {0,1,0,1,0,1},
+            {0,0,1,0,1,0}
+        };
+        
+        SimpleWeightedGraph g = new SimpleWeightedGraph(edges);
+        m.m_coloring(g, 3, -1);
     }
 
 

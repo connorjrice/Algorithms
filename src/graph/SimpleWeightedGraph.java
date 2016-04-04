@@ -9,6 +9,11 @@ public class SimpleWeightedGraph {
     private double[][] edges;
     private int size;
     
+    public SimpleWeightedGraph(double[][] edges) {
+        this.size = edges.length;
+        this.edges = edges;
+    }
+    
     public SimpleWeightedGraph(int _size) {
         this.size = _size;
         this.edges = new double[size][size];
