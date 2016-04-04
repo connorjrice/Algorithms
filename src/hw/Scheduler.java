@@ -5,7 +5,7 @@ import java.util.Arrays;
 import sorting.InsertionSort;
 
 /**
- *
+ * Chapter 4, number 22
  * @author Connor
  */
 public class Scheduler {
@@ -27,10 +27,8 @@ public class Scheduler {
         System.out.println("Sorted Jobs: " + Arrays.toString(jobs));
         for (int i = 1; i < jobs.length; i++) {
             // k = j with i added according to nondecreasing values of deadline[i]
-           System.out.println("Before: "+j.toString());           
            addJob(jobs, k, i);
             // Check if K is feasible
-            System.out.println("After: "+j.toString());
             if (isFeasible(k)) {
                 j = (ArrayList<Job>) k.clone();
             } 

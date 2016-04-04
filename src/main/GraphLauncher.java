@@ -109,13 +109,14 @@ public class GraphLauncher {
     private static void schedule() {
         Scheduler s = new Scheduler();
         System.out.println("Schedule problem: ");
-        /*Job[] D = new Job[]{new Job(1,2,40), new Job(2,4,15), new Job(3,3,60),
+        // This is the homework one from 5th edition        
+        Job[] D = new Job[]{new Job(1,2,40), new Job(2,4,15), new Job(3,3,60),
             new Job(4,2,20),new Job(5,3,10),new Job(6,1,45),new Job(7,1,55)};
-         This is the homework one from 5th edition
-        */
+
+        
         // Fourth edition
-        Job[] D = new Job[]{new Job(1,3,40), new Job(2,1,35), new Job(3,1,30),
-            new Job(4,3,25),new Job(5,1,20),new Job(6,3,15),new Job(7,2,10)};
+        /*Job[] D = new Job[]{new Job(1,3,40), new Job(2,1,35), new Job(3,1,30),
+            new Job(4,3,25),new Job(5,1,20),new Job(6,3,15),new Job(7,2,10)};*/
         ArrayList schedule = s.schedule(D);
         System.out.println("Schedule: " + schedule.toString());        
     }
