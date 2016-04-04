@@ -19,25 +19,26 @@ import java.util.Arrays;
 public class GraphLauncher {
     
     public static void main(String[] args) {
+        dynamicTSP();
        /* prims();
          kruskals();
          dijkstras();*/
         schedule();
     }
     
-    public static void ch3() {
-        /*int[][] W = {{0,8,13,18,20},
-                     {3,0,7,8,10},
-                     {4,11,0,10,7},
-                     {6,6,7,0,11},
-                     {10,6,2,1,0}
+    public static void dynamicTSP() {
+        double[][] W = {
+            {0,8,13,18,20},
+            {3,0,7,8,10},
+            {4,11,0,10,7},
+            {6,6,7,0,11},
+            {10,6,2,1,0}
         };
-        int[][] edges = Ch4n2.getMSTPrims(W);        
+        
+        SimpleDirectedGraph g = new SimpleDirectedGraph(W);
+//        Dya
+            
 
-
-        //int[][] edges = ProblemsCGraph.getOptimalCircuit(W);
-        System.out.println(Arrays.deepToString(edges));
-        System.out.println(Grapher.getMSTWeight(edges));*/
     }
     
     // Chapter 4, no 2, 6
