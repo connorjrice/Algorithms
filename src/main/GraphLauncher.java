@@ -22,8 +22,8 @@ import java.util.Arrays;
 public class GraphLauncher {
     
     public static void main(String[] args) {
-      prims();
-      kruskals();
+      //prims();
+     // kruskals();
       dijkstras();
     }
     
@@ -94,12 +94,17 @@ public class GraphLauncher {
             {Double.POSITIVE_INFINITY,0,71,70,73,75},
             {72,71,0,Double.POSITIVE_INFINITY,77,90},
             {50,70,Double.POSITIVE_INFINITY,0,60,40},
-            {90,73,77,60,0,80}
+            {90,73,77,60,0,80},
+            {35,75,90,40,80,0}
         };
         // Start at v5
         SimpleDirectedGraph g = new SimpleDirectedGraph(edges);
-        System.out.println("from vertex 4(indexed at 0): " + Arrays.deepToString(Dijkstras.getShortestPathFromEnd(g)));
-        System.out.println("from vertex 0: " + Arrays.deepToString(Dijkstras.getShortestPath(g,0)));
+        int[][] vertex4 = Dijkstras.getShortestPathFromEnd(g);
+        int[][] vertex0 = Dijkstras.getShortestPath(g);
+        System.out.println("from vertex 4(indexed at 0): " + Arrays.deepToString(vertex4));
+        System.out.println("Total cost: " + Grapher.getMSTWeight(vertex4));                
+        System.out.println("from vertex 0: " + Arrays.deepToString(vertex0));
+        System.out.println("Total cost: " + Grapher.getMSTWeight(vertex0));
                  
     }
 

@@ -9,6 +9,8 @@ import java.util.Arrays;
  */
 public class Dijkstras {
     
+    
+    
     /**
      * Standard implementation
      * @param g
@@ -19,8 +21,8 @@ public class Dijkstras {
         int[][] shortestPath = new int[n-1][3];
         int shortSize = 0;
         
-        int[] touch = new int[n];
-        double[] length = new double[n];
+        int[] touch = new int[n+1];
+        double[] length = new double[n+1];
         
         int vnear = 0;
         double min;
@@ -43,10 +45,11 @@ public class Dijkstras {
                 }
             }
             // Add edge from touch[vnear] to vnear to path
-            shortestPath[shortSize] = new int[]{touch[shortSize],vnear,(int)g.getEdges()[touch[vnear]][vnear]};
+            shortestPath[shortSize] = new int[]{touch[shortSize],vnear-1,(int)g.getEdges()[touch[vnear]][vnear]};
             shortSize++;
             
             for (int i = 1; i < n; i++) {
+                //System.out.println(i);
                 if (length[vnear] + g.getEdges()[vnear][i] < length[i]) {
                     // For each vertex not in path, update shortest path
                     length[i] = length[vnear] + g.getEdges()[vnear][i];
@@ -58,6 +61,7 @@ public class Dijkstras {
         }
         return shortestPath;
     }
+    
     
  
     /**
@@ -76,7 +80,7 @@ public class Dijkstras {
         int vnear = -1;
         double min;
         
-        int[] range = new int[]{3,2,1,0};
+        int[] range = new int[]{4,3,2,1,0};
         
         
         // For all vertices, initialize v1 to be the last vertex on the current
