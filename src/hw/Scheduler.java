@@ -10,31 +10,29 @@ import sorting.InsertionSort;
  */
 public class Scheduler {
     
+    public ArrayList<Job> j = new ArrayList();
+    public ArrayList<Job> k = new ArrayList();    
+    
     public Scheduler() {
         
     }
     
     public ArrayList schedule(Job[] D) {
         Job[] jobs = D.clone();
-        ArrayList<Job> j = new ArrayList();
-        ArrayList<Job> k = new ArrayList();
 
         //sortJobs(jobs);
-        j.add(getJob(jobs,1)); // add job 1        
+        j.add(getJob(jobs,1)); // add job 1       
+        k.add(getJob(jobs,1)); // k = j;      
+        
         System.out.println("Sorted Jobs: " + Arrays.toString(jobs));
         for (int i = 1; i < jobs.length; i++) {
             // k = j with i added according to nondecreasing values of deadline[i]
-           for (Job ji : j) { // Add all of j to k
-               if (!k.contains(ji)) {
-                   k.add(ji);
-               }
-            }
            System.out.println("Before: "+j.toString());           
            addJob(jobs, k, i);
             // Check if K is feasible
             System.out.println("After: "+j.toString());
             if (isFeasible(k)) {
-                j = k;
+                j = (ArrayList<Job>) k.clone();
             } 
 
         }
