@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
 import graph.Grapher;
@@ -11,19 +6,22 @@ import graph.SimpleSparseGraph;
 import hw.Prims;
 import graph.SimpleWeightedGraph;
 import hw.Dijkstras;
+import hw.Job;
 import hw.Kruskals;
+import hw.Scheduler;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- *
+ * 
  * @author Connor
  */
 public class GraphLauncher {
     
     public static void main(String[] args) {
-        //prims();
-        // kruskals();
-        // dijkstras();
+        prims();
+         kruskals();
+         dijkstras();
         schedule();
     }
     
@@ -109,7 +107,11 @@ public class GraphLauncher {
     }
 
     private static void schedule() {
-        
+        System.out.println("Schedule problem: ");
+        Job[] D = new Job[]{new Job(1,2,40), new Job(2,4,15), new Job(3,3,60),
+            new Job(4,2,20),new Job(5,3,10),new Job(6,1,45),new Job(7,1,55)};
+        ArrayList schedule = Scheduler.schedule(D);
+        System.out.println("Schedule: " + schedule.toString());        
     }
 
 
