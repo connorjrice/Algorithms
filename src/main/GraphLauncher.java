@@ -22,11 +22,8 @@ import java.util.Arrays;
 public class GraphLauncher {
     
     public static void main(String[] args) {
-/*        Graph g = new Graph(2);
-        System.out.println(g.1));*/
-      // prims();
-       //connected();
-     //  kruskals();
+      prims();
+      kruskals();
       dijkstras();
     }
     
@@ -47,6 +44,7 @@ public class GraphLauncher {
     
     // Chapter 4, no 2, 6
     public static void prims() {
+        System.out.println("Prims:");
         SimpleWeightedGraph g = new SimpleWeightedGraph(10);
         g.addEdge(0,1,32);
         g.addEdge(0,3,17);
@@ -69,6 +67,7 @@ public class GraphLauncher {
         
     }
     public static void kruskals() {
+        System.out.println("Kruskals:");        
         SimpleSparseGraph g = new SimpleSparseGraph(13);
         g.addEdge(0,1,32);
         g.addEdge(0,3,17);
@@ -89,6 +88,7 @@ public class GraphLauncher {
     }
         
     public static void dijkstras() {
+        System.out.println("Dijkstras:");                
         double[][] edges = new double[][]{
             {0,Double.POSITIVE_INFINITY,72,50,90,35},
             {Double.POSITIVE_INFINITY,0,71,70,73,75},
@@ -98,7 +98,8 @@ public class GraphLauncher {
         };
         // Start at v5
         SimpleDirectedGraph g = new SimpleDirectedGraph(edges);
-        System.out.println(Arrays.deepToString(Dijkstras.getShortestPath(g)));
+        System.out.println(Arrays.deepToString(Dijkstras.getShortestPathFromEnd(g)));
+        System.out.println(Arrays.deepToString(Dijkstras.getShortestPath(g,0)));
     }
 
 
