@@ -59,7 +59,7 @@ public class GraphLauncher {
         g.addEdge(8,9,12);        
         g.addEdge(9,5,6);        
         g.addEdge(7,8,4);
-        System.out.println(Arrays.deepToString(g.getEdges()));
+       //System.out.println(Arrays.deepToString(g.getEdges()));
         int[][] F = Prims.getMST(g);
         System.out.println(Arrays.deepToString(F));
         System.out.println("Is connected?: " + Prims.isConnected(F));
@@ -98,8 +98,9 @@ public class GraphLauncher {
         };
         // Start at v5
         SimpleDirectedGraph g = new SimpleDirectedGraph(edges);
-        System.out.println(Arrays.deepToString(Dijkstras.getShortestPathFromEnd(g)));
-        System.out.println(Arrays.deepToString(Dijkstras.getShortestPath(g,0)));
+        System.out.println("from vertex 4(indexed at 0): " + Arrays.deepToString(Dijkstras.getShortestPathFromEnd(g)));
+        System.out.println("from vertex 0: " + Arrays.deepToString(Dijkstras.getShortestPath(g,0)));
+                 
     }
 
 

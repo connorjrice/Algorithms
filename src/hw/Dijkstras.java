@@ -96,6 +96,7 @@ public class Dijkstras {
                     vnear = i;
                 }
             }
+            System.out.println("Step " + (shortSize+1) + " Add edge: node1: " + vnear + " node2: " + touch[vnear] + " weight: " + g.getEdges()[vnear][touch[vnear]]);            
             // Add edge from touch[vnear] to vnear to path
             shortestPath[shortSize] = new int[]{touch[vnear],vnear,(int)g.getEdges()[touch[vnear]][vnear]};
             shortSize++;
