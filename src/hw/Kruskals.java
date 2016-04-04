@@ -12,6 +12,8 @@ public class Kruskals {
     
     /** Chapter 4, n.7
      * 
+     * @param g
+     * @param n
      * @return 
      */
     public static int[][] getMST(SimpleSparseGraph g, int n) {

@@ -1,34 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package hw;
-
-import datastructures.Graph;
-import datastructures.Queue;
-import datastructures.nodes.GraphNode;
-import java.util.ArrayList;
-import java.util.Arrays;
+package hw.old;
 
 /**
  *
  * @author Connor
  */
-public class Ch4n6 {
+public class Ch4n2 {
     
-    
-    public Ch4n6() {
-        
-    }
-    
-    /***
-     * Takes in a minimum spanning tree and determines if it is connected.
-     * @param edges
-     * @param n number of nodes
-     * @return 
+    /** Chapter 4, n.2
+     * Prim's algorithm for minimum spanning tree.
+     * startEdge, endEdge, weight
+     * @param W//
+     * @return int[][] where int[i][0] = startNode // node
+     *                       int[i][1] = endNode // vertex
+     *                       int[i][2] = weight
      */
-    public static boolean isConnected(int[][] W) {
+    public static int[][] getMSTPrims(int[][] W) {
         // TODO: Check if W is a matrix
         int n = W[0].length;
         int[][] F = new int[W[0].length-1][3]; // list of edges to be returned.
@@ -74,30 +60,19 @@ public class Ch4n6 {
                 }
             }            
         }
-        System.out.println("F: " + Arrays.deepToString(F));
-        
-        boolean[] seen = new boolean[n];
-        for (int[] edge : F) {
-            if (!seen[edge[0]] && edge[2] > 0) {
-                seen[edge[0]] = true;
-            }
-            if (!seen[edge[1]] && edge[2] > 0) {
-                seen[edge[1]] = true;
-            }
-        }
-        
-        System.out.println("seen: " + Arrays.toString(seen));
-        
-        boolean seenAll = true;
-        for (boolean b : seen) {
-            if (!b) {
-                seenAll = false;
-            }
-        }
-        return seenAll;
-
+        return F;
     }
+    
 
     
-   
+    private static boolean contains(Integer[] a, int q) {
+        for (int i : a) {
+            if (i == q) {
+                return true;
+            }
+        }
+        return false;
+    }    
+    
+
 }

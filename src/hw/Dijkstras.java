@@ -1,7 +1,6 @@
 package hw;
 
 import graph.SimpleDirectedGraph;
-import java.util.Arrays;
 
 /**
  *
@@ -9,14 +8,13 @@ import java.util.Arrays;
  */
 public class Dijkstras {
     
-    
-    
     /**
      * Standard implementation
      * @param g
      * @return 
      */
     public static int[][] getShortestPath(SimpleDirectedGraph g) {
+        // if g is a matrix! {
         int n = g.getSize();
         int[][] shortestPath = new int[n-1][3];
         int shortSize = 0;

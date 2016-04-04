@@ -1,4 +1,4 @@
-package hw;
+package hw.old;
 
 /**
  * Problems C, Chapter 3(28), Chapter 4(2,6,7,12,15)

@@ -13,7 +13,6 @@ public class Prims {
      * Prim's algorithm for minimum spanning tree.
      * startEdge, endEdge, weight
      * @param g
-     * @param W//
      * @return int[][] where int[i][0] = startNode // node
      *                       int[i][1] = endNode // vertex
      *                       int[i][2] = weight
@@ -51,7 +50,9 @@ public class Prims {
                 }                
             }
             // Add this edge to F
-            System.out.println("Step " + (fSize+1) + " Add edge: node1: " + vnear + " node2: " + nearest[vnear] + " weight: " + g.getEdges()[vnear][nearest[vnear]]);
+            System.out.println("Step " + (fSize+1) + " Add edge: node1: " + 
+                    vnear + " node2: " + nearest[vnear] + " weight: " + 
+                    g.getEdges()[vnear][nearest[vnear]]);
             F[fSize] = new int[]{vnear,nearest[vnear],
                 (int) g.getEdges()[vnear][nearest[vnear]]}; 
             fSize++;
@@ -71,8 +72,7 @@ public class Prims {
     
     /*** Ch 4, no 6
      * Takes in a minimum spanning tree and determines if it is connected.
-     * @param edges
-     * @param n number of nodes
+     * @param F
      * @return 
      */
     public static boolean isConnected (int[][] F) {

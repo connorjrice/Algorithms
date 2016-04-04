@@ -10,7 +10,6 @@ import graph.SimpleDirectedGraph;
 import graph.SimpleSparseGraph;
 import hw.Prims;
 import graph.SimpleWeightedGraph;
-import hw.Ch4n6;
 import hw.Dijkstras;
 import hw.Kruskals;
 import java.util.Arrays;
@@ -22,9 +21,10 @@ import java.util.Arrays;
 public class GraphLauncher {
     
     public static void main(String[] args) {
-      //prims();
-     // kruskals();
-      dijkstras();
+        //prims();
+        // kruskals();
+        // dijkstras();
+        schedule();
     }
     
     public static void ch3() {
@@ -106,6 +106,10 @@ public class GraphLauncher {
         System.out.println("from vertex 0: " + Arrays.deepToString(vertex0));
         System.out.println("Total cost: " + Grapher.getMSTWeight(vertex0));
                  
+    }
+
+    private static void schedule() {
+        
     }
 
 
