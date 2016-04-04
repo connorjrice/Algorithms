@@ -2,7 +2,6 @@ package hw;
 
 import graph.SimpleSparseGraph;
 import java.util.ArrayList;
-import java.util.Arrays;
 import sorting.InsertionSort;
 
 /**
@@ -24,15 +23,13 @@ public class Kruskals {
         
         new InsertionSort().sort(sortedEdges);
         
-        System.out.println(Arrays.deepToString(sortedEdges));
-        
         // Initialize disjoint subsets
         ArrayList[] collections = new ArrayList[n];
         for (int i = 0; i < n; i++){
             collections[i] = new ArrayList();
             collections[i].add(i);
         }
-        System.out.println(Arrays.deepToString(collections));        
+
         // While number of edges in F is less than n-1
         int considered = 0;
         while (fSize < n-1) {
@@ -43,15 +40,6 @@ public class Kruskals {
             }
             considered++;
         }
-        
-        System.out.println(Arrays.deepToString(collections));
-        
-        /*if (collections[0].size() == n) {
-            return F;
-        }
-        else {
-            return new int[][]{{collections[0].size()}};
-        }*/
         return F;
             
     }

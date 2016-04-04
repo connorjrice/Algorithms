@@ -6,10 +6,12 @@
 package main;
 
 import graph.Grapher;
+import graph.SimpleDirectedGraph;
 import graph.SimpleSparseGraph;
 import hw.Prims;
 import graph.SimpleWeightedGraph;
 import hw.Ch4n6;
+import hw.Dijkstras;
 import hw.Kruskals;
 import java.util.Arrays;
 
@@ -25,10 +27,10 @@ public class GraphLauncher {
        prims();
        //connected();
        kruskals();
+      dijkstras();
     }
     
     public static void ch3() {
-        
         /*int[][] W = {{0,8,13,18,20},
                      {3,0,7,8,10},
                      {4,11,0,10,7},
@@ -86,6 +88,18 @@ public class GraphLauncher {
         System.out.println("Total cost: " + Grapher.getMSTWeight(F));
     }
         
+    public static void dijkstras() {
+        double[][] edges = new double[][]{
+            {0,Double.POSITIVE_INFINITY,72,50,90,35},
+            {Double.POSITIVE_INFINITY,0,71,70,73,75},
+            {72,71,0,Double.POSITIVE_INFINITY,77,90},
+            {50,70,Double.POSITIVE_INFINITY,0,60,40},
+            {90,73,77,60,0,80}
+        };
+        // Start at v5
+        SimpleDirectedGraph g = new SimpleDirectedGraph(edges);
+        System.out.println(Arrays.deepToString(Dijkstras.getShortestPath(g)));
+    }
 
 
 }
