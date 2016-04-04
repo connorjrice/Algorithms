@@ -21,7 +21,10 @@ public class Kruskals {
         double[] edge;
         // Sort the edges by nondecreasing weight
         double[][] sortedEdges = g.getEdges().clone();
+        
         new InsertionSort().sort(sortedEdges);
+        
+        System.out.println(Arrays.deepToString(sortedEdges));
         
         // Initialize disjoint subsets
         ArrayList[] collections = new ArrayList[n];
@@ -29,22 +32,19 @@ public class Kruskals {
             collections[i] = new ArrayList();
             collections[i].add(i);
         }
+        System.out.println(Arrays.deepToString(collections));        
         // While number of edges in F is less than n-1
         int considered = 0;
         while (fSize < n-1) {
             edge = sortedEdges[considered];
-            // If the start and end nodes are nonzero
-            if (edge[0] > 0 && edge[1] > 0) {
-                // If the start and end nodes are different add to F
-                if (edge[0] > edge[1] || edge[1] > edge[0]) {
-                    merge(collections,(int)edge[0],(int)edge[1]);
-                    F[fSize] = new int[]{(int)edge[0], (int)edge[1], (int)edge[2]};
-                    System.out.println(fSize);
-                    fSize++;
-                }
+            if (merge(collections,(int)edge[0],(int)edge[1])) {
+                F[fSize] = new int[]{(int)edge[0], (int)edge[1], (int)edge[2]};
+                fSize++;
             }
             considered++;
         }
+        
+        System.out.println(Arrays.deepToString(collections));
         
         /*if (collections[0].size() == n) {
             return F;
@@ -56,12 +56,24 @@ public class Kruskals {
             
     }
     
-    // Merge collections
-    private static void merge(ArrayList[] collections, int p, int q) {
-        for (int i = 0; i < collections[q].size(); i++) {
-            collections[p].add(collections[q].get(i));
+    // Merge collections TODO: improve
+    private static boolean merge(ArrayList[] collections, int p, int q) {
+        boolean disjoint = true;
+        // Make sure nothing that is in q is in p
+        for (int i = 0; i < collections[q].size(); i++) { 
+            if (collections[p].contains(collections[q].get(i))) {
+                disjoint = false;
+            }
         }
-        collections[q].removeAll(collections[q]);
+        if (disjoint) {
+            for (int i = 0; i < collections[q].size(); i++) {
+                collections[p].add(collections[q].get(i));                
+            }
+            collections[q].removeAll(collections[q]);
+        }
 
+        return disjoint;
+        
     }
+
 }
