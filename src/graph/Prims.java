@@ -1,6 +1,6 @@
-package hw;
+package graph;
 
-import graph.SimpleWeightedGraph;
+import graph.structures.SimpleWeightedGraph;
 import java.util.Arrays;
 
 /**

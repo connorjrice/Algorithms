@@ -1,16 +1,16 @@
 package main;
 
-import backtrack.MColoring;
+import graph.MColoring;
 import backtrack.QueensBacktrack;
 import graph.Grapher;
-import graph.SimpleDirectedGraph;
-import graph.SimpleSparseGraph;
-import hw.Prims;
-import graph.SimpleWeightedGraph;
-import hw.Dijkstras;
-import hw.Job;
-import hw.Kruskals;
-import hw.Scheduler;
+import graph.structures.SimpleDirectedGraph;
+import graph.structures.SimpleSparseGraph;
+import graph.Prims;
+import graph.structures.SimpleWeightedGraph;
+import graph.Dijkstras;
+import graph.Job;
+import graph.Kruskals;
+import graph.Scheduler;
 import java.util.ArrayList;
 import java.util.Arrays;
 

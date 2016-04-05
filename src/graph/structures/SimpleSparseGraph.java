@@ -1,4 +1,4 @@
-package graph;
+package graph.structures;
 
 /**
  * Undirected sparse graph containing only edges.

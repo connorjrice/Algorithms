@@ -1,6 +1,6 @@
-package hw;
+package graph;
 
-import graph.SimpleDirectedGraph;
+import graph.structures.SimpleDirectedGraph;
 
 /**
  *

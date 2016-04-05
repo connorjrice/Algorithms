@@ -1,6 +1,6 @@
-package hw;
+package graph;
 
-import graph.SimpleSparseGraph;
+import graph.structures.SimpleSparseGraph;
 import java.util.ArrayList;
 import sorting.InsertionSort;
 

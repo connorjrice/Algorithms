@@ -1,5 +1,6 @@
-package hw;
+package graph;
 
+import graph.Job;
 import java.util.ArrayList;
 import java.util.Arrays;
 import sorting.InsertionSort;
