@@ -34,7 +34,6 @@ public class MColoring {
                 }
             }
         }        
-        
     }
     
     private boolean promising(SimpleWeightedGraph g, int i) {

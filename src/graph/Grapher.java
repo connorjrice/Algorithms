@@ -4,7 +4,7 @@ import datastructures.Queue;
 import java.util.ArrayList;
 
 /**
- *
+ * Set of useful graph tools
  * @author Connor
  */
 public class Grapher {

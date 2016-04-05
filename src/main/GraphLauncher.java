@@ -28,7 +28,7 @@ public class GraphLauncher {
          dijkstras();*/
   //      schedule();
         //coloring();
-        queen();
+       // queen();
     }
     
     public static void hamPath() {
@@ -43,7 +43,9 @@ public class GraphLauncher {
         SimpleWeightedGraph g = new SimpleWeightedGraph(W);
         HamPath hp = new HamPath();
         hp.hamiltonianPath(g, g.getSize());
-                
+        System.out.println("E = " + Arrays.toString(hp.getMinHamPath()));
+        System.out.println("Cost: " + hp.getCost(g, hp.getMinHamPath()));
+        // Get cost
             
 
     }

@@ -1,8 +1,10 @@
 package graph;
 
 import graph.structures.SimpleWeightedGraph;
+import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Connor
@@ -10,6 +12,10 @@ import java.util.Arrays;
 public class HamPath {
     
     private int[] vindex;
+    private ArrayList<int[]> hamPaths = new ArrayList<>();
+    private ArrayList costs = new ArrayList<>();
+    private double min = Double.POSITIVE_INFINITY;
+    private int imin = -1;
     
     /**
      * Input: weighted undirected graph
@@ -26,7 +32,16 @@ public class HamPath {
     private void hamiltonian(SimpleWeightedGraph g, int i, int n) {
         if (promising(g,i,n)) {
             if (i == n-1){ // If we're at the end print vindex
+                hamPaths.add(vindex);
+                costs.add(getCost(g));
+               // Logger.getLogger("HamPath").log(Level.SEVERE, "getCost: " + getCost(g));
+                if (getCost(g) < min) {
+                    min = getCost(g);
+                    imin = hamPaths.size()-1;
+                    
+                }
                 System.out.println(Arrays.toString(vindex));
+                System.out.println("Cost: " + getCost(g));
                 // TODO: Make this more useful than print
             } else {
                 for (int j = 2; j <= n; j++) {
@@ -57,6 +72,14 @@ public class HamPath {
             
         }
         return promising;
+    }
+    
+    private double getCost(SimpleWeightedGraph g) {
+        double cost = 0;
+        for (int i = 0; i < vindex.length-2; i++) {
+            cost += g.getEdges()[(vindex[i])-1][(vindex[i+1])-1];
+        }
+        return cost;
     }
     
 }

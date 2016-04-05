@@ -11,7 +11,6 @@ import sorting.InsertionSort;
 public class Kruskals {
     
     /** Chapter 4, n.7
-     * 
      * @param g
      * @param n
      * @return 

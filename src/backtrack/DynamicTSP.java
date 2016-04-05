@@ -1,4 +1,4 @@
-package graph;
+package backtrack;
 
 import graph.structures.SimpleDirectedGraph;
 
