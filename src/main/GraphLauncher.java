@@ -8,6 +8,7 @@ import graph.structures.SimpleSparseGraph;
 import graph.Prims;
 import graph.structures.SimpleWeightedGraph;
 import graph.Dijkstras;
+import graph.HamPath;
 import misc.Job;
 import graph.Kruskals;
 import misc.Scheduler;
@@ -21,7 +22,7 @@ import java.util.Arrays;
 public class GraphLauncher {
     
     public static void main(String[] args) {
-//        dynamicTSP();
+        hamPath();
        /* prims();
          kruskals();
          dijkstras();*/
@@ -30,7 +31,7 @@ public class GraphLauncher {
         queen();
     }
     
-    public static void dynamicTSP() {
+    public static void hamPath() {
         double[][] W = {
             {0,8,13,18,20},
             {3,0,7,8,10},
@@ -39,8 +40,10 @@ public class GraphLauncher {
             {10,6,2,1,0}
         };
         
-        SimpleDirectedGraph g = new SimpleDirectedGraph(W);
-//        Dya
+        SimpleWeightedGraph g = new SimpleWeightedGraph(W);
+        HamPath hp = new HamPath();
+        hp.hamiltonianPath(g, g.getSize());
+                
             
 
     }

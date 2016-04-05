@@ -29,7 +29,7 @@ public class HamPath {
                 System.out.println(Arrays.toString(vindex));
                 // TODO: Make this more useful than print
             } else {
-                for (int j = 1; j < n; j++) {
+                for (int j = 2; j <= n; j++) {
                     vindex[i+1] = j;
                     hamiltonian(g, i+1, n);
                 }
