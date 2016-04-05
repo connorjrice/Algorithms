@@ -8,9 +8,9 @@ import graph.structures.SimpleSparseGraph;
 import graph.Prims;
 import graph.structures.SimpleWeightedGraph;
 import graph.Dijkstras;
-import graph.Job;
+import misc.Job;
 import graph.Kruskals;
-import graph.Scheduler;
+import misc.Scheduler;
 import java.util.ArrayList;
 import java.util.Arrays;
 

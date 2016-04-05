@@ -4,22 +4,24 @@ import graph.structures.SimpleWeightedGraph;
 import java.util.Arrays;
 
 /**
- *
+ * M-coloring graph problem
+ * Produces all possible colorations of given graph
  * @author Connor
  */
 public class MColoring {
 
     private int[] vcolor;
 
+    // Change this function call to reduce variables (i)
     public void m_coloring(SimpleWeightedGraph g, int m, int i) {
         vcolor = new int[g.getSize()];
         m_coloringHelper(g, m, i);
     }
     
+
     public void m_coloringHelper(SimpleWeightedGraph g, int m, int i) {
         int color;
-//        vcolor = new int[g.getSize()];
-//        System.out.println(i);
+
         if (promising(g,i)) {
             if (i == g.getSize()-1) {
                 for (int j = 0; j < g.getSize(); j++) {
