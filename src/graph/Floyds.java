@@ -2,13 +2,15 @@ package graph;
 
 import graph.structures.SimpleWeightedGraph;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
  *
  * @author Connor
  */
-public class FloydsPath {
+public class Floyds {
    
         public static void floyd() {
         SimpleWeightedGraph g = new SimpleWeightedGraph(7);
@@ -41,11 +43,11 @@ public class FloydsPath {
         // V7        
         g.addEdge(6, 3, 8);        
         
-        System.out.println(Arrays.deepToString(g.getEdges()));
+        Logger.getLogger("Floyds").log(Level.INFO, Arrays.deepToString(g.getEdges()));
         
-        FloydsPath fp = new FloydsPath();
+        Floyds fp = new Floyds();
         
-        //System.out.println(Arrays.deepToString(fp.floyd(g.getEdges())));
+        //Logger.getLogger("").log(Level.INFO, Arrays.deepToString(fp.floyd(g.getEdges())));
     }
     
     

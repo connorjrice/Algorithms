@@ -23,15 +23,16 @@ public class GraphLauncher {
     
     public static void main(String[] args) {
         hamPath();
-       /* prims();
-         kruskals();
-         dijkstras();*/
-  //      schedule();
-        //coloring();
+        prims();
+        kruskals();
+        dijkstras();
+        schedule();
+        coloring();
        // queen();
     }
     
     public static void hamPath() {
+        System.out.println("Hamiltonian Path: Chapter 3 n.28");
         double[][] W = {
             {0,8,13,18,20},
             {3,0,7,8,10},
@@ -43,16 +44,14 @@ public class GraphLauncher {
         SimpleWeightedGraph g = new SimpleWeightedGraph(W);
         HamPath hp = new HamPath();
         hp.hamiltonianPath(g, g.getSize());
-        System.out.println("E = " + Arrays.toString(hp.getMinHamPath()));
-        System.out.println("Cost: " + hp.getCost(g, hp.getMinHamPath()));
-        // Get cost
-            
+        hp.printSmallest();
+        System.out.println();
 
     }
     
     // Chapter 4, no 2, 6
     public static void prims() {
-        System.out.println("Prims:");
+        System.out.println("Prims: Chapter 4 n. 2, 6");
         SimpleWeightedGraph g = new SimpleWeightedGraph(10);
         g.addEdge(0,1,32);
         g.addEdge(0,3,17);
@@ -67,15 +66,15 @@ public class GraphLauncher {
         g.addEdge(8,9,12);        
         g.addEdge(9,5,6);        
         g.addEdge(7,8,4);
-       //System.out.println(Arrays.deepToString(g.getEdges()));
         int[][] F = Prims.getMST(g);
         System.out.println(Arrays.deepToString(F));
         System.out.println("Is connected?: " + Prims.isConnected(F));
         System.out.println("Total cost: " + Grapher.getMSTWeight(F));
+        System.out.println();        
         
     }
     public static void kruskals() {
-        System.out.println("Kruskals:");        
+        System.out.println("Kruskals: Chapter 4 n. 7");        
         SimpleSparseGraph g = new SimpleSparseGraph(13);
         g.addEdge(0,1,32);
         g.addEdge(0,3,17);
@@ -93,10 +92,12 @@ public class GraphLauncher {
         int[][] F = Kruskals.getMST(g, 10);
         System.out.println(Arrays.deepToString(F));        
         System.out.println("Total cost: " + Grapher.getMSTWeight(F));
+        System.out.println();        
+        
     }
         
     public static void dijkstras() {
-        System.out.println("Dijkstras:");                
+        System.out.println("Dijkstras: Chapter 4 n.12, 15");            
         double[][] edges = new double[][]{
             {0,Double.POSITIVE_INFINITY,72,50,90,35},
             {Double.POSITIVE_INFINITY,0,71,70,73,75},
@@ -113,12 +114,13 @@ public class GraphLauncher {
         System.out.println("Total cost: " + Grapher.getMSTWeight(vertex4));                
         System.out.println("from vertex 0: " + Arrays.deepToString(vertex0));
         System.out.println("Total cost: " + Grapher.getMSTWeight(vertex0));
+        System.out.println();                
                  
     }
 
     private static void schedule() {
         Scheduler s = new Scheduler();
-        System.out.println("Schedule problem: ");
+        System.out.println("Schedule problem: Chapter 4 n. 22");
         // This is the homework one from 5th edition        
         Job[] D = new Job[]{new Job(1,2,40), new Job(2,4,15), new Job(3,3,60),
             new Job(4,2,20),new Job(5,3,10),new Job(6,1,45),new Job(7,1,55)};
@@ -129,9 +131,11 @@ public class GraphLauncher {
             new Job(4,3,25),new Job(5,1,20),new Job(6,3,15),new Job(7,2,10)};*/
         ArrayList schedule = s.schedule(D);
         System.out.println("Schedule: " + schedule.toString());        
+        System.out.println();                
     }
     
     public static void coloring() {
+        System.out.println("M-Coloring problem: Chapter 5 n. 18 ");
         MColoring m = new MColoring();
         double[][] edges = new double[][] {
             {0,1,0,1,0,0},
@@ -144,6 +148,9 @@ public class GraphLauncher {
         
         SimpleWeightedGraph g = new SimpleWeightedGraph(edges);
         m.m_coloring(g, 3, -1);
+        System.out.println(Arrays.deepToString(m.getColorings().toArray()));
+        
+        System.out.println();                
     }
     
     public static void queen() {

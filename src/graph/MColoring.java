@@ -1,16 +1,18 @@
 package graph;
 
 import graph.structures.SimpleWeightedGraph;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
  * M-coloring graph problem
- * Produces all possible colorations of given graph
+ * Produces all possible colorings of given graph
  * @author Connor
  */
 public class MColoring {
 
     private int[] vcolor;
+    private final ArrayList<int[]> colorings = new ArrayList<>();
 
     // Change this function call to reduce variables (i)
     public void m_coloring(SimpleWeightedGraph g, int m, int i) {
@@ -24,9 +26,7 @@ public class MColoring {
 
         if (promising(g,i)) {
             if (i == g.getSize()-1) {
-                for (int j = 0; j < g.getSize(); j++) {
-                    System.out.println(Arrays.toString(vcolor));
-                }
+                System.out.println(Arrays.toString(vcolor));
             } else {
                 for (color = 0; color < m; color++) {
                     vcolor[i+1] = color;
@@ -34,6 +34,10 @@ public class MColoring {
                 }
             }
         }        
+    }
+    
+    public ArrayList<int[]> getColorings() {
+        return colorings;
     }
     
     private boolean promising(SimpleWeightedGraph g, int i) {

@@ -32,7 +32,7 @@ public class HamPath {
     private void hamiltonian(SimpleWeightedGraph g, int i, int n) {
         if (promising(g,i,n)) {
             if (i == n-1){ // If we're at the end print vindex
-                hamPaths.add(vindex);
+                hamPaths.add(vindex.clone());
                 costs.add(getCost(g));
                // Logger.getLogger("HamPath").log(Level.SEVERE, "getCost: " + getCost(g));
                 if (getCost(g) < min) {
@@ -40,8 +40,8 @@ public class HamPath {
                     imin = hamPaths.size()-1;
                     
                 }
-                System.out.println(Arrays.toString(vindex));
-                System.out.println("Cost: " + getCost(g));
+                //System.out.println(Arrays.toString(vindex));
+                //System.out.println("Cost: " + getCost(g));
                 // TODO: Make this more useful than print
             } else {
                 for (int j = 2; j <= n; j++) {
@@ -50,6 +50,15 @@ public class HamPath {
                 }
             }
         }
+    }
+    
+    /**
+     * Print out the smallest Hamiltonian path
+     */
+    public void printSmallest() {
+        System.out.println(Arrays.toString(hamPaths.get(imin)));
+        System.out.println("Cost: " + min);
+        
     }
     
     private boolean promising(SimpleWeightedGraph g, int i, int n) {
