@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hw.old;
+package misc;
+
+import misc.TryptychSearch;
 
 /**
  *
@@ -15,7 +17,7 @@ public class TryptychRunner {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ch2n6 ex = new ch2n6();
+        TryptychSearch ex = new TryptychSearch();
         int[] n = new int[]{1,4,6,23,45,100};
         int q = 23;
         System.out.println(ex.tryptychSearch(n, q));

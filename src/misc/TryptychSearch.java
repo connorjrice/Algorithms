@@ -1,13 +1,11 @@
-package hw.old;
+package misc;
 
 /**
- * Problems B.
- * Chapter 2, Problem 6.
  * @author Connor
  */
-public class ch2n6 {
+public class TryptychSearch {
     
-    public ch2n6() {
+    public TryptychSearch() {
         
     }
     

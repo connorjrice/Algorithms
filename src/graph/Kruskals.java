@@ -37,7 +37,9 @@ public class Kruskals {
         while (fSize < n-1) {
             edge = sortedEdges[considered];
             if (merge(collections,(int)edge[0],(int)edge[1])) {
-                System.out.println("Step " + (fSize+1)  + " : Add edge: node1: " + (int)edge[0] + " node2: " + (int)edge[1] + " weight: " + (int)edge[2]);                
+                System.out.println("Step " + (fSize+1)  + " : Add edge: node1: " 
+                        + (int)edge[0] + " node2: " + (int)edge[1] + " weight: " 
+                        + (int)edge[2]);                
                 F[fSize] = new int[]{(int)edge[0], (int)edge[1], (int)edge[2]};
                 fSize++;
             }
