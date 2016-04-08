@@ -2,6 +2,7 @@ package branchbound;
 
 import datastructures.Queue;
 import graph.structures.KnapNode;
+import java.util.ArrayList;
 
 /**
  * Breadth-First Search with Branch-and-bound pruning algorithm.
@@ -10,6 +11,14 @@ import graph.structures.KnapNode;
  * 248
  */
 public class BFS01prune {
+    
+    private ArrayList<KnapNode> items;
+    private ArrayList<KnapNode> bestItems;
+
+    public BFS01prune() {
+        this.items = new ArrayList<>();
+        this.bestItems = new ArrayList<>();
+    }
     
     /**
      * Knapsack 0-1
@@ -32,7 +41,6 @@ public class BFS01prune {
             // U is the child of k, includes next item
             u = new KnapNode(k.level+1, k.weight+w[k.level+1],
                     k.profit + p[k.level+1]);
-
             if (u.weight <= trunk && u.profit > maxProfit) {
                 maxProfit = u.profit;
             }
@@ -48,6 +56,45 @@ public class BFS01prune {
         }
         
         return maxProfit;
+    }
+    
+    
+    public KnapNode[] getOptimalSet(int n, int[] p, int[] w,  int trunk) {
+        int maxProfit = 0;
+        KnapNode u;
+        KnapNode v; // Nodes
+        Queue<KnapNode> q = new Queue();
+        v = new KnapNode(0,0,0);
+        q.push(v);
+        
+        while (!q.isEmpty()) {
+            KnapNode k = q.pop();
+            // U is the child of k, includes next item
+            u = new KnapNode(k.level+1, k.weight+w[k.level+1],
+                    k.profit + p[k.level+1]);
+            if (u.weight <= trunk && u.profit > maxProfit) {
+                maxProfit = u.profit;
+                bestItems = u.items;
+            }
+            if (bound(n,p,w,trunk,u) > maxProfit) {
+                q.push(u);
+                u.setItems(items);                
+                if (!items.contains(u)) {
+                    items.add(u);                    
+                }
+            }
+            // Set u to the child that does not include the next item
+            u.weight = k.weight;
+            u.profit = k.profit;
+            if (bound(n,p,w,trunk,u) > maxProfit) {
+                q.push(u);
+                u.setItems(items);                
+                if (!items.contains(u)) {
+                    items.add(u);                    
+                }
+            }
+        }        
+        return (KnapNode[]) bestItems.toArray();
     }
     
     
