@@ -12,8 +12,8 @@ import java.util.ArrayList;
  */
 public class BFS01prune {
     
-    private ArrayList<KnapNode> items;
-    private ArrayList<KnapNode> bestItems;
+    private ArrayList<Integer> items;
+    private ArrayList<Integer> bestItems;
 
     public BFS01prune() {
         this.items = new ArrayList<>();
@@ -33,7 +33,7 @@ public class BFS01prune {
         KnapNode u;
         KnapNode v; // Nodes
         Queue<KnapNode> q = new Queue();
-        v = new KnapNode(0,0,0);
+        v = new KnapNode(-1,0,0);
         q.push(v);
         
         while (!q.isEmpty()) {
@@ -45,13 +45,14 @@ public class BFS01prune {
                 maxProfit = u.profit;
             }
             if (bound(n,p,w,trunk,u) > maxProfit) {
-                q.push(u);
+                q.push(u.clone());
             }
             // Set u to the child that does not include the next item
+            
             u.weight = k.weight;
             u.profit = k.profit;
             if (bound(n,p,w,trunk,u) > maxProfit) {
-                q.push(u);
+                q.push(u.clone());
             }
         }
         
@@ -59,7 +60,19 @@ public class BFS01prune {
     }
     
     
-    public KnapNode[] getOptimalSet(int n, int[] p, int[] w,  int trunk) {
+    /**
+     *  I hate that I have to use ArrayLists.
+     *  I wish I were in python land.
+     * @param n
+     * @param p
+     * @param w
+     * @param trunk
+     * @return 
+     */
+    public ArrayList<Integer> getOptimalSet(int n, int[] p, int[] w,  int trunk) {
+        items = new ArrayList();
+        bestItems = new ArrayList();
+        
         int maxProfit = 0;
         KnapNode u;
         KnapNode v; // Nodes
@@ -70,37 +83,31 @@ public class BFS01prune {
         while (!q.isEmpty()) {
             KnapNode k = q.pop();
             // U is the child of k, includes next item
+            ArrayList<Integer> i = (ArrayList<Integer>)items.clone();
+            i.add(k.level+1);
             u = new KnapNode(k.level+1, k.weight+w[k.level+1],
-                    k.profit + p[k.level+1]);
+                    k.profit + p[k.level+1], i);
             if (u.weight <= trunk && u.profit > maxProfit) {
+                items.add(k.level+1);
                 maxProfit = u.profit;
-                bestItems = u.items;
+                bestItems = (ArrayList<Integer>) u.items.clone();
             }
             if (bound(n,p,w,trunk,u) > maxProfit) {
-                q.push(u);
-                u.setItems(items);                
-                if (!items.contains(u)) {
-                    items.add(u);                    
-                }
+                q.push(u.clone());               
             }
             // Set u to the child that does not include the next item
             u.weight = k.weight;
             u.profit = k.profit;
             if (bound(n,p,w,trunk,u) > maxProfit) {
-                q.push(u);
-                u.setItems(items);                
-                if (!items.contains(u)) {
-                    items.add(u);                    
-                }
+                q.push(u.clone());          
             }
         }        
-        return (KnapNode[]) bestItems.toArray();
+        return bestItems;
     }
-    
     
     private double bound(int n, int[] p, int[] w, int trunk, KnapNode u) {
         double result;
-        int j,k;
+        int j;
         int totweight;
         
         if (u.weight >= trunk) {
@@ -109,16 +116,13 @@ public class BFS01prune {
             result = u.profit;
             j = u.level + 1;
             totweight = u.weight;
-            while (j <= n && totweight + w[j] <= trunk) {
-                totweight = totweight + w[j]; // Smash'n'grab jewlery cases
-                result += result + p[j]; 
+            while (j < n && totweight + w[j] <= trunk) {
+                totweight += w[j]; // Smash'n'grab jewlery cases
+                result += p[j]; 
                 j++;
             }
-            k = j;
-            if (k <= n) {
-                // The algorithm in the book says to do this even though it's 
-                // supposed to be the 0-1 knapsack problem?
-                result += result + (trunk - totweight) * (p[k]/w[k]);
+            if (j < n) {
+                result += result + (trunk - totweight) * (p[j]/w[j]);
             }
             return result;            
         }

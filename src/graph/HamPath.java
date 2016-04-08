@@ -3,8 +3,6 @@ package graph;
 import graph.structures.SimpleWeightedGraph;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author Connor
@@ -19,7 +17,7 @@ public class HamPath {
     
     /**
      * Input: weighted undirected graph
-     * Output: Hamiltonian path
+     * Output: stores all Hamiltonian paths in an array, saves index of minimum.
      * @param g
      * @param n 
      */

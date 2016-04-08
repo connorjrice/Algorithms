@@ -19,7 +19,7 @@ import java.util.Arrays;
  * 
  * @author Connor
  */
-public class GraphLauncher {
+public class ProblemsCLauncher {
     
     public static void main(String[] args) {
         hamPath();

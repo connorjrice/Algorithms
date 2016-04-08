@@ -8,19 +8,36 @@ import java.util.ArrayList;
  */
 public class KnapNode {
     public int level, profit, weight;
-    public ArrayList<KnapNode> items;
+    public ArrayList<Integer> items;
     
-    public KnapNode(int _level, int _profit, int _weight) {
+    public KnapNode(int _level, int _weight, int _profit) {
         this.level = _level;
-        this.profit = _profit;
         this.weight = _weight;
+        this.profit = _profit;        
     }
     
-    public void setItems(ArrayList<KnapNode> _items) {
+    public KnapNode(int _level, int _weight, int _profit, ArrayList<Integer> _items) {
+        this.level = _level;
+        this.weight = _weight;
+        this.profit = _profit;
+        this.items = _items;
+    }    
+    
+    @Override
+    public KnapNode clone() {
+        return new KnapNode(this.level, this.weight, this.profit);
+    }
+    
+    @Override
+    public String toString() {
+        return "Level: " + level + " Profit: " + profit + " Weight: " + weight;
+    }
+    
+    public void setItems(ArrayList<Integer> _items) {
         this.items = _items;
     }
     
-    public ArrayList<KnapNode> getItems() {
+    public ArrayList<Integer> getItems() {
         return items;
     }
     
