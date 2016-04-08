@@ -5,7 +5,7 @@ package graph.structures;
  * @author Connor
  */
 public class KnapNode {
-    private final int level, profit, weight;
+    public int level, profit, weight;
     
     public KnapNode(int _level, int _profit, int _weight) {
         this.level = _level;
