@@ -14,6 +14,7 @@ public class ProblemsDLauncher {
      */
     public static void main(String[] args) {
         knapsack();
+        tsp();
     }
     
     public static void knapsack() {
@@ -29,6 +30,10 @@ public class ProblemsDLauncher {
         //System.out.println("Maximum Profit: " + k.getMaxProfit(5, p, w, 13));
 //        System.out.println("Chapter 6, no. 3");
 //        System.out.println("Optimal set: " + k.getOptimalSet(5, p, w, 13).toString());
+    }
+    
+    public static void tsp() {
+        
     }
     
 }

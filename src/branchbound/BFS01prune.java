@@ -72,14 +72,14 @@ public class BFS01prune {
         
         int maxProfit = 0;
         KnapNode u;
-        KnapNode v; // Nodes
+        KnapNode v, k; // Nodes
         Queue<KnapNode> q = new Queue();
         ArrayList<Integer> items = new ArrayList();
         v = new KnapNode(-1,0,0, items);
         q.push(v);
         
         while (!q.isEmpty()) {
-            KnapNode k = q.pop();
+            k = q.pop();
             // U is the child of k, includes next item
             ArrayList<Integer> newList = (ArrayList<Integer>) k.items.clone();
             newList.add(k.level+1);
