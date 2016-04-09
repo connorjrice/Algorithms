@@ -6,7 +6,7 @@ import java.util.LinkedHashSet;
  * Node for Best First TSP Pruning
  * @author Connor
  */
-public class TSPNode {
+public class TSPNode implements Comparable<TSPNode> {
     
     public int level;
     public LinkedHashSet<Integer> path;
@@ -16,6 +16,17 @@ public class TSPNode {
         this.level = _level;
         this.path = _path;
         this.bound = _bound;
+    }
+
+    @Override
+    public int compareTo(TSPNode o) {
+        if (bound == o.bound) {
+            return 0;
+        } else if (bound > o.bound) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
     
 
