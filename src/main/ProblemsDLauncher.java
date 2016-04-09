@@ -21,16 +21,16 @@ public class ProblemsDLauncher {
     public static void knapsack() {
         System.out.println("Chapter 6, no. 1");
         BFS01prune k = new BFS01prune();
-        int[] p = {40,30,50,10};
+       /* int[] p = {40,30,50,10};
         int[] w = {2,5,10,5};
         System.out.println("Maximum Profit: " + k.getMaxProfit(4, p, w, 16));
-        System.out.println("Optimal set: " + k.getOptimalSet(4, p, w, 16));        
+        System.out.println("Optimal set: " + k.getOptimalSet(4, p, w, 16)); */       
 
-        /*int[] p = {20,30,35,12,3};
-        int[] w = {2,5,7,3,1}; problem*/
-        //System.out.println("Maximum Profit: " + k.getMaxProfit(5, p, w, 13));
-//        System.out.println("Chapter 6, no. 3");
-//        System.out.println("Optimal set: " + k.getOptimalSet(5, p, w, 13).toString());
+        int[] p = {20,30,35,12,3};
+        int[] w = {2,5,7,3,1};
+        System.out.println("Maximum Profit: " + k.getMaxProfit(5, p, w, 13));
+        System.out.println("Chapter 6, no. 3");
+        System.out.println("Optimal set: " + k.getOptimalSet(5, p, w, 13));
     }
     
     public static void tsp() {

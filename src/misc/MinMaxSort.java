@@ -3,7 +3,7 @@ package misc;
 import sorting.Sorter;
 
 /**
- *
+ * Problems D, Chapter 7 no. 43
  * @author Connor
  */
 public class MinMaxSort extends Sorter {
@@ -50,33 +50,33 @@ public class MinMaxSort extends Sorter {
      * @param high = upper bound
      */
     private <E extends Comparable<? super E>> void minMaxSort(E[] a, int low, int high) {                    
-        if (low < high) {
+        if (low < high+1) {
+            E min = a[low], max = a[high];
+            int imin = low, imax = high;
+            for (int i = low+1; i <= high; i++) {
+                if (a[i].compareTo(min) < 0) {
+                    sendComparison();
+                    min = a[i];
+                    imin = i;
+                } else if (a[i].compareTo(max) > 0) {
+                    sendComparison();
+                    max = a[i];
+                    imax = i;
+                }
+                else {
+                    sendComparison();
+                }
+            }
+            if (imin > -1) {
+                swap(a, imin, low);            
+            }
+            if (imax > -1) {
+                swap(a, imax, high);            
+            }
             
-        
-        E min = a[low], 
-                max = a[low];
-        int imin = low, imax = low;
-        for (int i = low+1; i <= high; i++) {
-            if (a[i].compareTo(min) < 0) {
-                sendComparison();
-                min = a[i];
-                imin = i;
-            } else if (a[i].compareTo(max) > 0) {
-                sendComparison();
-                max = a[i];
-                imax = i;
-            }
-            else {
-                sendComparison();
-            }
-        }
-        E temp = a[low];
-        a[low] = min;
-        a[imin] = temp;
-        temp = a[high];
-        a[high] = max;
-        a[imax] = temp;
-        minMaxSort(a,low+1,high-1);
+            
+            minMaxSort(a,low+1,high-1);            
+            
         }
     }    
     

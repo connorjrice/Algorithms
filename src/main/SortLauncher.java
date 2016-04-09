@@ -107,6 +107,7 @@ public class SortLauncher {
     public static void mmS(String[] args) {
         Sorter i = new MinMaxSort(args);
         i.sort(new Integer[]{5,4,6,8,2,30});
+        i.sort(new Integer[]{5,4,8,2,30});
     }
     
     /**
