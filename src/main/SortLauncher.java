@@ -1,5 +1,6 @@
 package main;
 
+import misc.MinMaxSort;
 import sorting.*;
 import utilities.*;
 
@@ -19,12 +20,14 @@ public class SortLauncher {
         //DataFeed.runAlgorithms(args);
         curTask(args);
         //newList();
-
+        
     }
     
     public static void curTask(String[] args) {
-        DataFeed.averageResults(5, "algtimings7.csv", "average.csv");
+        ///DataFeed.averageResults(5, "algtimings7.csv", "average.csv");
+        mmS(args);
     }
+    
     
     
     public static void newList() {
@@ -99,6 +102,11 @@ public class SortLauncher {
         i.sort(getData("1000.csv"));
         i.hybrid(new BubbleSort(args), 7);
         i.sort(getData("1000.csv"));
+    }
+    
+    public static void mmS(String[] args) {
+        Sorter i = new MinMaxSort(args);
+        i.sort(new Integer[]{5,4,6,8,2,30});
     }
     
     /**

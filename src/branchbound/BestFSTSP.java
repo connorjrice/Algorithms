@@ -15,6 +15,8 @@ public class BestFSTSP {
     
     
    // public int[][] travel(SimpleDirectedGraph g, int n) {
+    
+    // Think about doing a list of edges rather than a double[][]
     public ArrayList<Integer> travel(SimpleDirectedGraph g, int n) {    
        // int[][] path = new int[g.getEdges().length][3];
        ArrayList<Integer> optimalTour = new ArrayList<>();
