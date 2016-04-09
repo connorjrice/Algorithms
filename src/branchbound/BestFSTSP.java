@@ -2,9 +2,10 @@ package branchbound;
 
 import graph.structures.SimpleDirectedGraph;
 import graph.structures.TSPNode;
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.stream.DoubleStream;
+import java.util.Arrays;
 
 /**
  * Best-First Search with Branch-and-bound pruning algorithm for TSP
@@ -12,15 +13,16 @@ import java.util.stream.DoubleStream;
  */
 public class BestFSTSP {
     
-    private boolean[] visited; // look out for me!
     
    // public int[][] travel(SimpleDirectedGraph g, int n) {
-    public LinkedHashSet<Integer> travel(SimpleDirectedGraph g, int n) {    
+    public ArrayList<Integer> travel(SimpleDirectedGraph g, int n) {    
        // int[][] path = new int[g.getEdges().length][3];
-       LinkedHashSet<Integer> optimalTour = new LinkedHashSet<>();
+       ArrayList<Integer> optimalTour = new ArrayList<>();
        PriorityQueue<TSPNode> pq = new PriorityQueue(); 
        TSPNode u, v, k;
-       v = new TSPNode(-1,getSet(new int[]{0}),0);
+       ArrayList<Integer> path = new ArrayList<>();
+       path.add(0);
+       v = new TSPNode(-1,path,0);
        v.bound = bound(v,g,n);
        double minlength = Double.POSITIVE_INFINITY;
        pq.add(v);
@@ -56,7 +58,7 @@ public class BestFSTSP {
     }
     
     
-    private double length(LinkedHashSet<Integer> path, SimpleDirectedGraph g) {
+    private double length(ArrayList<Integer> path, SimpleDirectedGraph g) {
         double result = 0;
         for (int i = 0; i < path.size()-1; i++) {
             result += g.getEdges()[i][i+1];
@@ -70,7 +72,7 @@ public class BestFSTSP {
      * @param n
      * @return 
      */
-    private int getLast(LinkedHashSet<Integer> path, int n) {
+    private int getLast(ArrayList<Integer> path, int n) {
         for (int i = 0; i < n; i++) {
             if (!path.contains(i)) {
                 return i;
@@ -84,8 +86,8 @@ public class BestFSTSP {
      * @param nodes
      * @return 
      */
-    private LinkedHashSet<Integer> getSet(int[] nodes) {
-        LinkedHashSet<Integer> set = new LinkedHashSet<>();
+    private ArrayList<Integer> getSet(int[] nodes) {
+        ArrayList<Integer> set = new ArrayList<>();
         for (int i : nodes) {
             set.add(i);
         }
@@ -93,7 +95,7 @@ public class BestFSTSP {
     }
    
    
-    private boolean contains(LinkedHashSet<Integer> path, int value) {
+    private boolean contains(ArrayList<Integer> path, int value) {
         return path.contains(value);
     }
 
@@ -113,27 +115,38 @@ public class BestFSTSP {
      */
     private double[] getMinimums(TSPNode v, SimpleDirectedGraph g, int n) {
         double[] minimums = new double[n];
-        createVisited(v,n); // see if we can do better
+        Arrays.fill(minimums, Double.POSITIVE_INFINITY);
+       // createVisited(v,n); // see if we can do better
         for (int i = 0; i < n; i++) {
-            if (!path(v,i,n)) {
+            if (!path(v,i)) {
                 for (int j = 0; j < n; j++) {
-                    if (!path(v,j,n)) {
-                        if (g.getEdges()[i][j] > minimums[i]) {
+                        if (g.getEdges()[i][j] < minimums[i] && g.getEdges()[i][j] > 0) {
                             minimums[i] = g.getEdges()[i][j];
                         }                                    
-                    }
+                    
                 }
+            } else {
+                minimums[i] = getEdgeLength(g, v.path.get(i), v.path.get(i+1));
             }
         }
-        visited = null;
         return minimums;
     }
     
-    private boolean path(TSPNode v, int i, int n) {
-        if (visited == null) {
-            createVisited(v,n);
-        } 
-        return visited[i];
+    
+    private double getEdgeLength(SimpleDirectedGraph g, int i, int j) {
+        return g.getEdges()[i][j];
+    }
+    
+    private boolean path(TSPNode v, int i) {
+        if (v.path.contains(i)) {
+            if ((v.path.indexOf(i))+1 < v.path.size()) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
     
     /*private boolean getVisited(TSPNode v, int i, int n) {
@@ -142,13 +155,5 @@ public class BestFSTSP {
         }
         return v.
     }*/
-    
-    private void createVisited(TSPNode v, int n) {
-        visited = new boolean[n];
-        // Assign true values to nodes on path contained in v
-        v.path.stream().forEach((i) -> {
-            visited[i] = true;
-        });
-    }
 
 }

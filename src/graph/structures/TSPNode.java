@@ -1,6 +1,7 @@
 package graph.structures;
 
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
+
 
 /**
  * Node for Best First TSP Pruning
@@ -9,10 +10,10 @@ import java.util.LinkedHashSet;
 public class TSPNode implements Comparable<TSPNode> {
     
     public int level;
-    public LinkedHashSet<Integer> path;
+    public ArrayList<Integer> path;
     public double bound;
     
-    public TSPNode(int _level, LinkedHashSet<Integer> _path, double _bound) {
+    public TSPNode(int _level, ArrayList<Integer> _path, double _bound) {
         this.level = _level;
         this.path = _path;
         this.bound = _bound;

@@ -1,7 +1,8 @@
 package main;
 
 import branchbound.BFS01prune;
-import java.util.Arrays;
+import branchbound.BestFSTSP;
+import graph.structures.SimpleDirectedGraph;
 
 /**
  *
@@ -33,7 +34,16 @@ public class ProblemsDLauncher {
     }
     
     public static void tsp() {
-        
+        double[][] edges = {
+            {0,14,4,10,20},
+            {14,0,7,8,7},
+            {4,5,0,7,16},
+            {11,7,9,0,2},
+            {18,7,17,4,0},
+        };
+        SimpleDirectedGraph g = new SimpleDirectedGraph(edges);
+        BestFSTSP tsp = new BestFSTSP();
+        System.out.println(tsp.travel(g, 5).toString());
     }
     
 }
