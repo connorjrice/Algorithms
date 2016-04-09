@@ -15,7 +15,7 @@ public class ProblemsDLauncher {
      */
     public static void main(String[] args) {
         knapsack();
-        tsp();
+        //tsp();
     }
     
     public static void knapsack() {
