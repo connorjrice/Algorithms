@@ -12,11 +12,9 @@ import java.util.ArrayList;
  */
 public class BFS01prune {
     
-    private ArrayList<Integer> items;
     private ArrayList<Integer> bestItems;
 
     public BFS01prune() {
-        this.items = new ArrayList<>();
         this.bestItems = new ArrayList<>();
     }
     
@@ -44,14 +42,14 @@ public class BFS01prune {
             if (u.weight <= trunk && u.profit > maxProfit) {
                 maxProfit = u.profit;
             }
-            if (bound(n,p,w,trunk,u) > maxProfit) {
+            if (bound(n,p,w,trunk,u,false) > maxProfit) {
                 q.push(u.clone());
             }
             // Set u to the child that does not include the next item
             
             u.weight = k.weight;
             u.profit = k.profit;
-            if (bound(n,p,w,trunk,u) > maxProfit) {
+            if (bound(n,p,w,trunk,u,false) > maxProfit) {
                 q.push(u.clone());
             }
         }
@@ -70,42 +68,43 @@ public class BFS01prune {
      * @return 
      */
     public ArrayList<Integer> getOptimalSet(int n, int[] p, int[] w,  int trunk) {
-        items = new ArrayList();
         bestItems = new ArrayList();
         
         int maxProfit = 0;
         KnapNode u;
         KnapNode v; // Nodes
         Queue<KnapNode> q = new Queue();
-        v = new KnapNode(0,0,0);
+        ArrayList<Integer> items = new ArrayList();
+        v = new KnapNode(-1,0,0, items);
         q.push(v);
         
         while (!q.isEmpty()) {
             KnapNode k = q.pop();
             // U is the child of k, includes next item
-            ArrayList<Integer> i = (ArrayList<Integer>)items.clone();
-            i.add(k.level+1);
+            ArrayList<Integer> newList = (ArrayList<Integer>) k.items.clone();
+            newList.add(k.level+1);
             u = new KnapNode(k.level+1, k.weight+w[k.level+1],
-                    k.profit + p[k.level+1], i);
+                    k.profit + p[k.level+1], newList);
             if (u.weight <= trunk && u.profit > maxProfit) {
-                items.add(k.level+1);
                 maxProfit = u.profit;
                 bestItems = (ArrayList<Integer>) u.items.clone();
             }
-            if (bound(n,p,w,trunk,u) > maxProfit) {
+            if (bound(n,p,w,trunk,u,true) > maxProfit) {
                 q.push(u.clone());               
             }
             // Set u to the child that does not include the next item
-            u.weight = k.weight;
-            u.profit = k.profit;
-            if (bound(n,p,w,trunk,u) > maxProfit) {
-                q.push(u.clone());          
+            KnapNode x = new KnapNode(k.level+1, k.weight, k.profit, (ArrayList<Integer>) k.items.clone());
+            if (bound(n,p,w,trunk,u,true) > maxProfit) {
+                q.push(x);          
             }
-        }        
+        }
         return bestItems;
     }
     
-    private double bound(int n, int[] p, int[] w, int trunk, KnapNode u) {
+    /**
+     * @return profit + sum(j=i+1->k-1, pj) (trunk - totweight) * p[j]/w[j]
+     */
+    private double bound(int n, int[] p, int[] w, int trunk, KnapNode u, boolean items) {
         double result;
         int j;
         int totweight;
@@ -122,6 +121,7 @@ public class BFS01prune {
                 j++;
             }
             if (j < n) {
+                // Grab a fraction for the bound
                 result += result + (trunk - totweight) * (p[j]/w[j]);
             }
             return result;            

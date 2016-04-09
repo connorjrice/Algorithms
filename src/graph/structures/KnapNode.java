@@ -25,7 +25,7 @@ public class KnapNode {
     
     @Override
     public KnapNode clone() {
-        return new KnapNode(this.level, this.weight, this.profit);
+        return new KnapNode(this.level, this.weight, this.profit, this.items);
     }
     
     @Override
@@ -53,5 +53,9 @@ public class KnapNode {
         return weight;
     }    
         
+    
+    public void removeLast() {
+        items.remove(items.size()-1);
+    }
     
 }
