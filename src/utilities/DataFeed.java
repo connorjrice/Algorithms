@@ -77,12 +77,6 @@ public class DataFeed {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     print.append(edges[i][j] + ",");                        
-                    /*if (j == n-1){
-                        print.append("\"" + edges[i][j] + "\"");                        
-                    } else {
-                        print.append("\"" + edges[i][j] + "\",");                        
-                    }*/
-
                 }
                 print.append("\n");
             }
@@ -217,11 +211,11 @@ public class DataFeed {
     }
     
     /**
-     * Runs the algorithm on various list sizes with various algorithms.
+     * Runs algorithm on various list sizes with various algorithms.
      * TODO: Make use of input parameters.
      * @param args 
      */
-    public static void runAlgorithms(String[] args) {
+    public static void runSortingAlgorithms(String[] args) {
 
       //Sorter[] s = {new BubbleSort(args)};
        

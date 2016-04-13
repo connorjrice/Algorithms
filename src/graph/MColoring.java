@@ -1,9 +1,7 @@
 package graph;
 
-import graph.structures.SimpleDirectedGraph;
 import graph.structures.SimpleWeightedGraph;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * M-coloring graph problem
@@ -18,13 +16,6 @@ public class MColoring extends Util {
 
     
     
-    /**
-     * This should technically be working with a SimpleWeightedGraph, but since
-     * it really only matters if there is an edge or not I'm not too concerned.
-     * (Difference being weighted is a non-directed graph
-     * @param g
-     * @param m 
-     */
     public void m_coloring(SimpleWeightedGraph g, int m) {
         vcolor = new int[g.getSize()];
         getStartTime();
