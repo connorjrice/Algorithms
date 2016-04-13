@@ -1,5 +1,6 @@
 package main;
 
+import graph.MColoring;
 import java.util.Arrays;
 import utilities.DataFeed;
 
@@ -14,16 +15,16 @@ public class ColorLauncher {
      */
     public static void main(String[] args) {
         makeLists();
-        readLists();
+      //  readLists();
         color();
     }
     
     public static void makeLists() {
-        DataFeed.makeAdjacencyMatrix(10);
-        DataFeed.makeAdjacencyMatrix(25);
-        DataFeed.makeAdjacencyMatrix(50);
-        DataFeed.makeAdjacencyMatrix(75);
-        DataFeed.makeAdjacencyMatrix(100);
+        DataFeed.makeAdjacencyMatrixUndirected(5);
+/*        DataFeed.makeAdjacencyMatrixDirected(6);
+        DataFeed.makeAdjacencyMatrixDirected(7);
+        DataFeed.makeAdjacencyMatrixDirected(8);
+        DataFeed.makeAdjacencyMatrixDirected(9);*/
     }
     
     public static void readLists() {
@@ -31,7 +32,9 @@ public class ColorLauncher {
     }
     
     public static void color() {
-        
+        MColoring m = new MColoring();
+        m.m_coloring(DataFeed.getDirectedGraph(5), 3);
+        m.m_coloring(DataFeed.getDirectedGraph(5), 4);
     }
     
 }

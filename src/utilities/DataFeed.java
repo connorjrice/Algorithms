@@ -1,5 +1,7 @@
 package utilities;
 
+import graph.structures.SimpleDirectedGraph;
+import graph.structures.SimpleWeightedGraph;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,11 +16,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import main.SortLauncher;
 import static main.SortLauncher.getData;
-import sorting.ExchangeSort;
-import sorting.InsertionSort;
-import sorting.MergeSort;
 import sorting.QuickSort;
-import sorting.SelectionSort;
 import sorting.Sorter;
 
 public class DataFeed {
@@ -51,8 +49,44 @@ public class DataFeed {
         DataFeed.exportIntCSV(100000, 100000, "100000.csv");           
     }   
     
+    public static SimpleDirectedGraph getDirectedGraph(int n) {
+        return new SimpleDirectedGraph(readAdjacencyMatrix(n));
+    }
     
-    public static void makeAdjacencyMatrix(int n) {
+    public static void makeAdjacencyMatrixUndirected(int n) {
+        Random randy = new Random();
+        int[][] edges = new int[n][n];
+        int val;
+	for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i != j) {
+                    val = randy.nextInt(2);
+                    edges[i][j] = val;
+                    edges[j][i] = val;   
+                }
+            }
+        }
+        try (PrintWriter print = new PrintWriter(new File(n+"uadj.csv"))) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    print.append(edges[i][j] + ",");                        
+                    /*if (j == n-1){
+                        print.append("\"" + edges[i][j] + "\"");                        
+                    } else {
+                        print.append("\"" + edges[i][j] + "\",");                        
+                    }*/
+
+                }
+                print.append("\n");
+            }
+            print.close();
+        } catch (FileNotFoundException e) {
+           
+        }        
+    }    
+    
+    
+    public static void makeAdjacencyMatrixDirected(int n) {
         Random randy = new Random();
         double[][] edges = new double[n][n];
 	for (int i = 0; i < n; i++) {
@@ -60,7 +94,7 @@ public class DataFeed {
                 edges[i][j] = randy.nextInt(n);
             }
         }
-        try (PrintWriter print = new PrintWriter(new File(n+"adj.csv"))) {
+        try (PrintWriter print = new PrintWriter(new File(n+"diradj.csv"))) {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     print.append(edges[i][j] + ",");                        

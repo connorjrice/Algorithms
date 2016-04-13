@@ -22,11 +22,11 @@ import java.util.Arrays;
 public class ProblemsCLauncher {
     
     public static void main(String[] args) {
-        hamPath();
-        prims();
-        kruskals();
-        dijkstras();
-        schedule();
+        //hamPath();
+        //prims();
+        //kruskals();
+        //dijkstras();
+        //schedule();
         coloring();
        // queen();
     }
@@ -146,8 +146,8 @@ public class ProblemsCLauncher {
             {0,0,1,0,1,0}
         };
         
-        SimpleWeightedGraph g = new SimpleWeightedGraph(edges);
-        m.m_coloring(g, 3, -1);
+        SimpleDirectedGraph g = new SimpleDirectedGraph(edges);
+        m.m_coloring(g, 3);
         System.out.println(Arrays.deepToString(m.getColorings().toArray()));
         
         System.out.println();                

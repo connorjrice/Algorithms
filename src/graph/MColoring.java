@@ -1,5 +1,6 @@
 package graph;
 
+import graph.structures.SimpleDirectedGraph;
 import graph.structures.SimpleWeightedGraph;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,21 +14,28 @@ public class MColoring extends Util {
 
     private int[] vcolor;
     private final ArrayList<int[]> colorings = new ArrayList<>();
+    
 
-    // Change this function call to reduce variables (i)
-    public void m_coloring(SimpleWeightedGraph g, int m, int i) {
+    /**
+     * This should technically be working with a SimpleWeightedGraph, but since
+     * it really only matters if there is an edge or not I'm not too concerned.
+     * (Difference being weighted is a non-directed graph
+     * @param g
+     * @param m 
+     */
+    public void m_coloring(SimpleDirectedGraph g, int m) {
         vcolor = new int[g.getSize()];
         getStartTime();
-        m_coloringHelper(g, m, i);
+        m_coloringHelper(g, m, -1);
         getEndTime();
 
         System.out.println("m= " + m + " nodes: " + numNodes);
-        //System.out.println("m= " + m + " promising: " + numPromising);
-        //System.out.println("m= " + m + " " + getDuration() + " numSolutions: " + (int) numSolutions);
+        System.out.println("m= " + m + " promising: " + numPromising);
+        System.out.println("m= " + m + " " + getDuration() + " numSolutions: " + (int) numSolutions);
     }
     
 
-    public void m_coloringHelper(SimpleWeightedGraph g, int m, int i) {
+    private void m_coloringHelper(SimpleDirectedGraph g, int m, int i) {
         int color;
 
         if (promising(g,i)) {
@@ -48,7 +56,7 @@ public class MColoring extends Util {
         return colorings;
     }
     
-    private boolean promising(SimpleWeightedGraph g, int i) {
+    private boolean promising(SimpleDirectedGraph g, int i) {
         boolean promising = true;
         int j = 0;
         while (j < i && promising) {
