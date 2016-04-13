@@ -1,13 +1,13 @@
 package graph.structures;
 
 /**
- *
+ * Undirected, weighted graph
  * @author Connor
  */
 public class SimpleWeightedGraph {
     
-    private double[][] edges;
-    private int size;
+    private final double[][] edges;
+    private final int size;
     
     public SimpleWeightedGraph(double[][] edges) {
         this.size = edges.length;

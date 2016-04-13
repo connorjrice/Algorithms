@@ -7,7 +7,15 @@ import java.util.Arrays;
  *
  * @author Connor
  */
-public class Prims {
+public class Prims extends Util {
+    
+    
+    public String getMSTInstrumented(SimpleWeightedGraph g) {
+        getStartTime();
+        int[][] mst = getMST(g);
+        getEndTime();
+        return g.getEdges().length + "," + numComparisons + "," + getDuration();
+    }
     
     /** Chapter 4, n.2
      * Prim's algorithm for minimum spanning tree.
@@ -17,7 +25,7 @@ public class Prims {
      *                       int[i][1] = endNode // vertex
      *                       int[i][2] = weight
      */
-    public static int[][] getMST(SimpleWeightedGraph g) {
+    public int[][] getMST(SimpleWeightedGraph g) {
         // TODO: Check if W is a matrix
         int n = g.getSize();
         int[][] F = new int[n-1][3]; // list of edges to be returned.
@@ -44,8 +52,9 @@ public class Prims {
                 // If we have a nonzero distance and the distance at the current
                 // index is less than our minimum, set minimum to be distance[j]
                // if (0 <= distance[j] && distance[j] < min) {
-               if (0 < distance[j] && distance[j] < min) {               
-                    min = distance[j];
+               if (0 < distance[j] && distance[j] < min) {
+                   incComparisons();
+                   min = distance[j];
                     vnear = j;
                 }                
             }
@@ -62,6 +71,7 @@ public class Prims {
             // For each vertex not in Y, update it's distance from Y.
             for (int j = 1; j < n; j++) {
                 if (g.getEdges()[j][vnear] < distance[j]) {
+                    incComparisons();
                     distance[j] = g.getEdges()[j][vnear];
                     nearest[j] = vnear;
                 }

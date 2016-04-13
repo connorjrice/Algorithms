@@ -1,6 +1,7 @@
 package main;
 
 import graph.HamPath;
+import graph.Prims;
 import graph.structures.SimpleWeightedGraph;
 import java.io.BufferedReader;
 import java.io.File;
@@ -25,32 +26,35 @@ public class PrimsLauncher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        makeLists();
-        runHam();
+       // makeLists();
+        runPrims();
     }
     
     public static void makeLists() {
-        /* I got a little overzealous
-        for (int i = 15; i < 20; i++) {
+        for (int i = 21; i < 50; i++) {
             makeAdjacencyMatrixUndirected(i);            
-        }*/
+        }
 
     }
     
 
-    public static void runHam() {
-        int[] listSizes = new int[]{5,6,7,8,9,10,11};
-
+    public static void runPrims() {
+        int[] listSizes = new int[]{5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40};
+        
         // We've gone 3D, there is no going back now
         double[][][] lists = new double[listSizes.length][listSizes.length][listSizes.length];
         for (int i = 0; i < listSizes.length; i++) {
             lists[i] = readUndirectedAdjacencyMatrix(listSizes[i]);
         }
 
-        HamPath h = new HamPath();
+        Prims p = new Prims();
+        int numTrials = 6;
         for (int i = 0; i < listSizes.length; i++) {
-            //hamWrite("ham.csv",h.hamiltonianPath(new SimpleWeightedGraph(lists[i]), lists[i].length));
-            h.hamiltonianPath(new SimpleWeightedGraph(lists[i]), lists[i].length);
+            for (int t = 0; t < numTrials; t++) {
+                primsWrite("prims.csv",p.getMSTInstrumented(new SimpleWeightedGraph(lists[i])));                
+            }
+
+            
         }
     }
     
@@ -71,12 +75,12 @@ public class PrimsLauncher {
         return edges;
     }    
 
-    public static void hamWrite(String path, String line) {
+    public static void primsWrite(String path, String line) {
         Path p = Paths.get(path);
         try {
             List<String> lines = Files.readAllLines(p);
             if (lines.isEmpty()) {
-                lines.add("n,nodes,promising,solutions,time");
+                lines.add("n,comparisons,duration");
             }
             
             lines.add(line);
@@ -86,7 +90,7 @@ public class PrimsLauncher {
             if (e.getCause() == new NoSuchFieldException().getCause()) {
                 try {
                     Files.createFile(p);
-                    hamWrite(path, line);
+                    primsWrite(path, line);
                 } catch (IOException ex) {
                     java.util.logging.Logger.getLogger(SortLauncher.class.getName()).log(Level.SEVERE, null, ex);
                 }

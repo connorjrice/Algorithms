@@ -13,12 +13,18 @@ public class Util {
     protected double numSolutions;
     protected int numNodes;
     protected int numPromising;
+    protected int numComparisons;
     
     public void reset() {
         numSolutions = 0;
         numNodes = 0;
         numPromising = 0;
         finalTime = 0;
+        numComparisons = 0;
+    }
+    
+    public void incComparisons() {
+        numComparisons++;
     }
     
     public void incPromising() {
