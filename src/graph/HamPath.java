@@ -28,7 +28,7 @@ public class HamPath extends Util{
         vindex[0] = 1;
         hamiltonian(g,0,n);
         getEndTime();
-        return hamPaths.size() + ","+numNodes + "," + numPromising + "," + numSolutions +"," + getDuration();
+        return n + ","+numNodes + "," + numPromising + "," + (int)numSolutions + ","+  getDuration();
                
     }
     
@@ -63,7 +63,6 @@ public class HamPath extends Util{
     public void printSmallest() {
         System.out.println(Arrays.toString(hamPaths.get(imin)));
         System.out.println("Cost: " + min);
-        
     }
     
     private boolean promising(SimpleWeightedGraph g, int i, int n) {

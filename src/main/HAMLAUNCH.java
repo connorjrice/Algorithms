@@ -25,27 +25,28 @@ public class HAMLAUNCH {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //makeLists();
+        makeLists();
         runHam();
     }
     
     public static void makeLists() {
-        for (int i = 5; i < 15; i++) {
+        /* I got a little overzealous
+        for (int i = 15; i < 20; i++) {
             makeAdjacencyMatrixUndirected(i);            
-        }
+        }*/
 
     }
     
 
     public static void runHam() {
-        int[] listSizes = new int[]{5,6,7,8,9,10};
+        int[] listSizes = new int[]{5,6,7,8,9,10,11};
 
         // We've gone 3D, there is no going back now
         double[][][] lists = new double[listSizes.length][listSizes.length][listSizes.length];
         for (int i = 0; i < listSizes.length; i++) {
             lists[i] = readUndirectedAdjacencyMatrix(listSizes[i]);
         }
-        int numTests = 7;
+
         HamPath h = new HamPath();
         for (int i = 0; i < listSizes.length; i++) {
             hamWrite("ham.csv",h.hamiltonianPath(new SimpleWeightedGraph(lists[i]), lists[i].length));
