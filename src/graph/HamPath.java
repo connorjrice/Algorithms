@@ -44,8 +44,8 @@ public class HamPath extends Util{
                     imin = hamPaths.size()-1;
                     
                 }
-                //System.out.println(Arrays.toString(vindex));
-                //System.out.println("Cost: " + getCost(g));
+                System.out.println(Arrays.toString(vindex));
+                System.out.println("Cost: " + getCost(g));
                 // TODO: Make this more useful than print
             } else {
                 for (int j = 2; j <= n; j++) {

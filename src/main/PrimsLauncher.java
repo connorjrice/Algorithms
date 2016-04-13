@@ -19,7 +19,7 @@ import java.util.logging.Level;
  *
  * @author Connor
  */
-public class HAMLAUNCH {
+public class PrimsLauncher {
 
     /**
      * @param args the command line arguments
@@ -39,8 +39,7 @@ public class HAMLAUNCH {
     
 
     public static void runHam() {
-        //int[] listSizes = new int[]{5,6,7,8,9,10,11};
-        int[] listSizes = new int[]{11};
+        int[] listSizes = new int[]{5,6,7,8,9,10,11};
 
         // We've gone 3D, there is no going back now
         double[][][] lists = new double[listSizes.length][listSizes.length][listSizes.length];
@@ -52,7 +51,6 @@ public class HAMLAUNCH {
         for (int i = 0; i < listSizes.length; i++) {
             //hamWrite("ham.csv",h.hamiltonianPath(new SimpleWeightedGraph(lists[i]), lists[i].length));
             h.hamiltonianPath(new SimpleWeightedGraph(lists[i]), lists[i].length);
-            //h.printSmallest();
         }
     }
     
