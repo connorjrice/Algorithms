@@ -66,10 +66,10 @@ public class ProblemsCLauncher {
         g.addEdge(8,9,12);        
         g.addEdge(9,5,6);        
         g.addEdge(7,8,4);
-        int[][] F = Prims.getMST(g);
-        System.out.println(Arrays.deepToString(F));
-        System.out.println("Is connected?: " + Prims.isConnected(F));
-        System.out.println("Total cost: " + Grapher.getMSTWeight(F));
+        //int[][] F = Prims.getMST(g);
+        //System.out.println(Arrays.deepToString(F));
+        //System.out.println("Is connected?: " + Prims.isConnected(F));
+        //System.out.println("Total cost: " + Grapher.getMSTWeight(F));
         System.out.println();        
         
     }
