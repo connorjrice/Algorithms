@@ -1,0 +1,7 @@
+Name,Time,Comparisons,Size
+QuickSort + SelectionSort@7,3.4179386666666667,1997,100
+QuickSort + SelectionSort@7,570.7663030000001,364847,1000
+QuickSort + SelectionSort@7,4514.058152999999,1657498,2000
+QuickSort + SelectionSort@7,15756.5099755,1138308,3000
+QuickSort + SelectionSort@7,37868.85706383333,2350893,4000
+QuickSort + SelectionSort@7,268975.678053,7099807,5000

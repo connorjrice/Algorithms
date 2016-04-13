@@ -1,8 +1,6 @@
 package utilities;
 
-import graph.MColoring;
 import graph.structures.SimpleDirectedGraph;
-import graph.structures.SimpleWeightedGraph;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,11 +14,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import main.SortLauncher;
-import sorting.InsertionSort;
 import sorting.MergeSort;
 import sorting.QuickSort;
 import sorting.Sorter;
 import static main.SortLauncher.getIntArray;
+import sorting.SelectionSort;
 
 public class DataFeed {
 
@@ -44,83 +42,13 @@ public class DataFeed {
         DataFeed.exportIntCSV(size, size, size+".csv");
     }
 
-    
-    public static void runColor() {
-        int[] listSizes = new int[]{5,6,7,8,9,10};
+      
 
-        // We've gone 3D, there is no going back now
-        double[][][] lists = new double[listSizes.length][listSizes.length][listSizes.length];
-        for (int i = 0; i < listSizes.length; i++) {
-            lists[i] = DataFeed.readUndirectedAdjacencyMatrix(listSizes[i]);
-        }
-        int numTests = 7;
-        MColoring m = new MColoring();
-        for (int j = 0; j < lists.length; j++) { // Lists
-            for (int k = 0; k < numTests; k++) { // number of colors
-               colorWrite("color.csv", m.m_coloring(new SimpleWeightedGraph(lists[j]), k));
-            }
-        }
-    }
-    
-
-    public static void colorWrite(String path, String line) {
-        Path p = Paths.get(path);
-        try {
-            List<String> lines = Files.readAllLines(p);
-            if (lines.isEmpty()) {
-                lines.add("n,m,solutions,nodes,promising,time");
-            }
-            
-            lines.add(line);
-            Files.write(Paths.get(p.toString()), lines); 
-            
-        } catch (IOException e) {
-            if (e.getCause() == new NoSuchFieldException().getCause()) {
-                try {
-                    Files.createFile(p);
-                    colorWrite(path, line);
-                } catch (IOException ex) {
-                    java.util.logging.Logger.getLogger(SortLauncher.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-    }        
-    
-    public static SimpleWeightedGraph getWeightedGraph(int n) {
-        return new SimpleWeightedGraph(readUndirectedAdjacencyMatrix(n));
-    }
     
     public static SimpleDirectedGraph getDirectedGraph(int n) {
         return new SimpleDirectedGraph(readDirectedAdjacencyMatrix(n));
     }
-    
-    public static void makeAdjacencyMatrixUndirected(int n) {
-        Random randy = new Random();
-        int[][] edges = new int[n][n];
-        int val;
-	for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (i != j) {
-                    val = randy.nextInt(2);
-                    edges[i][j] = val;
-                    edges[j][i] = val;   
-                }
-            }
-        }
-        try (PrintWriter print = new PrintWriter(new File(n+"uadj.csv"))) {
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    print.append(edges[i][j] + ",");                        
-                }
-                print.append("\n");
-            }
-            print.close();
-        } catch (FileNotFoundException e) {
-           
-        }        
-    }    
-    
-    
+       
     public static void makeAdjacencyMatrixDirected(int n) {
         Random randy = new Random();
         double[][] edges = new double[n][n];
@@ -166,22 +94,7 @@ public class DataFeed {
     }
     
     
-    public static double[][] readUndirectedAdjacencyMatrix(int n) {    
-        double[][] edges = new double[n][n];
-        String f = new File(n+"uadj.csv").getAbsolutePath();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(f));
-            for (int i = 0; i < n; i++) {
-                String[] values = br.readLine().split(",");                
-                for (int j = 0; j < n; j++) {
-                    edges[i][j] = Double.parseDouble(values[j]);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return edges;
-    }
+
     
     public static void averageResults(int numTrials, String inputName,
             String outputName) {
@@ -259,11 +172,11 @@ public class DataFeed {
            Sorter[] s = {new QuickSort(args), new MergeSort(args)};
            
         
-       String outputName = "algtimings10.csv";
+       String outputName = "algtimings11.csv";
                
         int[] listSizes = new int[]{100,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,25000,50000,75000,100000};
-        s[0].hybrid(new InsertionSort(), 6);
-        s[1].hybrid(new InsertionSort(), 6);
+        s[0].hybrid(new SelectionSort(), 7);
+        s[1].hybrid(new SelectionSort(), 7);
         Integer[][] lists = new Integer[listSizes.length][listSizes.length];
         for (int i = 0; i < listSizes.length; i++) {
             lists[i] = getIntArray(listSizes[i]+".csv");

@@ -1,5 +1,6 @@
 package main;
 
+import graph.HamPath;
 import graph.MColoring;
 import graph.structures.SimpleWeightedGraph;
 import java.io.BufferedReader;
@@ -11,48 +12,25 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
-import utilities.DataFeed;
 
 /**
  *
  * @author Connor
  */
-public class ColorLauncher {
+public class HAMLAUNCH {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //makeLists();
-      //  readLists();
-        color();
+        
     }
     
-    public static void makeLists() {
-        makeAdjacencyMatrixUndirected(10);
-        makeAdjacencyMatrixUndirected(6);
-        makeAdjacencyMatrixUndirected(7);
-        makeAdjacencyMatrixUndirected(8);
-        makeAdjacencyMatrixUndirected(9);
-    }
-    
-    public static void readLists() {
-        //System.out.println(Arrays.deepToString(DataFeed.readAdjacencyMatrix(25)));
-    }
-    
-    public static void color() {
-       runColor();
-    }
-    
-    public static SimpleWeightedGraph getWeightedGraph(int n) {
-        return new SimpleWeightedGraph(readUndirectedAdjacencyMatrix(n));
-    }
-    
-    public static void runColor() {
+
+    public static void runHam() {
         int[] listSizes = new int[]{5,6,7,8,9,10};
 
         // We've gone 3D, there is no going back now
@@ -61,17 +39,17 @@ public class ColorLauncher {
             lists[i] = readUndirectedAdjacencyMatrix(listSizes[i]);
         }
         int numTests = 7;
-        MColoring m = new MColoring();
+        HamPath h = new HamPath();
         for (int j = 0; j < lists.length; j++) { // Lists
             for (int k = 0; k < numTests; k++) { // number of colors
-               colorWrite("color.csv", m.m_coloring(new SimpleWeightedGraph(lists[j]), k));
+             //  hamWrite("ham.csv",h.hamiltonianPath(new SimpleWeightedGraph(lists[j]), k));
             }
         }
     }
     
     public static double[][] readUndirectedAdjacencyMatrix(int n) {    
         double[][] edges = new double[n][n];
-        String f = new File(n+"uadj.csv").getAbsolutePath();
+        String f = new File(n+"hamadj.csv").getAbsolutePath();
         try {
             BufferedReader br = new BufferedReader(new FileReader(f));
             for (int i = 0; i < n; i++) {
@@ -86,12 +64,12 @@ public class ColorLauncher {
         return edges;
     }    
 
-    public static void colorWrite(String path, String line) {
+    public static void hamWrite(String path, String line) {
         Path p = Paths.get(path);
         try {
             List<String> lines = Files.readAllLines(p);
             if (lines.isEmpty()) {
-                lines.add("n,m,solutions,nodes,promising,time");
+                lines.add("todo");
             }
             
             lines.add(line);
@@ -101,7 +79,7 @@ public class ColorLauncher {
             if (e.getCause() == new NoSuchFieldException().getCause()) {
                 try {
                     Files.createFile(p);
-                    colorWrite(path, line);
+                    hamWrite(path, line);
                 } catch (IOException ex) {
                     java.util.logging.Logger.getLogger(SortLauncher.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -117,12 +95,16 @@ public class ColorLauncher {
             for (int j = 0; j < n; j++) {
                 if (i != j) {
                     val = randy.nextInt(2);
-                    edges[i][j] = val;
-                    edges[j][i] = val;   
+                    if (val == 1) {
+                        val = randy.nextInt(n);
+                        edges[i][j] = val;
+                        edges[j][i] = val;
+                    }
+ 
                 }
             }
         }
-        try (PrintWriter print = new PrintWriter(new File(n+"uadj.csv"))) {
+        try (PrintWriter print = new PrintWriter(new File(n+"hamadj.csv"))) {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     print.append(edges[i][j] + ",");                        
@@ -136,6 +118,5 @@ public class ColorLauncher {
     }    
     
     
-
     
 }
