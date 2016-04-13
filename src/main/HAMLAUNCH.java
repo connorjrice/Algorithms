@@ -1,8 +1,6 @@
 package main;
 
 import graph.HamPath;
-import graph.MColoring;
-import graph.structures.SimpleWeightedGraph;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,7 +24,14 @@ public class HAMLAUNCH {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        makeLists();
+    }
+    
+    public static void makeLists() {
+        for (int i = 5; i < 15; i++) {
+            makeAdjacencyMatrixUndirected(i);            
+        }
+
     }
     
 
