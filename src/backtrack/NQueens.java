@@ -19,10 +19,13 @@ public class NQueens extends Util {
         getStartTime();
         col = new int[n];
         queensHelper(-1,n);
+        //estimateQueens(n);
         getEndTime();
+        
         System.out.println("n= " + n + " nodes: " + numNodes);
-        //System.out.println("n= " + n + " promising: " + numPromising);
-        //System.out.println("n= " + n + " " + getDuration() + " numSolutions: " + (int) numSolutions);
+        System.out.println("n= " + n + " promising: " + numPromising);
+        System.out.println("n= " + n + " " + getDuration() + " numSolutions: " + (int) numSolutions);
+        reset();
     }
     
     public void estimate (int n) {

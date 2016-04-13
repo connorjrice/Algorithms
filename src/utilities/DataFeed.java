@@ -16,6 +16,8 @@ import java.util.Random;
 import java.util.logging.Level;
 import main.SortLauncher;
 import static main.SortLauncher.getData;
+import sorting.InsertionSort;
+import sorting.MergeSort;
 import sorting.QuickSort;
 import sorting.Sorter;
 
@@ -49,8 +51,13 @@ public class DataFeed {
         DataFeed.exportIntCSV(100000, 100000, "100000.csv");           
     }   
     
+    
+    public static SimpleWeightedGraph getWeightedGraph(int n) {
+        return new SimpleWeightedGraph(readUndirectedAdjacencyMatrix(n));
+    }
+    
     public static SimpleDirectedGraph getDirectedGraph(int n) {
-        return new SimpleDirectedGraph(readAdjacencyMatrix(n));
+        return new SimpleDirectedGraph(readDirectedAdjacencyMatrix(n));
     }
     
     public static void makeAdjacencyMatrixUndirected(int n) {
@@ -113,9 +120,27 @@ public class DataFeed {
         }        
     }
     
-    public static double[][] readAdjacencyMatrix(int n) {
+    public static double[][] readDirectedAdjacencyMatrix(int n) {
         double[][] edges = new double[n][n];
-        String f = new File(n+"adj.csv").getAbsolutePath();
+        String f = new File(n+"diradj.csv").getAbsolutePath();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(f));
+            for (int i = 0; i < n; i++) {
+                String[] values = br.readLine().split(",");                
+                for (int j = 0; j < n; j++) {
+                    edges[i][j] = Double.parseDouble(values[j]);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return edges;
+    }
+    
+    
+    public static double[][] readUndirectedAdjacencyMatrix(int n) {    
+        double[][] edges = new double[n][n];
+        String f = new File(n+"uadj.csv").getAbsolutePath();
         try {
             BufferedReader br = new BufferedReader(new FileReader(f));
             for (int i = 0; i < n; i++) {
@@ -203,11 +228,14 @@ public class DataFeed {
        //Sorter[] s = {new ExchangeSort(args),
            // new InsertionSort(args), new MergeSort(args),new QuickSort(args), new SelectionSort(args)};
            
-           Sorter[] s = {new QuickSort(args)};
+           Sorter[] s = {new QuickSort(args), new MergeSort(args)};
+           
         
-       String outputName = "algtimings7.csv";
+       String outputName = "algtimings8.csv";
                
-        int[] listSizes = new int[]{50000,75000,100000};
+        int[] listSizes = new int[]{100,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,25000,50000,75000,100000};
+        s[0].hybrid(new InsertionSort());
+        s[1].hybrid(new InsertionSort());
         Integer[][] lists = new Integer[listSizes.length][listSizes.length];
         for (int i = 0; i < listSizes.length; i++) {
             lists[i] = getData(listSizes[i]+".csv");

@@ -16,6 +16,8 @@ public class MColoring extends Util {
     private final ArrayList<int[]> colorings = new ArrayList<>();
     
 
+    
+    
     /**
      * This should technically be working with a SimpleWeightedGraph, but since
      * it really only matters if there is an edge or not I'm not too concerned.
@@ -23,19 +25,21 @@ public class MColoring extends Util {
      * @param g
      * @param m 
      */
-    public void m_coloring(SimpleDirectedGraph g, int m) {
+    public void m_coloring(SimpleWeightedGraph g, int m) {
         vcolor = new int[g.getSize()];
         getStartTime();
         m_coloringHelper(g, m, -1);
         getEndTime();
-
+        
+        System.out.println("n= " + g.getEdges().length);
         System.out.println("m= " + m + " nodes: " + numNodes);
         System.out.println("m= " + m + " promising: " + numPromising);
         System.out.println("m= " + m + " " + getDuration() + " numSolutions: " + (int) numSolutions);
+        reset();
     }
     
 
-    private void m_coloringHelper(SimpleDirectedGraph g, int m, int i) {
+    private void m_coloringHelper(SimpleWeightedGraph g, int m, int i) {
         int color;
 
         if (promising(g,i)) {
@@ -56,7 +60,7 @@ public class MColoring extends Util {
         return colorings;
     }
     
-    private boolean promising(SimpleDirectedGraph g, int i) {
+    private boolean promising(SimpleWeightedGraph g, int i) {
         boolean promising = true;
         int j = 0;
         while (j < i && promising) {

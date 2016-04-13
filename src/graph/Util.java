@@ -14,6 +14,18 @@ public class Util {
     protected int numNodes;
     protected int numPromising;
     
+    
+    public void write(String s) {
+        
+    }
+    
+    public void reset() {
+        numSolutions = 0;
+        numNodes = 0;
+        numPromising = 0;
+        finalTime = 0;
+    }
+    
     public void incPromising() {
         numPromising++;
     }

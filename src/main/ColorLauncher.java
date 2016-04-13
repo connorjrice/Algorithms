@@ -14,27 +14,29 @@ public class ColorLauncher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        makeLists();
+        //makeLists();
       //  readLists();
         color();
     }
     
     public static void makeLists() {
-        DataFeed.makeAdjacencyMatrixUndirected(5);
-/*        DataFeed.makeAdjacencyMatrixDirected(6);
-        DataFeed.makeAdjacencyMatrixDirected(7);
-        DataFeed.makeAdjacencyMatrixDirected(8);
-        DataFeed.makeAdjacencyMatrixDirected(9);*/
+        DataFeed.makeAdjacencyMatrixUndirected(10);
+        DataFeed.makeAdjacencyMatrixUndirected(6);
+        DataFeed.makeAdjacencyMatrixUndirected(7);
+        DataFeed.makeAdjacencyMatrixUndirected(8);
+        DataFeed.makeAdjacencyMatrixUndirected(9);
     }
     
     public static void readLists() {
-        System.out.println(Arrays.deepToString(DataFeed.readAdjacencyMatrix(25)));
+        //System.out.println(Arrays.deepToString(DataFeed.readAdjacencyMatrix(25)));
     }
     
     public static void color() {
         MColoring m = new MColoring();
-        m.m_coloring(DataFeed.getDirectedGraph(5), 3);
-        m.m_coloring(DataFeed.getDirectedGraph(5), 4);
+        m.m_coloring(DataFeed.getWeightedGraph(5), 2);
+        m.m_coloring(DataFeed.getWeightedGraph(5), 3);
+        m.m_coloring(DataFeed.getWeightedGraph(5), 4);
+        m.m_coloring(DataFeed.getWeightedGraph(5), 5);
     }
     
 }
