@@ -22,9 +22,9 @@ public class NQueens extends Util {
         //estimateQueens(n);
         getEndTime();
         
-        System.out.println("n= " + n + " nodes: " + numNodes);
+        /*System.out.println("n= " + n + " nodes: " + numNodes);
         System.out.println("n= " + n + " promising: " + numPromising);
-        System.out.println("n= " + n + " " + getDuration() + " numSolutions: " + (int) numSolutions);
+        System.out.println("n= " + n + " " + getDuration() + " numSolutions: " + (int) numSolutions);*/
         reset();
     }
     
@@ -45,10 +45,10 @@ public class NQueens extends Util {
         mprod = 1;
         while (m != 0 && i != n-1) {
             mprod *= m;
-            numnodes += mprod * n ; // dubious
+            numnodes += mprod * n ; 
             i++;
             m = 0;
-            promChildren.clear(); // dubious
+            promChildren.clear(); 
             for (j = 1; j <= n; j++) {
                 col[i] = j;
                 if(promising(i)) {
@@ -68,7 +68,7 @@ public class NQueens extends Util {
         if (promising(i)) {
             if (i == n-1){
                 incSolutions();
-                //System.out.println(Arrays.toString(col));                
+                System.out.println(Arrays.toString(col));                
             } else {
                 //incNodes();
                 for (int j = 0; j < n; j++) {

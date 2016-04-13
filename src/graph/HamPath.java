@@ -7,7 +7,7 @@ import java.util.Arrays;
  *
  * @author Connor
  */
-public class HamPath {
+public class HamPath extends Util{
     
     private int[] vindex;
     private ArrayList<int[]> hamPaths = new ArrayList<>();
@@ -21,10 +21,15 @@ public class HamPath {
      * @param g
      * @param n 
      */
-    public void hamiltonianPath(SimpleWeightedGraph g, int n) {
+    public String hamiltonianPath(SimpleWeightedGraph g, int n) {
+        reset();
+        getStartTime();
         vindex = new int[n];
         vindex[0] = 1;
         hamiltonian(g,0,n);
+        getEndTime();
+        return hamPaths.size() + "";
+               
     }
     
     private void hamiltonian(SimpleWeightedGraph g, int i, int n) {
@@ -32,6 +37,7 @@ public class HamPath {
             if (i == n-1){ // If we're at the end print vindex
                 hamPaths.add(vindex.clone());
                 costs.add(getCost(g));
+                incSolutions();
                // Logger.getLogger("HamPath").log(Level.SEVERE, "getCost: " + getCost(g));
                 if (getCost(g) < min) {
                     min = getCost(g);
@@ -44,6 +50,7 @@ public class HamPath {
             } else {
                 for (int j = 2; j <= n; j++) {
                     vindex[i+1] = j;
+                    incNodes();
                     hamiltonian(g, i+1, n);
                 }
             }
@@ -77,6 +84,9 @@ public class HamPath {
                 j++;
             }
             
+        }
+        if (promising) {
+            incPromising();
         }
         return promising;
     }

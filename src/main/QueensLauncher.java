@@ -23,7 +23,7 @@ public class QueensLauncher {
     public static void queens() {
         NQueens nq = new NQueens();
         
-        nq.queens(4);
+        /*nq.queens(4);
         nq.queens(5);
         nq.queens(6);
         nq.queens(7);
@@ -34,8 +34,8 @@ public class QueensLauncher {
         nq.queens(12);
         nq.queens(13);
         nq.queens(14);
-        nq.queens(15);
-        //nq.queens(16);
+        nq.queens(15);*/
+        nq.queens(29);
         
         
     }

@@ -53,7 +53,8 @@ public class ColorLauncher {
     }
     
     public static void runColor() {
-        int[] listSizes = new int[]{5,6,7,8,9,10};
+        //int[] listSizes = new int[]{5,6,7,8,9,10};
+        int[] listSizes = new int[]{10};
 
         // We've gone 3D, there is no going back now
         double[][][] lists = new double[listSizes.length][listSizes.length][listSizes.length];
@@ -64,7 +65,8 @@ public class ColorLauncher {
         MColoring m = new MColoring();
         for (int j = 0; j < lists.length; j++) { // Lists
             for (int k = 0; k < numTests; k++) { // number of colors
-               colorWrite("color.csv", m.m_coloring(new SimpleWeightedGraph(lists[j]), k));
+               //colorWrite("color.csv", m.m_coloring(new SimpleWeightedGraph(lists[j]), k));
+               m.m_coloring(new SimpleWeightedGraph(lists[j]), k);
             }
         }
     }

@@ -2,6 +2,7 @@ package graph;
 
 import graph.structures.SimpleWeightedGraph;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * M-coloring graph problem
@@ -36,7 +37,7 @@ public class MColoring extends Util {
 
         if (promising(g,i)) {
             if (i == g.getSize()-1) {
-                //System.out.println(Arrays.toString(vcolor));
+                System.out.println(Arrays.toString(vcolor));
                 incSolutions();
             } else {
                 for (color = 0; color < m; color++) {

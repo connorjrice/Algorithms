@@ -74,7 +74,7 @@ public class HAMLAUNCH {
         try {
             List<String> lines = Files.readAllLines(p);
             if (lines.isEmpty()) {
-                lines.add("todo");
+                lines.add("n,solutions,");
             }
             
             lines.add(line);
