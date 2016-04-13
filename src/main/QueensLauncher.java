@@ -41,8 +41,6 @@ public class QueensLauncher {
     }
     
     
-    public static void color() {
 
-    }
     
 }

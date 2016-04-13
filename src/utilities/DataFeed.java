@@ -60,21 +60,40 @@ public class DataFeed {
                 edges[i][j] = randy.nextInt(n);
             }
         }
-        try (PrintWriter print = new PrintWriter(new File(n+".csv"))) {
+        try (PrintWriter print = new PrintWriter(new File(n+"adj.csv"))) {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
-                    if (j == n-1){
+                    print.append(edges[i][j] + ",");                        
+                    /*if (j == n-1){
                         print.append("\"" + edges[i][j] + "\"");                        
                     } else {
                         print.append("\"" + edges[i][j] + "\",");                        
-                    }
-                    print.append("\n");
+                    }*/
+
                 }
+                print.append("\n");
             }
             print.close();
         } catch (FileNotFoundException e) {
            
         }        
+    }
+    
+    public static double[][] readAdjacencyMatrix(int n) {
+        double[][] edges = new double[n][n];
+        String f = new File(n+"adj.csv").getAbsolutePath();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(f));
+            for (int i = 0; i < n; i++) {
+                String[] values = br.readLine().split(",");                
+                for (int j = 0; j < n; j++) {
+                    edges[i][j] = Double.parseDouble(values[j]);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return edges;
     }
     
     public static void averageResults(int numTrials, String inputName,
