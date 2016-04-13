@@ -46,7 +46,7 @@ public class MergeSortTest {
     @Test
     public void testSort_GenericType() {
         System.out.println("sort-parent");
-        Comparable[] a = DataFeed.readCSV(N);
+        Comparable[] a = DataFeed.readIntCSV(N);
         MergeSort instance = new MergeSort();
         instance.sort(a);
         for (int i = 1; i < a.length; i++) {
@@ -63,7 +63,7 @@ public class MergeSortTest {
     @Test
     public void testSort_3args() {
         System.out.println("sort-child");
-        Comparable[] a = DataFeed.readCSV(N);
+        Comparable[] a = DataFeed.readIntCSV(N);
         MergeSort instance = new MergeSort();
         instance.sort(a, 0, a.length-1);
         for (int i = 1; i < a.length; i++) {
@@ -77,7 +77,7 @@ public class MergeSortTest {
     @Test
     public void testSort_hybrid_bub() {
         System.out.println("hybrid-bub");
-        Comparable[] a = DataFeed.readCSV(N);
+        Comparable[] a = DataFeed.readIntCSV(N);
         MergeSort instance = new MergeSort();
         instance.hybrid(new BubbleSort());
         instance.sort(a, 0, a.length-1);
@@ -92,7 +92,7 @@ public class MergeSortTest {
     @Test
     public void testSort_hybrid_ex() {
         System.out.println("hybrid-ex");        
-        Comparable[] a = DataFeed.readCSV(N);
+        Comparable[] a = DataFeed.readIntCSV(N);
         MergeSort instance = new MergeSort();
         instance.hybrid(new ExchangeSort());        
         instance.sort(a, 0, a.length-1);
@@ -107,7 +107,7 @@ public class MergeSortTest {
     @Test
     public void testSort_hybrid_ins() {
         System.out.println("hybrid-ins");        
-        Comparable[] a = DataFeed.readCSV(N);
+        Comparable[] a = DataFeed.readIntCSV(N);
         MergeSort instance = new MergeSort();
         instance.hybrid(new InsertionSort());        
         instance.sort(a, 0, a.length-1);
@@ -124,7 +124,7 @@ public class MergeSortTest {
     @Test
     public void testSort_hybrid_mrg() {
         System.out.println("hybrid-mrg");        
-        Comparable[] a = DataFeed.readCSV(N);
+        Comparable[] a = DataFeed.readIntCSV(N);
         MergeSort instance = new MergeSort();
         instance.sort(a, 0, a.length-1);
         instance.hybrid(new MergeSort());                
@@ -138,7 +138,7 @@ public class MergeSortTest {
     @Test
     public void testSort_hybrid_qk() {
         System.out.println("hybrid-qk");        
-        Comparable[] a = DataFeed.readCSV(N);
+        Comparable[] a = DataFeed.readIntCSV(N);
         MergeSort instance = new MergeSort();
         instance.hybrid(new QuickSort());                        
         instance.sort(a, 0, a.length-1);

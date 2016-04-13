@@ -1,4 +1,4 @@
-package sortingunimplemented;
+package unimplemented;
 
 import sorting.*;
 
@@ -7,15 +7,15 @@ import sorting.*;
  * This class is a template for new algorithms.
  * @author Connor
  */
-public class RadixSort extends Sorter {
+public class HeapSort extends Sorter {
     
-    public RadixSort() {
-        this.name = "RadixSort";
+    public HeapSort() {
+        this.name = "HeapSort";
     }    
     
-    public RadixSort(String[] args) {
+    public HeapSort(String[] args) {
         this.args = args;
-        this.name = "RadixSort";
+        this.name = "HeapSort";
     }    
         
     /**
@@ -26,7 +26,7 @@ public class RadixSort extends Sorter {
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {
         super.start();
-        radixSort(a, 0, a.length-1);
+        heapSort(a, 0, a.length-1);
         super.end(a);
     }
     
@@ -40,7 +40,7 @@ public class RadixSort extends Sorter {
      */
     @Override
     protected <E extends Comparable<? super E>> void sort(E[]a, int low, int high) {
-        radixSort(a, low, high);
+        heapSort(a, low, high);
     }    
     
     /**
@@ -49,7 +49,7 @@ public class RadixSort extends Sorter {
      * @param low = lower bound
      * @param high = upper bound
      */
-    private <E extends Comparable<? super E>> void radixSort(E[] a, int low, int high) {                    
+    private <E extends Comparable<? super E>> void heapSort(E[] a, int low, int high) {                    
 
     }    
     

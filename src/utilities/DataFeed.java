@@ -40,16 +40,42 @@ public class DataFeed {
     }
     
     public static void makeNewList(int size) {
-        DataFeed.exportCSV(size, size, size+".csv");
+        DataFeed.exportIntCSV(size, size, size+".csv");
     }
 
     public static void remakeLists() {
-        DataFeed.exportCSV(10, 10, "10.csv");
-        DataFeed.exportCSV(100, 100, "100.csv");
-        DataFeed.exportCSV(1000, 1000, "1000.csv");
-        DataFeed.exportCSV(10000, 10000, "10000.csv");
-        DataFeed.exportCSV(100000, 100000, "100000.csv");           
+        DataFeed.exportIntCSV(10, 10, "10.csv");
+        DataFeed.exportIntCSV(100, 100, "100.csv");
+        DataFeed.exportIntCSV(1000, 1000, "1000.csv");
+        DataFeed.exportIntCSV(10000, 10000, "10000.csv");
+        DataFeed.exportIntCSV(100000, 100000, "100000.csv");           
     }   
+    
+    
+    public static void makeAdjacencyMatrix(int n) {
+        Random randy = new Random();
+        double[][] edges = new double[n][n];
+	for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                edges[i][j] = randy.nextInt(n);
+            }
+        }
+        try (PrintWriter print = new PrintWriter(new File(n+".csv"))) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (j == n-1){
+                        print.append("\"" + edges[i][j] + "\"");                        
+                    } else {
+                        print.append("\"" + edges[i][j] + "\",");                        
+                    }
+                    print.append("\n");
+                }
+            }
+            print.close();
+        } catch (FileNotFoundException e) {
+           
+        }        
+    }
     
     public static void averageResults(int numTrials, String inputName,
             String outputName) {
@@ -64,6 +90,8 @@ public class DataFeed {
                     .log(Level.SEVERE, null, ex);
         }
     }
+    
+    
     
 
     
@@ -100,14 +128,14 @@ public class DataFeed {
                 avg /= numTrials;
                 //numComparisons /= numTrials;
                 String output = curName + "," + avg + "," + numComparisons;
-                write(outputName, output, curSize);  
+                sortWrite(outputName, output, curSize);  
                 avg = 0;
                 numComparisons = 0;
             }
         }
 
         String output = curName + "," + avg + "," + numComparisons;
-        write(outputName, output, curSize);          
+        sortWrite(outputName, output, curSize);          
     }
     
     /**
@@ -136,7 +164,7 @@ public class DataFeed {
             for (int j = 0; j < lists.length; j++) { // Lists
                 for (int k = 0; k < numTests; k++) { // number of interations
                     s1.sort(lists[j].clone());                        
-                    DataFeed.write(outputName, s1.getData(),lists[j].length);                        
+                    DataFeed.sortWrite(outputName, s1.getData(),lists[j].length);                        
                 }
             }
         }
@@ -147,7 +175,7 @@ public class DataFeed {
      * @param name
      * @return 
      */
-    public static Integer[] readCSV(String name) {
+    public static Integer[] readIntCSV(String name) {
         Integer[] list = new Integer[0];
         String n = new File(name).getAbsolutePath();
         try {
@@ -169,7 +197,7 @@ public class DataFeed {
      * @param line
      * @param n 
      */
-    public static void write(String path, String line, int n) {
+    public static void sortWrite(String path, String line, int n) {
         Path p = Paths.get(path);
         try {
             List<String> lines = Files.readAllLines(p);
@@ -183,14 +211,14 @@ public class DataFeed {
             if (e.getCause() == new NoSuchFieldException().getCause()) {
                 try {
                     Files.createFile(p);
-                    write(path, line, n);
+                    sortWrite(path, line, n);
                 } catch (IOException ex) {
                     java.util.logging.Logger.getLogger(SortLauncher.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }    
-    public static void exportCSV(int size, int range, String name){
+    public static void exportIntCSV(int size, int range, String name){
         Random randy = new Random();
 	Integer[] intlist = new Integer[size];
 	for (int i = 0; i < size; i++) {

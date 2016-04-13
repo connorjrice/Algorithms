@@ -1,4 +1,4 @@
-package sortingunimplemented;
+package unimplemented;
 
 import sorting.*;
 
@@ -7,15 +7,15 @@ import sorting.*;
  * This class is a template for new algorithms.
  * @author Connor
  */
-public class CombSort extends Sorter {
+public class RadixSort extends Sorter {
     
-    public CombSort() {
-        this.name = "CombSort";
+    public RadixSort() {
+        this.name = "RadixSort";
     }    
     
-    public CombSort(String[] args) {
+    public RadixSort(String[] args) {
         this.args = args;
-        this.name = "CombSort";
+        this.name = "RadixSort";
     }    
         
     /**
@@ -26,7 +26,7 @@ public class CombSort extends Sorter {
     @Override
     public <E extends Comparable<? super E>> void sort(E[] a) {
         super.start();
-        combSort(a, 0, a.length-1);
+        radixSort(a, 0, a.length-1);
         super.end(a);
     }
     
@@ -40,7 +40,7 @@ public class CombSort extends Sorter {
      */
     @Override
     protected <E extends Comparable<? super E>> void sort(E[]a, int low, int high) {
-        combSort(a, low, high);
+        radixSort(a, low, high);
     }    
     
     /**
@@ -49,7 +49,7 @@ public class CombSort extends Sorter {
      * @param low = lower bound
      * @param high = upper bound
      */
-    private <E extends Comparable<? super E>> void combSort(E[] a, int low, int high) {                    
+    private <E extends Comparable<? super E>> void radixSort(E[] a, int low, int high) {                    
 
     }    
     

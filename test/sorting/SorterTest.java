@@ -16,7 +16,7 @@ import utilities.DataFeed;
 public class SorterTest {
     
     public static final String N = "100.csv";    
-    public static final Comparable[] A = DataFeed.readCSV(N);            
+    public static final Comparable[] A = DataFeed.readIntCSV(N);            
     
     public SorterTest() {
     }
@@ -164,7 +164,7 @@ public class SorterTest {
     @Test
     public void testRunHybrid() {
         System.out.println("runHybrid");
-        Comparable[] a = DataFeed.readCSV("10000.csv");
+        Comparable[] a = DataFeed.readIntCSV("10000.csv");
         Sorter instance = new Sorter();
         instance.hybrid(new Sorter());
         boolean expResult = false;
@@ -178,7 +178,7 @@ public class SorterTest {
     @Test
     public void testSort_3args() {
         System.out.println("sort-child");
-        Comparable[] a = DataFeed.readCSV(N);
+        Comparable[] a = DataFeed.readIntCSV(N);
         MergeSort instance = new MergeSort();
         instance.sort(a, 0, a.length-1);
         for (int i = 1; i < a.length; i++) {
@@ -219,7 +219,7 @@ public class SorterTest {
     @Test
     public void testEnd() {
         System.out.println("end");
-        Comparable[] a = DataFeed.readCSV("10000.csv");
+        Comparable[] a = DataFeed.readIntCSV("10000.csv");
         Sorter instance = new Sorter();
         instance.sort(a, 0, a.length-1);
         for (int i = 1; i < a.length; i++) {
@@ -279,7 +279,7 @@ public class SorterTest {
     public void testReset() {
         System.out.println("reset");
         Sorter instance = new Sorter();
-        instance.sort(DataFeed.readCSV(N));
+        instance.sort(DataFeed.readIntCSV(N));
         instance.reset();
         assertTrue(instance.numComparisons == 0);
         assertTrue(instance.startTime == 0);

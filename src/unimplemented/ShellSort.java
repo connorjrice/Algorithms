@@ -1,4 +1,4 @@
-package sortingunimplemented;
+package unimplemented;
 
 import sorting.Sorter;
 

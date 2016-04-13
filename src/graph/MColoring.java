@@ -9,7 +9,7 @@ import java.util.Arrays;
  * Produces all possible colorings of given graph
  * @author Connor
  */
-public class MColoring {
+public class MColoring extends Util {
 
     private int[] vcolor;
     private final ArrayList<int[]> colorings = new ArrayList<>();
@@ -17,7 +17,13 @@ public class MColoring {
     // Change this function call to reduce variables (i)
     public void m_coloring(SimpleWeightedGraph g, int m, int i) {
         vcolor = new int[g.getSize()];
+        getStartTime();
         m_coloringHelper(g, m, i);
+        getEndTime();
+
+        System.out.println("m= " + m + " nodes: " + numNodes);
+        //System.out.println("m= " + m + " promising: " + numPromising);
+        //System.out.println("m= " + m + " " + getDuration() + " numSolutions: " + (int) numSolutions);
     }
     
 
@@ -26,10 +32,12 @@ public class MColoring {
 
         if (promising(g,i)) {
             if (i == g.getSize()-1) {
-                System.out.println(Arrays.toString(vcolor));
+                //System.out.println(Arrays.toString(vcolor));
+                incSolutions();
             } else {
                 for (color = 0; color < m; color++) {
                     vcolor[i+1] = color;
+                    incNodes();
                     m_coloringHelper(g,m,i+1);
                 }
             }
@@ -48,6 +56,9 @@ public class MColoring {
                 promising = false;
             }
             j++;
+        }
+        if (promising) {
+            incPromising();
         }
         return promising;
     }

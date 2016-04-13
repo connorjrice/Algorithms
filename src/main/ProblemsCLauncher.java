@@ -1,7 +1,7 @@
 package main;
 
 import graph.MColoring;
-import backtrack.QueensBacktrack;
+import backtrack.NQueens;
 import graph.Grapher;
 import graph.structures.SimpleDirectedGraph;
 import graph.structures.SimpleSparseGraph;
@@ -154,7 +154,7 @@ public class ProblemsCLauncher {
     }
     
     public static void queen() {
-        QueensBacktrack q = new QueensBacktrack();
+        NQueens q = new NQueens();
         q.queens(4);
     }
 

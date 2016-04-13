@@ -25,7 +25,7 @@ public class SortLauncher {
     
     public static void curTask(String[] args) {
         ///DataFeed.averageResults(5, "algtimings7.csv", "average.csv");
-        mmS(args);
+       // mmS(args);
     }
     
     
@@ -117,7 +117,7 @@ public class SortLauncher {
      * @return 
      */
     public static Integer[] getData(String n) {
-        return DataFeed.readCSV(n);
+        return DataFeed.readIntCSV(n);
     }
     
 }

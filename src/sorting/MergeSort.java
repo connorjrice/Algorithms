@@ -27,9 +27,35 @@ public class MergeSort extends Sorter {
         super.end(a);
     }
     
+    /**
+     * Sort using a different version of mergeSort
+     * 0 = default, 1 = dynamic, 2 = linked
+     * @param <E>
+     * @param a
+     * @param p 
+     */
+    public <E extends Comparable<? super E>> void sort(E[] a, int p) {
+        super.start();        
+        if (p == 0) {
+            mergeSort(a, a.clone(), 0, a.length-1);
+        } else if (p == 1) {
+            //mergeSortDynamic(a, a.clone(), 0, ((a.length-1)/2) a.length-1);`
+        }
+        super.end(a);
+    }
+    
     @Override
     protected <E extends Comparable<? super E>> void sort(E[]a, int low, int high) {
         mergeSort(a, a.clone(), low, high);
+    }
+    
+    private <E extends Comparable<? super E>> void mergeSortDynamic(E[] a, int low, int high) {
+        
+    }
+    
+    private <E extends Comparable<? super E>> void mergeSortLinked(E[] a, int low, int high) {
+        
+        
     }
     
     private <E extends Comparable<? super E>> void mergeSort(E[] s, E[] u, int low, int high) {                    

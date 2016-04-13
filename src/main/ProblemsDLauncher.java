@@ -1,7 +1,7 @@
 package main;
 
 import branchbound.BFS01prune;
-import branchbound.BestFSTSP;
+import unimplemented.BestFSTSP;
 import graph.structures.SimpleDirectedGraph;
 
 /**
