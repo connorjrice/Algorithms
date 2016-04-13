@@ -1,6 +1,7 @@
 package main;
 
 import graph.HamPath;
+import graph.structures.SimpleWeightedGraph;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,7 +25,8 @@ public class HAMLAUNCH {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        makeLists();
+        //makeLists();
+        runHam();
     }
     
     public static void makeLists() {
@@ -45,10 +47,8 @@ public class HAMLAUNCH {
         }
         int numTests = 7;
         HamPath h = new HamPath();
-        for (int j = 0; j < lists.length; j++) { // Lists
-            for (int k = 0; k < numTests; k++) { // number of colors
-             //  hamWrite("ham.csv",h.hamiltonianPath(new SimpleWeightedGraph(lists[j]), k));
-            }
+        for (int i = 0; i < listSizes.length; i++) {
+            hamWrite("ham.csv",h.hamiltonianPath(new SimpleWeightedGraph(lists[i]), lists[i].length));
         }
     }
     
@@ -74,7 +74,7 @@ public class HAMLAUNCH {
         try {
             List<String> lines = Files.readAllLines(p);
             if (lines.isEmpty()) {
-                lines.add("n,solutions,");
+                lines.add("n,nodes,promising,solutions,time");
             }
             
             lines.add(line);

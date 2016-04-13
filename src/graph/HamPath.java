@@ -28,7 +28,7 @@ public class HamPath extends Util{
         vindex[0] = 1;
         hamiltonian(g,0,n);
         getEndTime();
-        return hamPaths.size() + "";
+        return hamPaths.size() + ","+numNodes + "," + numPromising + "," + numSolutions +"," + getDuration();
                
     }
     
