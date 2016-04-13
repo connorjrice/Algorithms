@@ -146,7 +146,7 @@ public class ProblemsCLauncher {
             {0,0,1,0,1,0}
         };
         
-        SimpleDirectedGraph g = new SimpleDirectedGraph(edges);
+        SimpleWeightedGraph g = new SimpleWeightedGraph(edges);
         m.m_coloring(g, 3);
         System.out.println(Arrays.deepToString(m.getColorings().toArray()));
         

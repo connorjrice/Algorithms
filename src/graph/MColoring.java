@@ -16,17 +16,18 @@ public class MColoring extends Util {
 
     
     
-    public void m_coloring(SimpleWeightedGraph g, int m) {
+    public String m_coloring(SimpleWeightedGraph g, int m) {
+        reset();
         vcolor = new int[g.getSize()];
         getStartTime();
         m_coloringHelper(g, m, -1);
         getEndTime();
         
-        System.out.println("n= " + g.getEdges().length);
+        /*System.out.println("n= " + g.getEdges().length);
         System.out.println("m= " + m + " nodes: " + numNodes);
         System.out.println("m= " + m + " promising: " + numPromising);
-        System.out.println("m= " + m + " " + getDuration() + " numSolutions: " + (int) numSolutions);
-        reset();
+        System.out.println("m= " + m + " " + getDuration() + " numSolutions: " + (int) numSolutions);*/
+        return g.getEdges().length + "," + m + "," + (int)numSolutions + "," + numNodes + "," + numPromising + "," + getDuration();
     }
     
 

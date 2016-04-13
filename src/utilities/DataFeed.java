@@ -1,5 +1,6 @@
 package utilities;
 
+import graph.MColoring;
 import graph.structures.SimpleDirectedGraph;
 import graph.structures.SimpleWeightedGraph;
 import java.io.BufferedReader;
@@ -15,11 +16,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import main.SortLauncher;
-import static main.SortLauncher.getData;
 import sorting.InsertionSort;
 import sorting.MergeSort;
 import sorting.QuickSort;
 import sorting.Sorter;
+import static main.SortLauncher.getIntArray;
 
 public class DataFeed {
 
@@ -39,18 +40,51 @@ public class DataFeed {
 	return intlist;
     }
     
-    public static void makeNewList(int size) {
+    public static void makeNewIntCSV(int size) {
         DataFeed.exportIntCSV(size, size, size+".csv");
     }
 
-    public static void remakeLists() {
-        DataFeed.exportIntCSV(10, 10, "10.csv");
-        DataFeed.exportIntCSV(100, 100, "100.csv");
-        DataFeed.exportIntCSV(1000, 1000, "1000.csv");
-        DataFeed.exportIntCSV(10000, 10000, "10000.csv");
-        DataFeed.exportIntCSV(100000, 100000, "100000.csv");           
-    }   
     
+    public static void runColor() {
+        int[] listSizes = new int[]{5,6,7,8,9,10};
+
+        // We've gone 3D, there is no going back now
+        double[][][] lists = new double[listSizes.length][listSizes.length][listSizes.length];
+        for (int i = 0; i < listSizes.length; i++) {
+            lists[i] = DataFeed.readUndirectedAdjacencyMatrix(listSizes[i]);
+        }
+        int numTests = 7;
+        MColoring m = new MColoring();
+        for (int j = 0; j < lists.length; j++) { // Lists
+            for (int k = 0; k < numTests; k++) { // number of colors
+               colorWrite("color.csv", m.m_coloring(new SimpleWeightedGraph(lists[j]), k));
+            }
+        }
+    }
+    
+
+    public static void colorWrite(String path, String line) {
+        Path p = Paths.get(path);
+        try {
+            List<String> lines = Files.readAllLines(p);
+            if (lines.isEmpty()) {
+                lines.add("n,m,solutions,nodes,promising,time");
+            }
+            
+            lines.add(line);
+            Files.write(Paths.get(p.toString()), lines); 
+            
+        } catch (IOException e) {
+            if (e.getCause() == new NoSuchFieldException().getCause()) {
+                try {
+                    Files.createFile(p);
+                    colorWrite(path, line);
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(SortLauncher.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }        
     
     public static SimpleWeightedGraph getWeightedGraph(int n) {
         return new SimpleWeightedGraph(readUndirectedAdjacencyMatrix(n));
@@ -155,7 +189,7 @@ public class DataFeed {
         try {
             BufferedReader br = new BufferedReader(new FileReader(n));
             br.readLine(); // read "Name,Time,Comparison,Size"
-            averageResults(br, numTrials, inputName, outputName);
+            averageIntCSVResults(br, numTrials, inputName, outputName);
 
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(DataFeed.class.getName())
@@ -177,7 +211,7 @@ public class DataFeed {
      * @param outputName
      * @throws IOException 
      */
-    private static void averageResults(BufferedReader br, int numTrials, 
+    private static void averageIntCSVResults(BufferedReader br, int numTrials, 
             String inputName, String outputName) throws IOException {
         String[] curLineSplit = br.readLine().split(",");
         String curName = curLineSplit[0];
@@ -225,14 +259,14 @@ public class DataFeed {
            Sorter[] s = {new QuickSort(args), new MergeSort(args)};
            
         
-       String outputName = "algtimings8.csv";
+       String outputName = "algtimings10.csv";
                
         int[] listSizes = new int[]{100,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,25000,50000,75000,100000};
-        s[0].hybrid(new InsertionSort());
-        s[1].hybrid(new InsertionSort());
+        s[0].hybrid(new InsertionSort(), 6);
+        s[1].hybrid(new InsertionSort(), 6);
         Integer[][] lists = new Integer[listSizes.length][listSizes.length];
         for (int i = 0; i < listSizes.length; i++) {
-            lists[i] = getData(listSizes[i]+".csv");
+            lists[i] = getIntArray(listSizes[i]+".csv");
         }
         int numTests = 6;
         for (Sorter s1 : s) {

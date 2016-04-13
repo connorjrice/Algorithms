@@ -32,11 +32,7 @@ public class ColorLauncher {
     }
     
     public static void color() {
-        MColoring m = new MColoring();
-        m.m_coloring(DataFeed.getWeightedGraph(5), 2);
-        m.m_coloring(DataFeed.getWeightedGraph(5), 3);
-        m.m_coloring(DataFeed.getWeightedGraph(5), 4);
-        m.m_coloring(DataFeed.getWeightedGraph(5), 5);
+       DataFeed.runColor();
     }
     
 }

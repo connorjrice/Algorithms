@@ -14,11 +14,6 @@ public class Util {
     protected int numNodes;
     protected int numPromising;
     
-    
-    public void write(String s) {
-        
-    }
-    
     public void reset() {
         numSolutions = 0;
         numNodes = 0;
@@ -61,8 +56,7 @@ public class Util {
      */
     public String getDuration() {
         long time = endTime - startTime;
-        finalTime = time / 1000000.0;
-        return "Time: " + (finalTime) + "ms" ;
+        return "" + time / 1000000.0;
     }
     
 }

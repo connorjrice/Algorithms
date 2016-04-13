@@ -27,14 +27,15 @@ public class SortLauncher {
         ///DataFeed.averageResults(5, "algtimings7.csv", "average.csv");
        // mmS(args);
        DataFeed.runSortingAlgorithms(args);
+       //DataFeed.averageResults(6, "algtimings10.csv", "average4.csv");
     }
     
     
     
     public static void newList() {
-        DataFeed.makeNewList(50000);
-        DataFeed.makeNewList(75000);
-        DataFeed.makeNewList(125000);
+        DataFeed.makeNewIntCSV(50000);
+        DataFeed.makeNewIntCSV(75000);
+        DataFeed.makeNewIntCSV(125000);
     }
     
 
@@ -49,7 +50,7 @@ public class SortLauncher {
         QuickSort qs = new QuickSort(args);
         //Sorter[] sorters = new Sorter[]{ms};
 
-        sr.run(ms,getData("25000.csv"), 1);
+        sr.run(ms,getIntArray("25000.csv"), 1);
         System.out.println(sr.getAverage(0));
         System.out.println("hey");
         //double avg = sr.run(new MergeSort(), getData("10000.csv"), 1);        
@@ -60,49 +61,49 @@ public class SortLauncher {
         int t = 7;   
         Sorter q = new QuickSort(args);
         q.hybrid(new InsertionSort(args), t);
-        q.sort(getData(n));
+        q.sort(getIntArray(n));
         q.removeHybrid();
-        q.sort(getData(n));
+        q.sort(getIntArray(n));
     }
     
     public static void mergeHybrid(String[] args) {
         String n = "1000.csv";
         int t = 10;
         MergeSort ms = new MergeSort(args);
-        ms.sort(getData(n));
+        ms.sort(getIntArray(n));
         ms.hybrid(new ExchangeSort(args), t);        
-        ms.sort(getData(n));
+        ms.sort(getIntArray(n));
         ms.hybrid(new InsertionSort(args), t);
-        ms.sort(getData(n));
+        ms.sort(getIntArray(n));
         ms.removeHybrid();
-        ms.sort(getData(n));
+        ms.sort(getIntArray(n));
     }
     
     public static void eS(String[] args) {
         Sorter es = new ExchangeSort(args);
-        es.sort(getData("1000.csv"));
+        es.sort(getIntArray("1000.csv"));
     }
     
     public static void mS(String[] args) {
         MergeSort ms = new MergeSort(args);
-        ms.sort(getData("25000.csv"));
+        ms.sort(getIntArray("25000.csv"));
     }
     
     public static void bS(String[] args) {
         Sorter bs = new BubbleSort(args);
-        bs.sort(getData("1000.csv"));
+        bs.sort(getIntArray("1000.csv"));
     }
     
     public static void qS(String[] args) {        
        Sorter qs = new QuickSort(args);
-       qs.sort(getData("25000.csv"));
+       qs.sort(getIntArray("25000.csv"));
     }
     
     public static void iS(String[] args) {
         Sorter i = new InsertionSort(args);
-        i.sort(getData("1000.csv"));
+        i.sort(getIntArray("1000.csv"));
         i.hybrid(new BubbleSort(args), 7);
-        i.sort(getData("1000.csv"));
+        i.sort(getIntArray("1000.csv"));
     }
     
     public static void mmS(String[] args) {
@@ -117,7 +118,7 @@ public class SortLauncher {
      * @param n
      * @return 
      */
-    public static Integer[] getData(String n) {
+    public static Integer[] getIntArray(String n) {
         return DataFeed.readIntCSV(n);
     }
     
