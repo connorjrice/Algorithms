@@ -3,8 +3,8 @@ package graph;
 import graph.structures.SimpleDirectedGraph;
 
 /**
- *
- * @author Connor
+ * Adapted
+ * @author Connor Rice
  */
 public class Dijkstras {
     
@@ -32,8 +32,6 @@ public class Dijkstras {
             touch[i] = 0;
             length[i] = g.getEdges()[0][i];
         }
-        //System.out.println(Arrays.deepToString(g.getEdges()));        
-
         while (shortSize < n-1) { // Add all n-1 vertices to Y
             min = Double.POSITIVE_INFINITY;
             for (int i = 1; i < n; i++) { // Find smallest vertex
@@ -47,7 +45,6 @@ public class Dijkstras {
             shortSize++;
             
             for (int i = 1; i < n; i++) {
-                //System.out.println(i);
                 if (length[vnear] + g.getEdges()[vnear][i] < length[i]) {
                     // For each vertex not in path, update shortest path
                     length[i] = length[vnear] + g.getEdges()[vnear][i];
@@ -88,7 +85,6 @@ public class Dijkstras {
             touch[i] = 4;
             length[i] = g.getEdges()[4][i];
         }
-//        System.out.println(Arrays.deepToString(g.getEdges()));   
         
         while (shortSize < n-1) { // Add all n-1 vertices to Y
             min = Double.POSITIVE_INFINITY;
@@ -98,7 +94,7 @@ public class Dijkstras {
                     vnear = i;
                 }
             }
-            System.out.println("Step " + (shortSize+1) + " Add edge: node1: " + vnear + " node2: " + touch[vnear] + " weight: " + g.getEdges()[vnear][touch[vnear]]);            
+            //System.out.println("Step " + (shortSize+1) + " Add edge: node1: " + vnear + " node2: " + touch[vnear] + " weight: " + g.getEdges()[vnear][touch[vnear]]);            
             // Add edge from touch[vnear] to vnear to path
             shortestPath[shortSize] = new int[]{touch[vnear],vnear,(int)g.getEdges()[touch[vnear]][vnear]};
             shortSize++;

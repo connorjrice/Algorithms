@@ -27,7 +27,7 @@ public class ProblemsCLauncher {
         //kruskals();
         //dijkstras();
         //schedule();
-        coloring();
+        //coloring();
        // queen();
     }
     

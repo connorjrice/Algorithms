@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 public class Floyds {
    
-        public static void floyd() {
+    public static void floydTest() {
         SimpleWeightedGraph g = new SimpleWeightedGraph(7);
         // V1
         g.addEdge(0, 1, 4);
